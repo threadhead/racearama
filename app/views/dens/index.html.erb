@@ -1,0 +1,29 @@
+<% title "Dens" %>
+
+<table>
+  <tr>
+    <th>Pack</th>
+    <th>Den Number</th>
+    <th>Rank</th>
+    <th>Leader Name</th>
+    <th>Leader Email</th>
+    <th>Assistant Leader Name</th>
+    <th>Assistant Leader Email</th>
+  </tr>
+  <% for den in @dens %>
+    <tr>
+      <td><%= den.pack_id %></td>
+      <td><%= den.den_number %></td>
+      <td><%= den.rank %></td>
+      <td><%= den.leader_name %></td>
+      <td><%= den.leader_email %></td>
+      <td><%= den.assistant_leader_name %></td>
+      <td><%= den.assistant_leader_email %></td>
+      <td><%= link_to "Show", den %></td>
+      <td><%= link_to "Edit", edit_den_path(den) %></td>
+      <td><%= link_to "Destroy", den, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Den", new_den_path %></p>

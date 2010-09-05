@@ -1,0 +1,36 @@
+<% title "Den" %>
+
+<p>
+  <strong>Pack:</strong>
+  <%= @den.pack_id %>
+</p>
+<p>
+  <strong>Den Number:</strong>
+  <%= @den.den_number %>
+</p>
+<p>
+  <strong>Rank:</strong>
+  <%= @den.rank %>
+</p>
+<p>
+  <strong>Leader Name:</strong>
+  <%= @den.leader_name %>
+</p>
+<p>
+  <strong>Leader Email:</strong>
+  <%= @den.leader_email %>
+</p>
+<p>
+  <strong>Assistant Leader Name:</strong>
+  <%= @den.assistant_leader_name %>
+</p>
+<p>
+  <strong>Assistant Leader Email:</strong>
+  <%= @den.assistant_leader_email %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_den_path(@den) %> |
+  <%= link_to "Destroy", @den, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", dens_path %>
+</p>

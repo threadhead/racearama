@@ -1,4 +1,6 @@
 Racearama::Application.routes.draw do
+  resources :dens
+
   resources :packs
 
   devise_for :users
