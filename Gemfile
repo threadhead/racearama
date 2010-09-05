@@ -34,4 +34,6 @@ group :development, :test do
   gem 'wirble'
   gem 'faker'
   gem "nifty-generators"
+  gem "rspec-rails", ">= 2.0.0.beta.20"
+  gem 'autotest'
 end
