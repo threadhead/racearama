@@ -1,0 +1,48 @@
+<% title "Pack" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pack.name %>
+</p>
+<p>
+  <strong>Address1:</strong>
+  <%= @pack.address1 %>
+</p>
+<p>
+  <strong>Address2:</strong>
+  <%= @pack.address2 %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @pack.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @pack.state %>
+</p>
+<p>
+  <strong>Zipcode:</strong>
+  <%= @pack.zipcode %>
+</p>
+<p>
+  <strong>Cubmaster Name:</strong>
+  <%= @pack.cubmaster_name %>
+</p>
+<p>
+  <strong>Pinewood Derby Chair:</strong>
+  <%= @pack.pinewood_derby_chair %>
+</p>
+<p>
+  <strong>Website Url:</strong>
+  <%= @pack.website_url %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @pack.email %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_pack_path(@pack) %> |
+  <%= link_to "Destroy", @pack, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", packs_path %>
+</p>

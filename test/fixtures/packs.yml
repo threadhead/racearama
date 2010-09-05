@@ -1,0 +1,23 @@
+one:
+  name: MyString
+  address1: MyString
+  address2: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  cubmaster_name: MyString
+  pinewood_derby_chair: MyString
+  website_url: MyString
+  email: MyString
+
+two:
+  name: MyString
+  address1: MyString
+  address2: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  cubmaster_name: MyString
+  pinewood_derby_chair: MyString
+  website_url: MyString
+  email: MyString
