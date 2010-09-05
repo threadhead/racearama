@@ -1,4 +1,6 @@
 Racearama::Application.routes.draw do
+  resources :scouts
+
   resources :dens
 
   resources :packs

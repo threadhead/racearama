@@ -113,6 +113,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  haml
   hirb
   mocha
   mysql2

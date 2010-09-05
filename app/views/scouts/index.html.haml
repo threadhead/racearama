@@ -1,0 +1,31 @@
+- title "Scouts"
+
+%table
+  %tr
+    %th Den
+    %th First name
+    %th Last name
+    %th Address1
+    %th Address2
+    %th City
+    %th State
+    %th Zipcode
+    %th Parent email1
+    %th Parent email2
+  - for scout in @scouts
+    %tr
+      %td= scout.den_id
+      %td= scout.first_name
+      %td= scout.last_name
+      %td= scout.address1
+      %td= scout.address2
+      %td= scout.city
+      %td= scout.state
+      %td= scout.zipcode
+      %td= scout.parent_email1
+      %td= scout.parent_email2
+      %td= link_to 'Show', scout
+      %td= link_to 'Edit', edit_scout_path(scout)
+      %td= link_to 'Destroy', scout, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Scout", new_scout_path

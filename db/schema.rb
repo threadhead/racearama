@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100905051638) do
+ActiveRecord::Schema.define(:version => 20100905081538) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(:version => 20100905051638) do
     t.string   "pinewood_derby_chair"
     t.string   "website_url"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scouts", :force => true do |t|
+    t.integer  "den_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "parent_email1"
+    t.string   "parent_email2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

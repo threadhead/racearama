@@ -4,6 +4,12 @@ describe DensController do
   fixtures :all
   render_views
   
+  before(:each) do
+    pack = Factory(:pack)
+    @den = Factory(:den, :pack => pack)
+  end
+  
+  
   it "index action should render index template" do
     get :index
     response.should render_template(:index)

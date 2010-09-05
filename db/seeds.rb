@@ -6,6 +6,11 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
+User.destroy_all
+Pack.destroy_all
+Den.destroy_all
+Scout.destroy_all
+
 User.create({
   :email => "threadhead@gmail.com",
   :username => "checkin",
@@ -36,7 +41,5 @@ dens = []
                            :pack => @pack) }
 
 #generate 100 scouts in random dens
-# 100.times { Factory(:scout,
-#                     :first_name => Faker::Name.first_name,
-#                     :last_name => Faker::Name.last_name,
-#                     :den => dens[rand(10)]) }
+100.times { Factory(:scout,
+                    :den => dens[rand(10)]) }

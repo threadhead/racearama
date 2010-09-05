@@ -1,0 +1,44 @@
+= form_for @scout do |f|
+  = f.error_messages
+  %p
+    = f.label :den_id
+    %br
+    = f.text_field :den_id
+  %p
+    = f.label :first_name
+    %br
+    = f.text_field :first_name
+  %p
+    = f.label :last_name
+    %br
+    = f.text_field :last_name
+  %p
+    = f.label :address1
+    %br
+    = f.text_field :address1
+  %p
+    = f.label :address2
+    %br
+    = f.text_field :address2
+  %p
+    = f.label :city
+    %br
+    = f.text_field :city
+  %p
+    = f.label :state
+    %br
+    = f.text_field :state
+  %p
+    = f.label :zipcode
+    %br
+    = f.text_field :zipcode
+  %p
+    = f.label :parent_email1
+    %br
+    = f.text_field :parent_email1
+  %p
+    = f.label :parent_email2
+    %br
+    = f.text_field :parent_email2
+  %p
+    = f.submit

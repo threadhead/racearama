@@ -1,11 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper'
  
-describe PacksController do
+describe ScoutsController do
   fixtures :all
   render_views
   
   before(:each) do
-    Factory(:pack)
+    pack = Factory(:pack)
+    den = Factory(:den, :pack => pack)
+    @scout = Factory(:scout, :den => den)
   end
   
   
@@ -14,49 +16,49 @@ describe PacksController do
     response.should render_template(:index)
   end
   
-  it "show action should render show template" do
-    get :show, :id => Pack.first
+it "show action should render show template" do
+    get :show, :id => Scout.first
     response.should render_template(:show)
   end
-    
+  
   it "new action should render new template" do
     get :new
     response.should render_template(:new)
   end
   
   it "create action should render new template when model is invalid" do
-    Pack.any_instance.stubs(:valid?).returns(false)
+    Scout.any_instance.stubs(:valid?).returns(false)
     post :create
     response.should render_template(:new)
   end
   
   it "create action should redirect when model is valid" do
-    Pack.any_instance.stubs(:valid?).returns(true)
+    Scout.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(pack_url(assigns[:pack]))
+    response.should redirect_to(scout_url(assigns[:scout]))
   end
   
   it "edit action should render edit template" do
-    get :edit, :id => Pack.first
+    get :edit, :id => Scout.first
     response.should render_template(:edit)
   end
   
   it "update action should render edit template when model is invalid" do
-    Pack.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Pack.first
+    Scout.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => Scout.first
     response.should render_template(:edit)
   end
   
   it "update action should redirect when model is valid" do
-    Pack.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Pack.first
-    response.should redirect_to(pack_url(assigns[:pack]))
+    Scout.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => Scout.first
+    response.should redirect_to(scout_url(assigns[:scout]))
   end
   
   it "destroy action should destroy model and redirect to index action" do
-    pack = Pack.first
-    delete :destroy, :id => pack
-    response.should redirect_to(packs_url)
-    Pack.exists?(pack.id).should be_false
+    scout = Scout.first
+    delete :destroy, :id => scout
+    response.should redirect_to(scouts_url)
+    Scout.exists?(scout.id).should be_false
   end
 end
