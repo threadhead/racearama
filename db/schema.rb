@@ -10,7 +10,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100905034102) do
+ActiveRecord::Schema.define(:version => 20100905051638) do
+
+  create_table "dens", :force => true do |t|
+    t.integer  "pack_id"
+    t.string   "den_number"
+    t.string   "rank"
+    t.string   "leader_name"
+    t.string   "leader_email"
+    t.string   "assistant_leader_name"
+    t.string   "assistant_leader_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "packs", :force => true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "cubmaster_name"
+    t.string   "pinewood_derby_chair"
+    t.string   "website_url"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                              :default => "", :null => false
