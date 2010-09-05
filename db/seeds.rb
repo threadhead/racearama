@@ -24,3 +24,19 @@ User.create({
   :password => "pack134"
 })
 
+# generate one pack
+
+@pack = Factory.create(:pack)
+
+# generate 12 dens for this pack
+dens = []
+12.times { dens << Factory(:den, 
+                           :leader_name => Faker::Name.name,
+                           :assistant_leader_name => Faker::Name.name,
+                           :pack => @pack) }
+
+#generate 100 scouts in random dens
+# 100.times { Factory(:scout,
+#                     :first_name => Faker::Name.first_name,
+#                     :last_name => Faker::Name.last_name,
+#                     :den => dens[rand(10)]) }
