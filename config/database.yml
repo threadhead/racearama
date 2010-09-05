@@ -11,8 +11,8 @@ development:
   reconnect: false
   database: racearama_development
   pool: 5
-  username: root
-  password:
+  username: racearama
+  password: 6racearama6
   socket: /opt/local/var/run/mysql5/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -24,8 +24,8 @@ test:
   reconnect: false
   database: racearama_test
   pool: 5
-  username: root
-  password:
+  username: racearama
+  password: 6racearama6
   socket: /opt/local/var/run/mysql5/mysqld.sock
 
 production:
@@ -34,6 +34,6 @@ production:
   reconnect: false
   database: racearama_production
   pool: 5
-  username: root
-  password:
+  username: racearama
+  password: 6racearama6
   socket: /opt/local/var/run/mysql5/mysqld.sock
