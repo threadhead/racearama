@@ -1,4 +1,6 @@
 Racearama::Application.routes.draw do
+  get "parent/index"
+
   get "page/welcome"
 
   get "page/about"
