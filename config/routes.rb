@@ -1,4 +1,10 @@
 Racearama::Application.routes.draw do
+  get "page/welcome"
+
+  get "page/about"
+
+  get "page/copyright"
+
   resources :scouts
 
   resources :dens
@@ -56,7 +62,7 @@ Racearama::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "welcome#index"
+  root :to => "page#welcome"
 
   # See how all your routes lay out with "rake routes"
 

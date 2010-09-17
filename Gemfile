@@ -41,4 +41,6 @@ group :development, :test do
   gem 'autotest-fsevent'
   gem 'mocha'
   gem 'factory_girl_rails'
+  gem 'hpricot'
+  gem 'ruby_parser'
 end
