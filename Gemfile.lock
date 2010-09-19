@@ -51,6 +51,9 @@ GEM
       rails (>= 3.0.0.beta4)
     faker (0.3.1)
     haml (3.0.18)
+    haml-rails (0.2)
+      haml (~> 3.0)
+      rails (~> 3.0.0.rc)
     hirb (0.3.3)
     hpricot (0.8.2)
     i18n (0.4.1)
@@ -118,6 +121,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   haml
+  haml-rails
   hirb
   hpricot
   mocha
