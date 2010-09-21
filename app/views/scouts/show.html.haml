@@ -32,8 +32,6 @@
   = @scout.parent_email2
 
 %p
-  = link_to "Edit", edit_scout_path(@scout)
-  |
-  = link_to "Destroy", @scout, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", scouts_path
+  = link_to "Edit Information", edit_scout_path(@scout, :mode => "check_in")
+  - if check_in?
+    = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout)

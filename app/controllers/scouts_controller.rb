@@ -5,6 +5,7 @@ class ScoutsController < ApplicationController
   
   def show
     @scout = Scout.find(params[:id])
+    @mode = params[:mode]
   end
   
   def new
@@ -40,5 +41,19 @@ class ScoutsController < ApplicationController
     @scout.destroy
     flash[:notice] = "Successfully destroyed scout."
     redirect_to scouts_url
+  end
+  
+  def check_in
+    @scout = Scout.find(params[:id])
+    @scout.update_attribute(:checked_in, true)
+    flash[:notice] = "#{@scout.full_name} was sucessfully checked in.<br />If you made a mistake, you can <a href=\"/scouts/#{@scout.id}/check_out\">check out #{@scout.first_name}</a> to undo."
+    redirect_to @scout
+  end
+  
+  def check_out
+    @scout = Scout.find(params[:id])
+    @scout.update_attribute(:checked_in, false)
+    flash[:notice] = "#{@scout.full_name} was sucessfully checked out. He will no longer be included in race activities."
+    redirect_to @scout
   end
 end

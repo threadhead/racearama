@@ -7,16 +7,21 @@
       =text_field_tag :scout_search
       =submit_tag 'search'
       
-  %h3 Select Scout to Check In
+  %h3
+    Select Scout to Check In
     %table
       %thead
         %tr
           %th Scout
           %td Den
+          %td Rank
           %td Den Leader
           %td Action
       %tbody
         - for @scout in @scouts        
           %tr
-            %td @scout.full_name
-            %td @scout.den.
+            %td= @scout.full_name
+            %td= "Den #{@scout.den.den_number}"
+            %td= @scout.den.rank
+            %td= @scout.den.leader_name
+            %td= link_to "Check In", scout_path(@scout, :mode => "check_in")
