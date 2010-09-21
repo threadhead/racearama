@@ -11,4 +11,8 @@ describe Scout do
   it "should be valid" do
     @scout.should be_valid
   end
+  
+  it "full_name returns last + first name" do
+    @scout.full_name.should eql("#{@scout.first_name} #{@scout.last_name}")
+  end
 end

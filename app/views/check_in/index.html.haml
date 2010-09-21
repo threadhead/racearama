@@ -1,2 +1,22 @@
-%h1 CheckIn#index
-%p Find me in app/views/check_in/index.html.haml
+#scout-check-in
+  %h3 Find Scout
+  =form_tag url_for(:controller  => :check_in, :action => :index) do
+    / =f.error_messages
+    %p
+      =label_tag :scout_search
+      =text_field_tag :scout_search
+      =submit_tag 'search'
+      
+  %h3 Select Scout to Check In
+    %table
+      %thead
+        %tr
+          %th Scout
+          %td Den
+          %td Den Leader
+          %td Action
+      %tbody
+        - for @scout in @scouts        
+          %tr
+            %td @scout.full_name
+            %td @scout.den.

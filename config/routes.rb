@@ -4,7 +4,7 @@ Racearama::Application.routes.draw do
   match 'track_manager' => 'track_manager#index'
   match 'staging' => 'staging#index'
   match 'check_in' => 'check_in#index'
-
+  # post 'check_in/find_scout'
   get "page/welcome"
 
   get "page/about"
