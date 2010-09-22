@@ -1,10 +1,35 @@
 // Here is where you can define your constants for your application and to configure the blueprint framework.
 // Feel free to delete these if you want keep the defaults:
 
-$blueprint-grid-columns: 24;
+$blueprint-grid-columns: 12;
 $blueprint-container-size: 950px;
 $blueprint-grid-margin: 10px;
 
 // Use this to calculate the width based on the total width.
 // Or you can set !blueprint_grid_width to a fixed value and unset !blueprint_container_size -- it will be calculated for you.
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
+
+$blueprint-font-family: "myriad pro", helvetica, Arial, sans-serif;
+$blueprint-font-size: 14px;
+
+
+
+@mixin shaded-button($base_color, $hover_color) {
+	$dark_base: darken($base_color, 40);
+	
+	@include text-shadow($dark_base, 1px, 1px, 0px);
+	background: $base_color;
+	border: 1px solid $dark_base !important;
+	border-top: 1px solid lighten($base_color, 20) !important;
+	@include linear-gradient(color-stops($base_color, lighten($base_color, 10)), bottom);
+	@include border-radius(5px);
+	padding: 5px 9px;
+	
+	&:hover, &:focus, &:active {
+		@include text-shadow(darken($hover_color, 40), 1px, 1px, 0px);
+		background: $hover_color;
+		border: 1px solid darken($hover_color, 20) !important;
+		border-top: 1px solid lighten($hover_color, 40) !important;
+		@include linear-gradient(color-stops($hover_color, lighten($hover_color, 10)), bottom);
+	}
+}

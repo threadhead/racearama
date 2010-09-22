@@ -1,0 +1,436 @@
+// This import applies a global reset to any page that imports this stylesheet.
+@import "blueprint/reset"
+
+// To configure blueprint, edit the partials/base.sass file.
+@import "partials/base"
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint"
+
+// Combine the partials into a single screen stylesheet.
+@import "partials/page"
+// @import "partials/form"
+// @import "partials/two_col"
+
+@import "compass/css3"
+@import "compass/utilities/lists"
+
+$background_blue: #0F508D
+
+body.bp
+	background: #ddd
+	color: #333
+	a
+		border-bottom: 1px dotted #009
+		text-decoration: none
+		&.button
+			border-bottom: 0
+	.box
+		float: left
+		margin: 0px 20px 20px 0px
+		padding: 0
+		.header
+			ul
+				a
+					background: #777
+					+linear-gradient(color-stops(#666, #777), top)
+					color: white
+				a.active, a:hover, a:focus, a:active
+					background: white
+					color: #444
+					+linear-gradient(color-stops(#ddd, white), top)
+			.button
+				margin-left: 15px
+
+	ul, ol
+		padding-left: 1.2em
+	.msg
+		+border-radius(5px)
+		margin: 0px 0px 15px
+		padding: 8px 10px 0px
+		p
+			margin: 0px 0px 4px
+			padding-left: 45px
+			height: 36px		
+
+		
+.button
+	color: white !important
+	font-size: .9em
+	+shaded-button(#0567ad, #2a2a2a)
+	&.dark
+		+shaded-button(#2a2a2a, #00487a)
+
+
+a.big-button
+	border-top: 2px solid #ddd
+	border-bottom: 0 !important
+	background: #65a9d7
+	padding: 13px 26px
+	+linear-gradient(color-stops(#ccc, #eee), right)
+	color: darken($background_blue, 10)
+	+border-radius(8px)
+	font-size: 1.8em
+	font-weight: bold
+	+box-shadow(#333, 1px, 1px, 6px, 0, false)
+	+text-shadow(#fff, 2px, 2px, 3px)
+	&:hover
+		+text-shadow(white, 0px, 0px, 0px)
+		border-top-color: #28597a
+		background: $background_blue
+		color: white !important
+	&:active
+		border-top-color: darker($background_blue, 10)
+		background: #1b435e
+
+
+				
+.box-50
+	width: 470px
+.box-100
+	width: 960px
+
+
+#header
+	height: 101px
+	background-color: $background_blue
+	+linear-gradient(color-stops(lighten($background_blue, 15), #{$background_blue} 70%, #{$background_blue}), top)
+	border-bottom: 1px solid #2A9FEC
+	.inner-container
+		padding: 20px 0px 16px
+		
+			
+	#userbox
+		+linear-gradient(color-stops(#{$background_blue}, lighten($background_blue, 2), #{$background_blue}), top)
+		+border-top-left-radius(6px)
+		+border-top-right-radius(6px)
+		+box-shadow(lighten($background_blue, 20), 0px, -1px, 1px, 0, false)
+		float: right
+		height: 65px
+		width: 225px
+		color: white
+		font-size: 1.1em
+		#user-image
+			width: 65px
+			height: 65px
+			float: left
+			background: url("/images/consulting.png") no-repeat center center
+		.inner
+			padding: 11px 50px 0px 68px
+			a
+				color: white
+				border-bottom: 1px dotted #999
+			ul
+				+horizontal-list
+				
+				
+h1#logo
+	font-size: 3.5em
+	font-weight: bold
+	font-style: italic
+	float: left
+	height: 28px
+	a
+		color: white
+		+text-shadow(#111, 2px, 2px, 5px)
+		-webkit-text-stroke: 1px #777
+		border-bottom: 0
+
+		
+		
+#nav
+	background-color: white
+	border-bottom: 1px solid #999
+	border-top: 1px solid #004483
+	+box-shadow(#777, 0px, 1px, 5px, 0, false)
+	.inner-container
+		padding: 12px 0px 5px
+	ul
+		+horizontal-list
+		li
+			margin: 10px 20px 16px 4px
+			   
+					
+				
+#container
+	width: 960px
+	margin: 0px auto
+	.inner-container
+		width: 980px
+		padding: 20px 0px
+
+
+#div.content
+	padding: 18px
+
+
+		
+.boxin
+	background: white
+	+border-radius(6px)
+	+box-shadow(#aaa, 0px, 0px, 10px, 0, false)
+	border: 1px solid #999
+	.content
+		margin-bottom: 5px
+	.header
+		+border-top-left-radius(6px)
+		+border-top-right-radius(6px)
+		border-top: 2px solid #ccc
+		height: 25px
+		+linear-gradient(color-stops(#555, #333), top)
+		margin: -1px -1px 0px
+		padding: 7px 0px 9px 20px
+		position: relative
+		h3
+			color: white
+			font-size: 1.4em
+			+text-shadow(#151515, 0px, 1px, 0px)
+			position: relative
+			top: 4px
+			display: inline
+
+	ul.simple
+		margin-right: 0
+		padding: 0
+		li
+			clear: both
+			padding: 10px 20px 8px
+			list-style-type: none
+		li.even
+			background: whiteSmoke
+		span
+			float: right
+
+	ul.tabular
+		font-size: .85em
+		float: right
+		+horizontal-list
+		overflow: visible
+		position: absolute
+		right: 9px
+		bottom: 4px
+		li
+			a
+				border: 0
+				background: white
+				+border-top-left-radius(5px)
+				+border-top-right-radius(5px)
+				margin-left: 0px
+				padding: 12px 13px 7px
+		
+	
+.inner-container
+	width: 960px
+	margin: 0px auto
+	
+.username
+	font-size: 1.2em
+	
+
+		
+	
+span.dashboard-icon
+	background: url("/images/document_library.png") no-repeat
+	padding: 6px 4px 4px 43px
+	
+span.scout-icon
+	background: url("/images/scouts.png") no-repeat
+	padding: 6px 4px 4px 43px
+
+
+
+
+@mixin msg-box($color, $image_url)
+	color: $color
+	background-color: lighten($color, 65)
+	border: 1px solid lighten($color, 55)
+	p
+		background: url($image_url) no-repeat
+
+.msg-ok
+	+msg-box(#336801, "/images/ok.png")
+
+.msg-error
+	+msg-box(#8d0d0d, "/images/error.png")
+
+.msg-warn
+	+msg-box(#6c6600, "/images/warning.png")
+
+.msg-info
+	+msg-box(#005898, "/images/info.png")
+
+
+
+		
+input.txt, textarea
+	font-size: 1.1em
+	border: 1px solid #999
+	padding: 5px 4px
+	+border-radius(5px)
+
+select
+	font-size: 1.1em
+
+input.error, textarea.error
+	border-color: #d35757
+	
+label.check, label.radio
+	margin-right: 8px
+	
+span.loading
+	padding: 3px 0px 3px 20px
+	display: block
+	
+form
+	font-size: 1.2em
+	padding: 18px
+	&.plain
+		padding: 0px
+		fieldset
+			border: 0 !important
+			padding: 0 !important
+	&.basic
+		dl
+			width: 100%
+			overflow: hidden
+			dt
+				font-size: 1.1em
+				padding: 3px 5px 3px 0px
+				width: 20%
+				float: left
+				clear: both
+			dd
+				padding: 3px 0px 3px 5px
+				width: 75%
+				float: left
+		input.txt, textarea
+			width: 100%
+	&.fields
+		fieldset
+			border: 1px solid #ccc
+			padding: 10px 15px 15px
+			+border-radius(8px)
+			legend
+				font-size: 1em
+				padding: 0px 10px
+		fieldset.last
+			margin-bottom: 0px
+		label, div.sep
+			display: block
+			margin-top: 8px
+		label.check, label.radio
+			display: inline
+			
+			
+.error
+	color: #b70b0b
+	background: none
+	padding: 0px
+
+		
+table
+	width: 100%
+	border-collapse: separate
+	thead th, thead td
+		font-size: 1em
+		background: #ddd !important
+		border-left: 1px solid #ccc
+		border-right: 1px solid #d5d5e5
+		+text-shadow(white, 1px, 1px, 1px)
+	tfoot th, tfoot td
+		background: white
+		border-top: 1px solid #ccc
+	th:first, td:first
+		padding-left: 20px
+	th, td
+		padding: 10px 10px 8px !important
+		font-weight: normal !important
+	.tc
+		text-align: center !important
+	tr.even td, tr.even th
+		background: whiteSmoke !important
+	.first
+	.last
+		border-right: 0px !important
+	ul.actions
+		margin: 0px
+		padding-left: 0px
+		li
+			display: inline
+			margin-right: 5px
+			a
+				border-bottom: 0
+				
+
+.blue
+	.header
+		background: $background_blue
+		border-top-color: lighten($background_blue, 40)
+		+linear-gradient(color-stops($background_blue, lighten($background_blue, 10)), bottom)
+		h3
+			+text-shadow(darken($background_blue, 40), 0px, 1px, 0px)
+		// ul
+		// 	a
+		// 		background-color: #489cd4
+		// 	a.active, a:hover, a:focus, a:active
+		// 		background: white
+		// 		+linear-gradient(color-stops(#DEEDFD, white), top)
+		// 		color: #0f518e
+	table
+		tr.even td, tr.even th
+			background: #f0f9ff !important
+			
+		
+			
+#login
+	background: #222
+	padding: 100px
+	.box
+		float: none
+		margin: 0px auto
+		width: 600px
+	.boxin
+		+box-shadow(#111, 0px, 0px, 10px)
+		border: 0px
+	.header
+		height: 55px
+		padding-top: 20px
+		padding-bottom: 15px
+		margin: 0
+	table
+		width: 75%
+		margin: 0px auto
+	th, td
+		padding: 0px 0px 5px 0px
+	th
+		width: 60px
+	td.proceed
+		padding-right: 0px
+	th.proceed input
+		margin: 0px
+	input.txt
+		width: 360px
+		
+		
+		
+#footer
+	clear: both
+	background: #333
+	color: #bbb
+	.inner-container
+		margin: 0px auto
+		padding: 20px 0px 16px
+		.box
+			background: inherit
+			padding-bottom: 8px
+			
+	a, h1, h2, h3, h4, h5
+		color: #bbb
+		border-bottom: 1px dotted #999
+	ul
+		list-style-type: none
+		padding: 0
+		margin-bottom: 0px
+	.copyright
+		float: right
+		text-align: center
