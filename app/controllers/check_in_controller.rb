@@ -1,7 +1,10 @@
 class CheckInController < ApplicationController
-  before_filter :authenticate_user!
+  # session[:user_params] = params
+  # before_filter :authenticate_user!
+  before_filter :store_params_and_authenticate
   
   def index
+    session[:user_params] = nil
     authorize! :read, Scout
 
     if params[:scout_search]
@@ -12,7 +15,12 @@ class CheckInController < ApplicationController
     else
       @scouts = Scout.includes(:den)
     end
-    
+  end
+  
+  private
+  def store_params_and_authenticate
+    session[:user_params] = params if params
+    authenticate_user!
   end
   
 end

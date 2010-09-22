@@ -22,7 +22,9 @@ Racearama::Application.routes.draw do
 
   resources :packs
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users, :controllers => { :sessions => "users/sessions"}
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
