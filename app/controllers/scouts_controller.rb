@@ -1,4 +1,7 @@
 class ScoutsController < ApplicationController
+  before_filter :authenticate_user!
+  authorize_resource
+  
   def index
     @scouts = Scout.all
   end
@@ -46,14 +49,14 @@ class ScoutsController < ApplicationController
   def check_in
     @scout = Scout.find(params[:id])
     @scout.update_attribute(:checked_in, true)
-    flash[:notice] = "#{@scout.full_name} was sucessfully checked in.<br />If you made a mistake, you can <a href=\"/scouts/#{@scout.id}/check_out\">check out #{@scout.first_name}</a> to undo."
+    flash[:notice] = "#{@scout.full_name} was sucessfully checked in.<br />If you made a mistake, you can <a href=\"/scouts/#{@scout.id}/check_out\">check out #{@scout.first_name}</a> to undo.".html_safe
     redirect_to @scout
   end
   
   def check_out
     @scout = Scout.find(params[:id])
     @scout.update_attribute(:checked_in, false)
-    flash[:notice] = "#{@scout.full_name} was sucessfully checked out. He will no longer be included in race activities."
+    flash[:notice] = "#{@scout.full_name} was sucessfully checked out. He will no longer be included in race activities.".html_safe
     redirect_to @scout
   end
 end

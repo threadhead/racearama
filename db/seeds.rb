@@ -19,7 +19,7 @@ User.create({
 
 User.create({
   :email => "threadhead@gmail.com",
-  :username => "manger",
+  :username => "manager",
   :password => "134pack"
 })
 

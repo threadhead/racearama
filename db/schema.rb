@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20100921035525) do
     t.string   "parent_email2"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "checked_in"
+    t.boolean  "checked_in",    :default => false
   end
 
   create_table "users", :force => true do |t|

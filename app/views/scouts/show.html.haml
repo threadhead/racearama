@@ -33,5 +33,7 @@
 
 %p
   = link_to "Edit Information", edit_scout_path(@scout, :mode => "check_in")
-  - if check_in?
+  = link_to "Return to Check In", check_in_path
+
+  - if !@scout.checked_in && check_in?
     = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout)
