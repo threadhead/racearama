@@ -44,7 +44,7 @@ body.bp
 
 	ul, ol
 		padding-left: 1.2em
-	.msg
+	.flash
 		+border-radius(5px)
 		margin: 0px 0px 15px
 		padding: 8px 10px 0px
@@ -60,6 +60,8 @@ body.bp
 	+shaded-button(#0567ad, #2a2a2a)
 	&.dark
 		+shaded-button(#2a2a2a, #00487a)
+		
+a.button
 
 
 a.big-button
@@ -256,11 +258,13 @@ span.scout-icon
 .msg-warn
 	+msg-box(#6c6600, "/images/warning.png")
 
-.msg-info
+.notice
 	+msg-box(#005898, "/images/info.png")
 
 
-
+	
+input.button
+	font-family: "myriad pro", helvetica, Arial, sans-serif
 		
 input.txt, textarea
 	font-size: 1.1em
@@ -280,6 +284,34 @@ label.check, label.radio
 span.loading
 	padding: 3px 0px 3px 20px
 	display: block
+	
+.scout-search
+	font-size: 1.5em
+	.label
+		float: left
+		display: inline
+		// margin-top: 6px
+		margin-right: 12px
+		label
+		// padding: 3px 12px 3px 0px
+	.search
+		float: left
+		display: inline
+		// width: 70%
+		input.txt
+			padding: 3px 0px 3px 5px
+			width: 550px
+		input[type="submit"]
+			position: relative
+			top: -5px
+		.description
+			font-style: italic
+			font-size: .6em
+			color: #bbb
+	.all
+		display: inline
+		float: right
+		margin-top: 1px
 	
 form
 	font-size: 1.2em
@@ -304,7 +336,7 @@ form
 				width: 75%
 				float: left
 		input.txt, textarea
-			width: 100%
+			// width: 100%
 	&.fields
 		fieldset
 			border: 1px solid #ccc
@@ -319,8 +351,8 @@ form
 			display: block
 			margin-top: 8px
 		label.check, label.radio
-			display: inline
-			
+			display: inline	
+		
 			
 .error
 	color: #b70b0b

@@ -2,13 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.role? :manager
+    if user.role? :track_manager
       can :manage, :all
       
-    elsif user.role? :checkin
+    elsif user.role? :check_in
       can :manage, Scout
       
-    elsif user.role? :staging
+    elsif user.role? :car_staging
       can :manage, Scout
     end
   end

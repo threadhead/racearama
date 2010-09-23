@@ -1,38 +1,42 @@
-#scout-check-in
-  %h3 Find Scout
-  =form_tag url_for(:controller  => :check_in, :action => :index), :method => :get do
-    / =f.error_messages
-    %p
-      =label_tag :scout_search
-      =text_field_tag :scout_search
-      =submit_tag 'search'
-  %br
-  %p= link_to "Show All Scouts", check_in_path
-  %br
-      
-  %h3
-    Select Scout to Check In (#{@scouts.size})
-  %br
-  %h3
-    Already checked in: #{Scout.number_checked_in}
-  %br
-  
-  %table
-    %thead
-      %tr
-        %th Scout
-        %td Den
-        %td Rank
-        %td Den Leader
-        %td Action
-    %tbody
-      - for @scout in @scouts        
-        %tr
-          %td= @scout.full_name
-          %td= "Den #{@scout.den.den_number}"
-          %td= @scout.den.rank
-          %td= @scout.den.leader_name
-          - if @scout.checked_in
-            %td= link_to "Check Out", check_out_scout_path(@scout)
-          -else
-            %td= link_to "Check In", scout_path(@scout, :mode => "check_in")
+#scout-check-in.box.box-100.blue
+  .boxin
+    .header
+      %h3 Find Scout to Check In
+  	  
+    .content
+      .scout-search.clearfix
+        .all
+          = button_to "Show All Scouts", {:action => "index", :method => :put}, :class => "button"
+
+        =form_tag url_for(:controller  => :check_in, :action => :index), :method => :get, :class => "basic" do
+          / =f.error_messages
+          .label
+            = #label_tag :scout_search, "Scout"
+            = image_tag "search.png"
+          .search
+            = text_field_tag :scout_search, nil, :class => 'txt'
+            = submit_tag 'search', :class => 'button'
+            = #link_to "Show All Scouts", check_in_path, :class => "button"
+            .description
+              enter any part of the first or last name
+          
+
+      %table
+        %thead
+          %tr
+            %th Scout
+            %td Den
+            %td Rank
+            %td Den Leader
+            %td Action
+        %tbody
+          - for @scout in @scouts        
+            %tr
+              %td= @scout.full_name
+              %td= "Den #{@scout.den.den_number}"
+              %td= @scout.den.rank
+              %td= @scout.den.leader_name
+              - if @scout.checked_in
+                %td= link_to "Check Out", check_out_scout_path(@scout)
+              -else
+                %td= link_to "Check In", scout_path(@scout, :mode => "check_in")

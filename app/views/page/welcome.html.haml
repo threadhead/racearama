@@ -1,6 +1,7 @@
-.left
-  = link_to "Parents", parent_url, :class => "button big"
-  = link_to "Check In", check_in_url(:username => "checkin"), :class => "button big"
-.right
-  = link_to "Staging", staging_url(:username => "staging"), :class => "button big"
-  = link_to "Track Manager", track_manager_url(:username => "manager"), :class => "button big"
+.box
+  .left
+    = link_to "Parents", parent_url, :class => "button big"
+    = link_to "Check In", check_in_url, :class => "button big"
+  .right
+    = link_to "Staging", staging_url, :class => "button big"
+    = link_to "Track Manager", track_manager_url, :class => "button big"

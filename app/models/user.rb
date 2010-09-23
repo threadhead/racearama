@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def role?(role)
     role.to_s == self.username.downcase
   end
+  
+  def username_nice
+    self.username.humanize.titleize
+  end
 end

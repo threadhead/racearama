@@ -4,7 +4,7 @@
   #user-image
   .inner
     .username
-      #{current_user.try(:username)}
+      #{current_user.try(:username_nice)}
     %ul
       - if user_signed_in?
         %li= link_to "logout", destroy_user_session_path
