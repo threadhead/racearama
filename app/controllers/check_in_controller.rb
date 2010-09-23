@@ -4,7 +4,8 @@ class CheckInController < ApplicationController
   before_filter :store_params_and_authenticate
   
   def index
-    session[:user_params] = nil
+    session[:username] = nil
+    @scout_search = params[:scout_search] || ""
     authorize! :read, Scout
 
     if params[:scout_search]

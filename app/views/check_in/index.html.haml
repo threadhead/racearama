@@ -6,7 +6,7 @@
     .content
       .scout-search.clearfix
         .all
-          = button_to "Show All Scouts", {:action => "index", :method => :put}, :class => "button"
+          = button_to "Show All Scouts", {:action => "index"}, :class => "button"
 
         =form_tag url_for(:controller  => :check_in, :action => :index), :method => :get, :class => "basic" do
           / =f.error_messages
@@ -14,7 +14,7 @@
             = #label_tag :scout_search, "Scout"
             = image_tag "search.png"
           .search
-            = text_field_tag :scout_search, nil, :class => 'txt'
+            = text_field_tag :scout_search, @scout_search, :class => 'txt'
             = submit_tag 'search', :class => 'button'
             = #link_to "Show All Scouts", check_in_path, :class => "button"
             .description
