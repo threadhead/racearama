@@ -156,6 +156,7 @@ h1#logo
 				
 #container
 	width: 960px
+	min-height: 500px
 	margin: 0px auto
 	.inner-container
 		width: 980px
@@ -290,14 +291,10 @@ span.loading
 	.label
 		float: left
 		display: inline
-		// margin-top: 6px
 		margin-right: 12px
-		label
-		// padding: 3px 12px 3px 0px
 	.search
 		float: left
 		display: inline
-		// width: 70%
 		input.txt
 			padding: 3px 0px 3px 5px
 			width: 550px
@@ -336,7 +333,7 @@ form
 				width: 75%
 				float: left
 		input.txt, textarea
-			// width: 100%
+
 	&.fields
 		fieldset
 			border: 1px solid #ccc
@@ -401,19 +398,28 @@ table
 		+linear-gradient(color-stops($background_blue, lighten($background_blue, 10)), bottom)
 		h3
 			+text-shadow(darken($background_blue, 40), 0px, 1px, 0px)
-		// ul
-		// 	a
-		// 		background-color: #489cd4
-		// 	a.active, a:hover, a:focus, a:active
-		// 		background: white
-		// 		+linear-gradient(color-stops(#DEEDFD, white), top)
-		// 		color: #0f518e
 	table
 		tr.even td, tr.even th
 			background: #f0f9ff !important
 			
-		
-			
+#welcome
+	table
+		width: 100%
+		tr
+			td
+				margin: 0px auto
+				height: 150px
+				
+				a
+					display: block
+					width: 300px
+					margin: 0px auto
+				.button
+					text-align: center
+					font-size: 3em
+					padding: 20px 30px
+					
+					
 #login
 	background: #222
 	padding: 100px
