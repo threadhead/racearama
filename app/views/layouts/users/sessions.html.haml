@@ -1,0 +1,13 @@
+!!!
+%html.bp{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    = render :partial => 'layouts/head'
+
+  %body.bp#login
+    .box.box-50.blue
+      .boxin
+        .header
+          %h1#logo
+            %a race.A.rama
+        
+        = yield

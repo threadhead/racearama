@@ -1,16 +1,24 @@
-%h2 Sign in
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %p
-    = f.label :username
-    %br/
-    = f.text_field :username, :value => @username
-  %p
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %p
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %p= f.submit "Sign in"
-= render :partial => "devise/shared/links"
+  .inner-form
+    = render :partial => 'layouts/flash', :locals => {:flash => flash}
+    
+    %table
+      %tr
+        %th= f.label :username
+        %td= f.text_field :username, :value => @username, :class => "txt"
+      %tr
+        %th= f.label :password
+        %td= f.password_field :password, :class => "txt pwd"
+      
+      - if devise_mapping.rememberable?
+        %tr
+          %th
+          %td
+            = f.check_box :remember_me
+            = f.label :remember_me
+        
+      %tr
+        %th
+        %td= f.submit "Sign in", :class => "button"
+
+= #render :partial => "devise/shared/links"
