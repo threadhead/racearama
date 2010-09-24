@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100924010020) do
+ActiveRecord::Schema.define(:version => 20100924170844) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(:version => 20100924010020) do
     t.string   "leader_email"
     t.string   "assistant_leader_name"
     t.string   "assistant_leader_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "location_name"
+    t.string   "location_address1"
+    t.string   "location_address2"
+    t.string   "location_city"
+    t.string   "location_state"
+    t.string   "location_zipcode"
+    t.string   "derby_chair"
+    t.string   "race_manager"
+    t.text     "notes"
+    t.text     "track"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,6 +76,11 @@ ActiveRecord::Schema.define(:version => 20100924010020) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "scouts_events", :id => false, :force => true do |t|
+    t.integer "scout_id"
+    t.integer "event_id"
   end
 
   create_table "users", :force => true do |t|

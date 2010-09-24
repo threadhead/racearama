@@ -5,6 +5,7 @@ class Scout < ActiveRecord::Base
   validates_presence_of :den_id, :message => "must select a den"
   
   belongs_to :den
+  has_and_belongs_to_many :events
   
   has_attached_file :picture, :styles => {:thumb => "100x100>"}, :default_url => "missing.png"
   

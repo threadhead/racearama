@@ -1,0 +1,46 @@
+%p
+  %b Name:
+  = @event.name
+%p
+  %b Start time:
+  = @event.start_time
+%p
+  %b End time:
+  = @event.end_time
+%p
+  %b Location name:
+  = @event.location_name
+%p
+  %b Location address1:
+  = @event.location_address1
+%p
+  %b Location address2:
+  = @event.location_address2
+%p
+  %b Location city:
+  = @event.location_city
+%p
+  %b Location state:
+  = @event.location_state
+%p
+  %b Location zipcode:
+  = @event.location_zipcode
+%p
+  %b Derby chair:
+  = @event.derby_chair
+%p
+  %b Race manager:
+  = @event.race_manager
+%p
+  %b Notes:
+  = @event.notes
+%p
+  %b Track:
+  = @event.track
+%p
+  %b Active:
+  = @event.active
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path
