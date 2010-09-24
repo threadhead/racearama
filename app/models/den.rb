@@ -4,5 +4,11 @@ class Den < ActiveRecord::Base
   belongs_to :pack
   has_many :scouts
   
+  scope :sort_den, order("den_number ASC")
+  
   validates_uniqueness_of :den_number, :on => :create, :message => "there is another den with this number"
+  
+  def den_leader_pack
+    "Den #{self.den_number} #{self.rank.pluralize}, #{self.leader_name} - #{self.pack.name}"
+  end
 end

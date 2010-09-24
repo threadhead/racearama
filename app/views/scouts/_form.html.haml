@@ -1,44 +1,35 @@
-= form_for @scout do |f|
-  = f.error_messages
-  %p
-    = f.label :den_id
-    %br
-    = f.text_field :den_id
-  %p
-    = f.label :first_name
-    %br
-    = f.text_field :first_name
-  %p
-    = f.label :last_name
-    %br
-    = f.text_field :last_name
-  %p
-    = f.label :address1
-    %br
-    = f.text_field :address1
-  %p
-    = f.label :address2
-    %br
-    = f.text_field :address2
-  %p
-    = f.label :city
-    %br
-    = f.text_field :city
-  %p
-    = f.label :state
-    %br
-    = f.text_field :state
-  %p
-    = f.label :zipcode
-    %br
-    = f.text_field :zipcode
-  %p
-    = f.label :parent_email1
-    %br
-    = f.text_field :parent_email1
-  %p
-    = f.label :parent_email2
-    %br
-    = f.text_field :parent_email2
-  %p
-    = f.submit
+= form_for @scout, :html => {:class => "fields"} do |f|
+  .inner-form
+  = #f.error_messages
+
+  = f.label :den
+  = f.collection_select :den_id, Den.includes(:pack).sort_den.all, :id, :den_leader_pack
+
+  = f.label :first_name
+  = f.text_field :first_name
+
+  = f.label :last_name
+  = f.text_field :last_name
+
+  = f.label :address1
+  = f.text_field :address2
+
+  = f.label :address2
+  = f.text_field :address2
+
+  = f.label :city
+  = f.text_field :city
+
+  = f.label :state
+  = f.text_field :state
+
+  = f.label :zipcode
+  = f.text_field :zipcode
+
+  = f.label :parent_email1
+  = f.text_field :parent_email1
+
+  = f.label :parent_email2
+  = f.text_field :parent_email2
+  .sep
+    = f.submit :class => "button"

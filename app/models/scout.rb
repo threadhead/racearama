@@ -6,7 +6,7 @@ class Scout < ActiveRecord::Base
   
   belongs_to :den
   
-  has_attached_file :picture, :styles => {:thumb => "100x100>"}
+  has_attached_file :picture, :styles => {:thumb => "100x100>"}, :default_url => "missing.png"
   
   scope :not_checked_in, where(:checked_in => false)
   scope :checked_in, where(:checked_in => true)
