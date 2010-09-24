@@ -9,6 +9,16 @@
     #show-scout.content.clearfix
       .flash.warn
         %p <strong>Please verify the DEN number is correct!</strong>
+        
+      #scout-picture
+        #picture
+          = image_tag @scout.picture.url
+          
+          = form_for @scout, :url => { :action => :update }, :html => { :multipart => true } do |f|
+            = f.file_field :picture
+            = f.submit "Upload Picture"
+          
+          
       %table
         %tr
           %td.label Name:
@@ -30,10 +40,12 @@
         %tr
           %td.label Parent Email:
           %td #{@scout.parent_email1}<br />#{@scout.parent_email2}
-          
 
       %p
         = link_to "Edit Information", edit_scout_path(@scout, :mode => "check_in"), :class => "button"
 
-        - if !@scout.checked_in && check_in?
-          = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout), :class => "button"
+        - if current_user.role?(:check_in)
+          -if @scout.checked_in
+            = link_to "Check Out #{@scout.first_name}", check_out_scout_path(@scout), :class => "button"
+          -else
+            = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout), :class => "button"

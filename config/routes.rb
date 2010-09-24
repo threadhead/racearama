@@ -11,6 +11,7 @@ Racearama::Application.routes.draw do
 
   get "page/copyright"
 
+  # resources :scouts
   resources :scouts do
     member do
       get 'check_in'
