@@ -1,5 +1,9 @@
 - title "New Scout"
+- nav_buttons render(:partial => 'show_nav_buttons')
 
-= render 'form'
-
-%p= link_to "Back to List", scouts_path
+.box.box-100
+  .boxin
+    .header
+      %h3 Add a new Scout
+    
+    = render 'form'

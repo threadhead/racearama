@@ -8,7 +8,6 @@ class ScoutsController < ApplicationController
   
   def show
     @scout = Scout.find(params[:id])
-    @mode = params[:mode]
   end
   
   def new

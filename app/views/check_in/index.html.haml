@@ -34,11 +34,11 @@
         %tbody
           - for @scout in @scouts        
             %tr
-              %td= link_to @scout.full_name, scout_path(@scout, :mode => "check_in")
+              %td= link_to @scout.full_name, scout_path(@scout)
               %td= "Den #{@scout.den.try(:den_number)}"
               %td= @scout.den.try(:rank)
               %td= @scout.den.try(:leader_name)
               - if @scout.checked_in
                 %td= link_to "Check Out", check_out_scout_path(@scout), {:confirm => "Are you sure? Checking out a Scout will remove them from the race.", :class => "button check-out"}
               -else
-                %td= link_to "Check In", scout_path(@scout, :mode => "check_in"), :class => "button check-in"
+                %td= link_to "Check In", scout_path(@scout), :class => "button check-in"

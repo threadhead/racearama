@@ -3,7 +3,7 @@ Factory.sequence :den_number do |n|
 end
 
 Factory.sequence :rank do |r|
-  %w{Tiger Wolf Bear WebeloI WebeloII}[rand(5)]
+  ["Tiger", "Wolf", "Bear", "Webelo 1", "Webelo 2"][rand(5)]
 end
 
 Factory.define :den do |p|

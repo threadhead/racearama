@@ -41,8 +41,14 @@
           %td.label Parent Email:
           %td #{@scout.parent_email1}<br />#{@scout.parent_email2}
 
+        - if @scout.checked_in
+          %tr
+            %td.label
+              %td
+                %h3.green #{@scout.first_name} is Checked In!
+
       %p
-        = link_to "Edit Information", edit_scout_path(@scout, :mode => "check_in"), :class => "button"
+        = link_to "Edit Information", edit_scout_path(@scout), :class => "button"
 
         - if current_user.role?(:check_in)
           -if @scout.checked_in
