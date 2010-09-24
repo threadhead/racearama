@@ -4,6 +4,7 @@ log/*.log
 tmp/**/*
 database.yml
 public/stylesheets/compiled/*.css
+public/system/**
 backups/**
 
 # Other useful tidbits
