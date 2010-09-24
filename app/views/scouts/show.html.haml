@@ -25,9 +25,9 @@
           %td.name= @scout.full_name
               
         %tr
-          %td.label Den Number:
+          %td.label Den:
           %td
-            #{@scout.den.den_number} #{@scout.den.rank.pluralize} &mdash; (#{@scout.den.pack.name})<br />
+            Den #{@scout.den.den_number}, #{@scout.den.rank.pluralize} &ndash; #{@scout.den.pack.name}<br />
             #{@scout.den.leader_name}, den leader
           
         %tr
