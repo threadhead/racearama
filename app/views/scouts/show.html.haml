@@ -1,39 +1,39 @@
 - title "Scout"
+- nav_buttons render(:partial => 'show_nav_buttons')
 
-%p
-  %strong Den:
-  = @scout.den_id
-%p
-  %strong First Name:
-  = @scout.first_name
-%p
-  %strong Last Name:
-  = @scout.last_name
-%p
-  %strong Address1:
-  = @scout.address1
-%p
-  %strong Address2:
-  = @scout.address2
-%p
-  %strong City:
-  = @scout.city
-%p
-  %strong State:
-  = @scout.state
-%p
-  %strong Zipcode:
-  = @scout.zipcode
-%p
-  %strong Parent Email1:
-  = @scout.parent_email1
-%p
-  %strong Parent Email2:
-  = @scout.parent_email2
+.box.box-100.blue
+  .boxin
+    .header
+      %h3 Verify #{@scout.full_name}&rsquo;s information
+      
+    #show-scout.content.clearfix
+      .flash.warn
+        %p <strong>Please verify the DEN number is correct!</strong>
+      %table
+        %tr
+          %td.label Name:
+          %td.name= @scout.full_name
+              
+        %tr
+          %td.label Den Number:
+          %td
+            #{@scout.den.den_number} #{@scout.den.rank.pluralize} &mdash; (#{@scout.den.pack.name})<br />
+            #{@scout.den.leader_name}, den leader
+          
+        %tr
+          %td.label Address:
+          %td
+            = @scout.address1
+            %br= @scout.address2
+            #{@scout.city}, #{@scout.state} #{@scout.zipcode}
+          
+        %tr
+          %td.label Parent Email:
+          %td #{@scout.parent_email1}<br />#{@scout.parent_email2}
+          
 
-%p
-  = link_to "Edit Information", edit_scout_path(@scout, :mode => "check_in")
-  = link_to "Return to Check In", check_in_path
+      %p
+        = link_to "Edit Information", edit_scout_path(@scout, :mode => "check_in"), :class => "button"
 
-  - if !@scout.checked_in && check_in?
-    = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout)
+        - if !@scout.checked_in && check_in?
+          = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout), :class => "button"

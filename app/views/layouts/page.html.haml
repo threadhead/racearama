@@ -5,19 +5,17 @@
       = yield(:title) || "Untitled"
     = render :partial => 'layouts/head'
     
-  %body.bp
+  %body.bp#welcome
+    #opaque
     #header
       .inner-container
-        = render :partial => 'layouts/header'
-        
-    #nav
-      .inner-container
-        = yield :nav_buttons
+        %h1#logo
+          %a.home{:href => "/"} race.A.rama
                 
     #container.clearfix
       .inner-container
         #content
-          = render :partial => 'layouts/flash', :locals => {:flash => flash}
+          = #render :partial => 'layouts/flash', :locals => {:flash => flash}
       
           = yield
         

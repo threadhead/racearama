@@ -19,4 +19,9 @@ module LayoutHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+  
+  def nav_buttons(nav_button_contents)
+    content_for(:nav_buttons) { nav_button_contents }
+  end
+  
 end

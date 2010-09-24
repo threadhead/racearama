@@ -14,22 +14,22 @@ $blueprint-font-size: 14px;
 
 
 
-@mixin shaded-button($base_color, $hover_color) {
+@mixin shaded-button($base_color, $hover_color, $border_radius: 5px, $border_width: 1px) {
 	$dark_base: darken($base_color, 40);
 	
 	@include text-shadow($dark_base, 1px, 1px, 0px);
 	background: $base_color;
-	border: 1px solid $dark_base !important;
-	border-top: 1px solid lighten($base_color, 20) !important;
+	border: $border_width solid $dark_base !important;
+	border-top: $border_width solid lighten($base_color, 20) !important;
 	@include linear-gradient(color-stops($base_color, lighten($base_color, 10)), bottom);
-	@include border-radius(5px);
+	@include border-radius($border_radius);
 	padding: 5px 9px;
 	
 	&:hover, &:focus, &:active {
 		@include text-shadow(darken($hover_color, 40), 1px, 1px, 0px);
 		background: $hover_color;
-		border: 1px solid darken($hover_color, 20) !important;
-		border-top: 1px solid lighten($hover_color, 40) !important;
+		border: $border_width solid darken($hover_color, 20) !important;
+		border-top: $border_width solid lighten($hover_color, 40) !important;
 		@include linear-gradient(color-stops($hover_color, lighten($hover_color, 10)), bottom);
 	}
 }
