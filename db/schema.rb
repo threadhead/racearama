@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(:version => 20100924170844) do
     t.datetime "updated_at"
   end
 
+  create_table "events_scouts", :id => false, :force => true do |t|
+    t.integer "scout_id"
+    t.integer "event_id"
+  end
+
   create_table "packs", :force => true do |t|
     t.string   "name"
     t.string   "address1"
@@ -76,11 +81,6 @@ ActiveRecord::Schema.define(:version => 20100924170844) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-  end
-
-  create_table "scouts_events", :id => false, :force => true do |t|
-    t.integer "scout_id"
-    t.integer "event_id"
   end
 
   create_table "users", :force => true do |t|

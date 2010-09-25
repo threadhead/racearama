@@ -1,6 +1,6 @@
 class AddEventsScoutsHabtm < ActiveRecord::Migration
   def self.up
-    create_table :scouts_events, :id => false do |t|
+    create_table :events_scouts, :id => false do |t|
       t.integer :scout_id
       t.integer :event_id
     end
