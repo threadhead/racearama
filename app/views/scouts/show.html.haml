@@ -41,11 +41,18 @@
           %td.label Parent Email:
           %td #{@scout.parent_email1}<br />#{@scout.parent_email2}
 
-        - if @scout.checked_in
-          %tr
-            %td.label
-              %td
-                %h3.green #{@scout.first_name} is Checked In!
+        %tr
+          %td.label
+          %td
+            - if @scout.has_current_event?
+              .check-in.green #{@scout.first_name} is checked in for the current race!
+            -else
+              .check-in.red #{@scout.first_name} is not checked in for the current race
+        %tr
+          %td.label Checked in for:
+          %td
+            - for @event in @scout.events.order("start_time DESC")
+              #{@event.name}<br />
 
       %p
         = link_to "Edit Information", edit_scout_path(@scout), :class => "button"

@@ -8,7 +8,7 @@ Racearama::Application.routes.draw do
   match 'check_in' => 'check_in#index'
   get 'check_in/new'
   get "page/welcome"
-
+  get "page/event_not_set"
   get "page/about"
 
   get "page/copyright"

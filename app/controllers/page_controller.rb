@@ -8,4 +8,6 @@ class PageController < ApplicationController
   def copyright
   end
 
+  def event_not_set
+  end
 end

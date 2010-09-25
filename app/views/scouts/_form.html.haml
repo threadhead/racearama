@@ -31,5 +31,11 @@
 
   = f.label :parent_email2
   = f.text_field :parent_email2
+  
+  - if @scout.checked_in
+    %h3.green #{@scout.first_name} is Checked In!
+    %br for #{Event.current_event.try(:name)}
+  -else
+    
   .sep
     = f.submit :class => "button"

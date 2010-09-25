@@ -21,4 +21,19 @@ class Scout < ActiveRecord::Base
   def self.number_checked_in
     Scout.checked_in.count
   end
+  
+  def has_event?(event)
+    self.events.where( :id => event.id ).count > 0
+  end
+  
+  def has_current_event?
+    current_event = Event.current_event.first
+    if current_event
+      self.events.where( :id => current_event.id ).count > 0
+    else
+      return false
+    end
+  end
+  
+  
 end

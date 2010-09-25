@@ -35,7 +35,7 @@ Factory.define :event do |p|
   p.active                {Factory.next(:active)}
   
   p.after_build do |event|
-    event.name = "Pack 134, Cave Creek, AZ - Pinewood Derby #{Factory.next(:year)}"
+    event.name = "Pack 134 - Pinewood Derby #{Factory.next(:year)}"
     # event.active = Factory.next(:active)
   end
 end
