@@ -1,8 +1,8 @@
 class Event < ActiveRecord::Base
   has_and_belongs_to_many :scouts
   
-  validates_uniqueness_of :active, :message => "there can only be one active event"
-  
+  validate :only_one_active_event
+    
   # scope :current_event, where(:active => true)
   
   def has_associated?
@@ -19,6 +19,13 @@ class Event < ActiveRecord::Base
       # return false
     else
       super
+    end
+  end
+  
+  private
+  def only_one_active_event
+    if self.active && !Event.current_event.nil?
+      errors.add_to_base("Events can have only one active event")
     end
   end
   

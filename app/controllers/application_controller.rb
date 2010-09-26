@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   
   private
   def check_for_current_event
-    if Event.current_event.empty?
+    if Event.current_event.nil?
       redirect_to page_event_not_set_path and return
     end
   end

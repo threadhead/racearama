@@ -8,6 +8,7 @@ class ScoutsController < ApplicationController
   
   def show
     @scout = Scout.find(params[:id])
+    @current_event = Event.current_event
   end
   
   def new

@@ -7,11 +7,12 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 puts "Removing all data from: Events, Users, Packs, Dens, Scouts"
-Event.destroy_all
 User.destroy_all
 Pack.destroy_all
 Den.destroy_all
 Scout.destroy_all
+Event.destroy_all #last to avoid destroy exception
+
 
 puts "Creating manager logins: Check In, Car Staging, Track Manager"
 User.create({

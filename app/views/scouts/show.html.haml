@@ -49,16 +49,15 @@
             -else
               .check-in.red #{@scout.first_name} is not checked in for the current race
         %tr
-          %td.label Checked in for:
-          %td
-            - for @event in @scout.events.order("start_time DESC")
-              #{@event.name}<br />
+          %td.label Races:
+          %td.small
+            = events_for_scout(@scout)
 
       %p
         = link_to "Edit Information", edit_scout_path(@scout), :class => "button"
 
         - if current_user.role?(:check_in)
-          -if @scout.checked_in
-            = link_to "Check Out #{@scout.first_name}", check_out_scout_path(@scout), :class => "button"
+          -if @scout.has_current_event?
+            = link_to "Check Out #{@scout.first_name} from #{@current_event.name}", check_out_scout_path(@scout), :class => "button"
           -else
-            = link_to "Check In #{@scout.first_name}", check_in_scout_path(@scout), :class => "button"
+            = link_to "Check In #{@scout.first_name} to #{@current_event.name}", check_in_scout_path(@scout), :class => "button"
