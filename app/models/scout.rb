@@ -27,7 +27,7 @@ class Scout < ActiveRecord::Base
   end
   
   def has_current_event?
-    current_event = Event.current_event.first
+    current_event = Event.current_event
     if current_event
       self.events.where( :id => current_event.id ).count > 0
     else

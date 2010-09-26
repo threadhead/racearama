@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100924170844) do
+ActiveRecord::Schema.define(:version => 20100925161544) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20100924170844) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived"
   end
 
   create_table "events_scouts", :id => false, :force => true do |t|
