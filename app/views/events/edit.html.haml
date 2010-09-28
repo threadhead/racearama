@@ -1,7 +1,9 @@
-%h1 Editing event
+- title "Edit Event"
+- nav_buttons render(:partial => 'edit_nav_buttons')
 
-= render 'form'
-
-= link_to 'Show', @event
-\|
-= link_to 'Back', events_path
+.box.box-100
+  .boxin
+    .header
+      %h3 Editing #{@event.name}
+    
+    = render 'form'

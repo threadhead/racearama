@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
+  authorize_resource
+  
   def index
     @events = Event.all
   end

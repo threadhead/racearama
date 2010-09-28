@@ -1,45 +1,32 @@
-%h1 Listing events
+- nav_buttons render(:partial => 'index_nav_buttons')
+#scout-check-in.box.box-100.blue
+  .boxin
+    .header
+      %h3 All Events (Races)
+  	  
+    .content
+      %table
+        %thead
+          %tr
+            %th Name
+            %td Start/End
+            %td Derby Chair
+            %td Race Manager
+            %td Action
+        %tbody
+          - for event in @events        
+            %tr
+              %td= link_to event.name, edit_event_path(event)
+              %td #{event.start_time.to_formatted_s(:short)} - #{event.end_time.to_formatted_s(:short)}
+              %td= event.derby_chair
+              %td= event.race_manager
 
-%table
-  %tr
-    %th Name
-    %th Start time
-    %th End time
-    %th Location name
-    %th Location address1
-    %th Location address2
-    %th Location city
-    %th Location state
-    %th Location zipcode
-    %th Derby chair
-    %th Race manager
-    %th Notes
-    %th Track
-    %th Active
-    %th
-    %th
-    %th
+              %td
+                %ul.actions
+                  %li
+                    = link_to edit_event_path(event), :class => "ico" do
+                      = image_tag 'edit.png', :alt => 'edit'
+                  %li
+                    = link_to event, :confirm => 'Are you sure?', :method => :delete, :class => "ico" do
+                      = image_tag 'delete.png', :alt => 'delete'
 
-  - @events.each do |event|
-    %tr
-      %td= event.name
-      %td= event.start_time
-      %td= event.end_time
-      %td= event.location_name
-      %td= event.location_address1
-      %td= event.location_address2
-      %td= event.location_city
-      %td= event.location_state
-      %td= event.location_zipcode
-      %td= event.derby_chair
-      %td= event.race_manager
-      %td= event.notes
-      %td= event.track
-      %td= event.active
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
-      %td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New event', new_event_path
