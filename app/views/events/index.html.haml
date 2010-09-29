@@ -29,4 +29,8 @@
                   %li
                     = link_to event, :confirm => 'Are you sure?', :method => :delete, :class => "ico" do
                       = image_tag 'delete.png', :alt => 'delete'
-
+                  %li
+                    - if event.active
+                      &laquo; Active Event
+                    - else
+                      = link_to "Set Active", set_active_event_path(event), :class => "button", :confirm => "Changing the current Event affects all users. Are you sure?"

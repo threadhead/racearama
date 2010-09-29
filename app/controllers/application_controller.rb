@@ -26,8 +26,12 @@ class ApplicationController < ActionController::Base
   
   private
   def check_for_current_event
-    if Event.current_event.nil?
-      redirect_to page_event_not_set_path and return
+    if !Event.active_event?
+      if current_user.role?(:track_manager)
+        flash[:alert] = "There is NO active Event. Please correct this immediately!"
+      else
+        redirect_to page_event_not_set_path and return
+      end
     end
   end
 end

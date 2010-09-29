@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :scouts
   
   validate :only_one_active_event
+  validates_presence_of :name
     
   # scope :current_event, where(:active => true)
   
@@ -11,6 +12,10 @@ class Event < ActiveRecord::Base
   
   def self.current_event
     Event.where(:active => true).first
+  end
+  
+  def self.active_event?
+    Event.where(:active => true).count >= 1
   end
   
   def destroy
@@ -24,8 +29,8 @@ class Event < ActiveRecord::Base
   
   private
   def only_one_active_event
-    if self.active && !Event.current_event.nil?
-      errors.add_to_base("Events can have only one active event")
+    if self.active && Event.active_event?
+      errors.add(:base, "Events can have only one active event")
     end
   end
   

@@ -47,4 +47,11 @@ class EventsController < ApplicationController
   rescue ActiveRecord::ActiveRecordError
     redirect_to @event, :alert => "Events with races or scouts can not be deleted!"
   end
+  
+  def set_active
+    @event = Event.find(params[:id])
+    Event.all.each{ |event| event.update_attributes({:active => false}) }
+    @event.update_attributes({:active => true})
+    redirect_to events_url, :notice => "#{@event.name} event was set as the active event (race)"
+  end
 end

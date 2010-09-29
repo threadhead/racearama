@@ -1,7 +1,5 @@
 Racearama::Application.routes.draw do
 
-  resources :events
-
   match 'parent' => 'parent#index'
   match 'track_manager' => 'track_manager#index'
   match 'staging' => 'staging#index'
@@ -24,6 +22,11 @@ Racearama::Application.routes.draw do
   resources :dens
 
   resources :packs
+  resources :events do
+    member do
+      get "set_active"
+    end
+  end
 
   # devise_for :users
   devise_for :users, :controllers => { :sessions => "users/sessions"}
