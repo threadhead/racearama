@@ -27,6 +27,12 @@ body.bp
 			border-bottom: 0
 		img
 			vertical-align: middle
+	table
+		margin-bottom: 12px
+		tbody
+			margin-bottom: 12px
+	tr.even td
+		background: none
 	.box
 		float: left
 		margin: 0px 20px 20px 0px
@@ -64,7 +70,11 @@ body.bp
 		font-size: .8em
 	.smaller
 		font-size: .6em
-	
+	.description
+		font-style: italic
+		font-size: .6em
+		color: #aaa	
+		
 		
 .button
 	color: white !important
@@ -321,10 +331,6 @@ span.loading
 		input[type="submit"]
 			position: relative
 			top: -5px
-		.description
-			font-style: italic
-			font-size: .6em
-			color: #bbb
 	.all
 		display: inline
 		float: right
@@ -397,8 +403,10 @@ table
 		// font-weight: normal !important
 	.tc
 		text-align: center !important
-	tr.even td, tr.even th
-		background: whiteSmoke !important
+	tr.even
+		background: whiteSmoke
+	tr:hover, tr.even:hover
+		background: darken(white, 5)
 	.first
 	.last
 		border-right: 0px !important
@@ -420,8 +428,10 @@ table
 		h3
 			+text-shadow(darken($background_blue, 40), 0px, 1px, 0px)
 	table
-		tr.even td, tr.even th
-			background: #f0f9ff !important
+		tr.even
+			background: #f0f9ff
+		tr:hover, tr.even:hover
+			background: darken(#f0f9ff, 5)
 
 	
 #welcome, #track-manager
@@ -440,11 +450,8 @@ table
 					font-size: 3em
 					padding: 20px 30px
 				.description
-					font-size: 1.1em
-					font-style: italic
-					color: #bbb
+					font-size: 1.2em
 					text-align: center
-					font-style: italic
 
 #scout-check-in
 	table
@@ -453,6 +460,16 @@ table
 				+shaded-button(#393, #00487a)
 			&.check-out
 				+shaded-button(#800000, #00487a)
+				
+#event-index
+	table
+		tfoot
+			tr
+				td
+					+linear-gradient(color-stops(#eee, white), top)
+	.description
+		font-size: 1.2em
+		float: right
 		
 #show-scout
 	font-size: 1.4em

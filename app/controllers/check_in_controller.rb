@@ -21,7 +21,7 @@ class CheckInController < ApplicationController
   
   private
   def store_params_and_authenticate
-    session[:username] = "check_in"
+    session[:username] = "check_in" unless user_signed_in?
     authenticate_user!
   end
   

@@ -1,10 +1,10 @@
 - nav_buttons render(:partial => 'index_nav_buttons')
-#scout-check-in.box.box-100.blue
+#event-index.box.box-100.blue
   .boxin
     .header
       %h3 All Events (Races)
   	  
-    .content
+    .content.clearfix
       %table
         %thead
           %tr
@@ -13,9 +13,13 @@
             %td Derby Chair
             %td Race Manager
             %td Action
+        %tfoot
+          %tr
+            %td{:colspan => "5"}
+              .description * - events with associated scouts or races can not be deleted
         %tbody
           - for event in @events        
-            %tr
+            %tr{:class => "#{cycle 'even', 'odd'}"}
               %td= link_to event.name, edit_event_path(event)
               %td #{event.start_time.to_formatted_s(:short)} - #{event.end_time.to_formatted_s(:short)}
               %td= event.derby_chair
@@ -27,10 +31,15 @@
                     = link_to edit_event_path(event), :class => "ico" do
                       = image_tag 'edit.png', :alt => 'edit'
                   %li
-                    = link_to event, :confirm => 'Are you sure?', :method => :delete, :class => "ico" do
-                      = image_tag 'delete.png', :alt => 'delete'
+                    - if event.has_associated?
+                      <strong>*</strong>
+                    - else
+                    
+                      = link_to event, :confirm => 'Are you sure?', :method => :delete, :class => "ico" do
+                        = image_tag 'delete.png', :alt => 'delete'
                   %li
                     - if event.active
-                      &laquo; Active Event
+                      <strong>&laquo; Active Event</strong>
                     - else
                       = link_to "Set Active", set_active_event_path(event), :class => "button", :confirm => "Changing the current Event affects all users. Are you sure?"
+              
