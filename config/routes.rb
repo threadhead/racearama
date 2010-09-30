@@ -1,5 +1,7 @@
 Racearama::Application.routes.draw do
 
+  get "track_test/index"
+
   match 'parent' => 'parent#index'
   match 'track_manager' => 'track_manager#index'
   match 'staging' => 'staging#index'

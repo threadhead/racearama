@@ -435,11 +435,18 @@ table
 
 	
 #welcome, #track-manager
-	table
-		width: 100%
-		tr
-			td
+	#dashboard
+		ul
+			width: 100%
+			padding: 20px 0px 40px 0px
+			li
+				+horizontal-list
+				// list-style-type: none
+				// display: inline
 				height: 150px
+				width: (958px / 2 - 60)
+				float: left
+				padding: 30px
 				a
 					display: block
 					width: 300px

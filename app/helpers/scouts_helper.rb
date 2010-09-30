@@ -12,4 +12,11 @@ module ScoutsHelper
       end
     }.join("<br />").html_safe
   end
+  
+  def scout_full_address(scout)
+    addr = ""
+    addr << (scout.address1 + "<br />") unless scout.address1.blank?
+    addr << (scout.address2 + "<br />") unless scout.address2.blank?
+    addr << (scout.city + ", " + scout.state + " " + scout.zipcode)
+  end
 end

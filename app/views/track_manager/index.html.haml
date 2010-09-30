@@ -3,19 +3,17 @@
     .header
       %h3 Track Management
       
-    .content
-      %table
-        %tr
-          %td
-            = link_to "Events", events_path, :class => "button big"
-            .description set or edit the current race
-          %td
-            = link_to "Scouts", scouts_path, :class => "button big"
-            .description edit scouts, dens, and packs
-        %tr
-          %td
-            = link_to "Staging", staging_url, :class => "button big"
-            .description &nbsp;
-          %td
-            = link_to "Track Manager", track_manager_url, :class => "button big"
-            .description &nbsp;
+    #dashboard.content.clearfix
+      %ul
+        %li
+          = link_to "Events", events_path, :class => "button big"
+          .description set or edit the current race
+        %li
+          = link_to "Scouts", scouts_path, :class => "button big"
+          .description edit scouts, dens, and packs
+        %li
+          = link_to "Staging", staging_url, :class => "button big"
+          .description &nbsp;
+        %li
+          = link_to "Track Manager", track_manager_url, :class => "button big"
+          .description &nbsp;
