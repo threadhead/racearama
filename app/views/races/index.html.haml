@@ -1,0 +1,23 @@
+%h1 Listing races
+
+%table
+  %tr
+    %th Line number
+    %th Lane
+    %th Elapsed seconds
+    %th
+    %th
+    %th
+
+  - @races.each do |race|
+    %tr
+      %td= race.line_number
+      %td= race.lane_id
+      %td= race.elapsed_seconds
+      %td= link_to 'Show', race
+      %td= link_to 'Edit', edit_race_path(race)
+      %td= link_to 'Destroy', race, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New race', new_race_path

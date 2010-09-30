@@ -1,0 +1,10 @@
+%p
+  %b Heat group:
+  = @heat.heat_group_id
+%p
+  %b Heat number:
+  = @heat.heat_number
+
+= link_to 'Edit', edit_heat_path(@heat)
+\|
+= link_to 'Back', heats_path

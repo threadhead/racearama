@@ -1,0 +1,13 @@
+%p
+  %b Lane:
+  = @lane_assignment.lane
+%p
+  %b Scout:
+  = @lane_assignment.scout_id
+%p
+  %b Heat:
+  = @lane_assignment.heat_id
+
+= link_to 'Edit', edit_lane_assignment_path(@lane_assignment)
+\|
+= link_to 'Back', lane_assignments_path

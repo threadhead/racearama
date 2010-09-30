@@ -1,0 +1,16 @@
+= form_for @heat_group do |f|
+  -if @heat_group.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@heat_group.errors.count, "error")} prohibited this heat_group from being saved:"
+      %ul
+        - @heat_group.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :event_id
+    = f.text_field :event_id
+  .actions
+    = f.submit 'Save'

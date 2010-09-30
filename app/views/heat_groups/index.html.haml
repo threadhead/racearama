@@ -1,0 +1,21 @@
+%h1 Listing heat_groups
+
+%table
+  %tr
+    %th Name
+    %th Event
+    %th
+    %th
+    %th
+
+  - @heat_groups.each do |heat_group|
+    %tr
+      %td= heat_group.name
+      %td= heat_group.event_id
+      %td= link_to 'Show', heat_group
+      %td= link_to 'Edit', edit_heat_group_path(heat_group)
+      %td= link_to 'Destroy', heat_group, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New heat_group', new_heat_group_path

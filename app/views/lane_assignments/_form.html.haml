@@ -1,0 +1,19 @@
+= form_for @lane_assignment do |f|
+  -if @lane_assignment.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@lane_assignment.errors.count, "error")} prohibited this lane_assignment from being saved:"
+      %ul
+        - @lane_assignment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :lane
+    = f.text_field :lane
+  .field
+    = f.label :scout_id
+    = f.text_field :scout_id
+  .field
+    = f.label :heat_id
+    = f.text_field :heat_id
+  .actions
+    = f.submit 'Save'

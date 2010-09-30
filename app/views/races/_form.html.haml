@@ -1,0 +1,19 @@
+= form_for @race do |f|
+  -if @race.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@race.errors.count, "error")} prohibited this race from being saved:"
+      %ul
+        - @race.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :line_number
+    = f.text_field :line_number
+  .field
+    = f.label :lane_id
+    = f.text_field :lane_id
+  .field
+    = f.label :elapsed_seconds
+    = f.text_field :elapsed_seconds
+  .actions
+    = f.submit 'Save'

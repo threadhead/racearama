@@ -1,0 +1,13 @@
+%p
+  %b Line number:
+  = @race.line_number
+%p
+  %b Lane:
+  = @race.lane_id
+%p
+  %b Elapsed seconds:
+  = @race.elapsed_seconds
+
+= link_to 'Edit', edit_race_path(@race)
+\|
+= link_to 'Back', races_path

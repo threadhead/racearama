@@ -1,6 +1,13 @@
 Racearama::Application.routes.draw do
 
-  get "track_test/index"
+
+  resources :races
+
+  resources :lane_assignments
+
+  resources :heats
+
+  resources :heat_groups
 
   match 'parent' => 'parent#index'
   match 'track_manager' => 'track_manager#index'
@@ -9,9 +16,7 @@ Racearama::Application.routes.draw do
   get 'check_in/new'
   get "page/welcome"
   get "page/event_not_set"
-  get "page/about"
 
-  get "page/copyright"
 
   # resources :scouts
   resources :scouts do
@@ -22,8 +27,8 @@ Racearama::Application.routes.draw do
   end
 
   resources :dens
-
   resources :packs
+  
   resources :events do
     member do
       get "set_active"
@@ -32,6 +37,10 @@ Racearama::Application.routes.draw do
 
   # devise_for :users
   devise_for :users, :controllers => { :sessions => "users/sessions"}
+
+  match 'track_test' => "track_test#index"  
+  get "page/copyright"
+  get "page/about"
   
 
   # The priority is based upon order of creation:

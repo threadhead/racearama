@@ -1,0 +1,23 @@
+%h1 Listing lane_assignments
+
+%table
+  %tr
+    %th Lane
+    %th Scout
+    %th Heat
+    %th
+    %th
+    %th
+
+  - @lane_assignments.each do |lane_assignment|
+    %tr
+      %td= lane_assignment.lane
+      %td= lane_assignment.scout_id
+      %td= lane_assignment.heat_id
+      %td= link_to 'Show', lane_assignment
+      %td= link_to 'Edit', edit_lane_assignment_path(lane_assignment)
+      %td= link_to 'Destroy', lane_assignment, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New lane_assignment', new_lane_assignment_path

@@ -1,0 +1,2 @@
+module HeatGroupsHelper
+end
