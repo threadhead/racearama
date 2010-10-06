@@ -11,6 +11,7 @@ gem 'haml'
 gem 'devise'
 gem 'cancan'
 gem 'paperclip'
+gem 'httparty'
 
 # Use unicorn as the web server
 # gem 'unicorn'
