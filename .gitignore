@@ -1,11 +1,12 @@
 .bundle
 db/*.sqlite3
-log/*.log
+*.log
 tmp/**/*
 database.yml
 public/stylesheets/compiled/*.css
 public/system/**
 backups/**
+.bundle/**
 
 # Other useful tidbits
 .DS_Store

@@ -47,4 +47,9 @@ group :development, :test do
   gem 'hpricot'
   gem 'ruby_parser'
   gem 'haml-rails'
+  gem 'sinatra'
+end
+
+group :mac do
+  gem 'rb-appscript', :require => false
 end
