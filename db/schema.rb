@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100925161544) do
+ActiveRecord::Schema.define(:version => 20100930192614) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -49,6 +49,28 @@ ActiveRecord::Schema.define(:version => 20100925161544) do
     t.integer "event_id"
   end
 
+  create_table "heat_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "heats", :force => true do |t|
+    t.integer  "heat_group_id"
+    t.integer  "heat_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lane_assignments", :force => true do |t|
+    t.integer  "lane"
+    t.integer  "scout_id"
+    t.integer  "heat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "packs", :force => true do |t|
     t.string   "name"
     t.string   "address1"
@@ -82,6 +104,14 @@ ActiveRecord::Schema.define(:version => 20100925161544) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "daq_controller_host"
+    t.string   "daq_controller_port"
+    t.string   "api_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

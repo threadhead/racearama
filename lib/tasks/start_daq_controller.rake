@@ -13,9 +13,9 @@ namespace :daq_controller do
       @terminal = Appscript.app("Terminal")
       @terminal.do_script("cd #{dir}; rackup -p 8011")
     elsif WINDOZE
-      sh "cd #{dir}"
+      sh "gnome-terminal --command cd #{dir}; rackup -p 8011"
     elsif UNIX
-      sh "cd #{dir}"
+      sh "cd #{dir}; ruby rackup -p 8011"
     end
   end
 end

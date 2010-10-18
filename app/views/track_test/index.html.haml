@@ -1,2 +1,25 @@
-%h1 TrackTest#index
-%p Find me in app/views/track_test/index.html.haml
+#track-manager.box.box-50
+  .boxin
+    .header
+      %h3 Track Testing
+      
+    #dashboard.content.clearfix
+      %ul
+        %li
+          = link_to "Gate Down", events_path, :class => "button big"
+          .description send a gate down command
+        %li
+          = link_to "Gate Up", scouts_path, :class => "button big"
+          .description send a gate up command
+        %li
+          = link_to "Track Test", track_test_path, :class => "button big"
+          .description perform gate and timer tests
+        %li
+          = link_to "Track Manager", track_manager_url, :class => "button big"
+          .description &nbsp;
+
+#track-test.box.box-50
+  .boxin
+    .content
+      %h2 Track Status
+      %p 
