@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20101006024554) do
     t.string   "parent_email2"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "checked_in"
+    t.boolean  "checked_in",           :default => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -115,8 +115,9 @@ ActiveRecord::Schema.define(:version => 20101006024554) do
   end
 
   create_table "settings", :force => true do |t|
-    t.string   "timer_service_ip"
-    t.string   "timer_service_port"
+    t.string   "daq_controller_host"
+    t.string   "daq_controller_port"
+    t.string   "api_key"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
