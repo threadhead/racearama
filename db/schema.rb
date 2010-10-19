@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100925161544) do
+ActiveRecord::Schema.define(:version => 20101006024554) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -49,6 +49,28 @@ ActiveRecord::Schema.define(:version => 20100925161544) do
     t.integer "event_id"
   end
 
+  create_table "heat_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "heats", :force => true do |t|
+    t.integer  "heat_group_id"
+    t.integer  "heat_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lane_assignments", :force => true do |t|
+    t.integer  "lane"
+    t.integer  "scout_id"
+    t.integer  "heat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "packs", :force => true do |t|
     t.string   "name"
     t.string   "address1"
@@ -60,6 +82,14 @@ ActiveRecord::Schema.define(:version => 20100925161544) do
     t.string   "pinewood_derby_chair"
     t.string   "website_url"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "races", :force => true do |t|
+    t.integer  "lane"
+    t.integer  "lane_id"
+    t.float    "elapsed_seconds"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,11 +107,18 @@ ActiveRecord::Schema.define(:version => 20100925161544) do
     t.string   "parent_email2"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "checked_in",           :default => false
+    t.boolean  "checked_in"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "timer_service_ip"
+    t.string   "timer_service_port"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
