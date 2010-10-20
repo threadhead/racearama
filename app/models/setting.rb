@@ -11,14 +11,9 @@ class Setting < ActiveRecord::Base
   
   
   def only_one_setting_record
-    if self.new_record?
-      if Setting.exists?
+    if self.new_record? && Setting.exists?
         # not the current setting (could be new), and setting record already exists
         errors.add(:base, "There can only be one Setting record (notify Track Manager!)")
-      end
-
-    else
-      # if the current record exists, we're cool
     end
   end
   

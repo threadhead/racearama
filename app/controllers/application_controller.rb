@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :layout
-  before_filter :check_for_current_event, :except => [:event_not_set, :welcome]
+  before_filter :check_for_current_event, :except => [:sign_in, :sign_out]
   
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
@@ -16,9 +16,6 @@ class ApplicationController < ActionController::Base
         elsif resource_or_scope.role? :car_staging
           staging_url
         end
-      # else
-      #   page_event_not_set_url
-      # end
     else
       super
     end
@@ -27,7 +24,7 @@ class ApplicationController < ActionController::Base
   private
   def check_for_current_event
     if !Event.active_event?
-      if current_user.role?(:track_manager)
+      if current_user && current_user.role?(:track_manager)
         flash[:alert] = "There is NO active Event. Please correct this immediately!"
       else
         redirect_to page_event_not_set_path and return

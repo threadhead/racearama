@@ -6,18 +6,16 @@ describe Setting do
   end
   
   it "should be able to edit existing" do
-    @setting.update_attributes(:daq_controller_host => "192.168.0.2").should be_valid
+    @setting.update_attribute(:daq_controller_host, "192.168.0.2")
+    @setting.should be_valid
   end
   
   it "should not be able to add more than one record" do
-    
+    @setting2 = Factory.build(:setting).should_not be_valid
+    # @setting2.should not_be_valid
   end
   
-  # it "should be associated with a pack" do
-  #   @den.pack.name.should eql("Pack 134")
-  # end
-  # 
-  # it "should not have same den numbers" do
-  #   Factory.build(:den, :den_number => @den.den_number).should_not be_valid
-  # end
+  it "should not be able to destroy the only setting record" do
+    @setting.destroy.should be_false
+  end
 end
