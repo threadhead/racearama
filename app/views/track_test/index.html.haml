@@ -1,3 +1,5 @@
+- nav_buttons render(:partial => 'index_nav_buttons')
+
 #track-manager.box.box-50
   .boxin
     .header
@@ -6,20 +8,41 @@
     #dashboard.content.clearfix
       %ul
         %li
-          = link_to "Gate Down", events_path, :class => "button big"
+          = link_to "Test Race", test_race_path, :class => "button big"
+          .description drops the gate and returns elapsed times
+        %li
+          = link_to "Gate Down", track_test_gate_down_path, :class => "button big"
           .description send a gate down command
         %li
-          = link_to "Gate Up", scouts_path, :class => "button big"
+          = link_to "Gate Up", track_test_gate_up_path, :class => "button big"
           .description send a gate up command
-        %li
-          = link_to "Track Test", track_test_path, :class => "button big"
-          .description perform gate and timer tests
-        %li
-          = link_to "Track Manager", track_manager_url, :class => "button big"
-          .description &nbsp;
 
 #track-test.box.box-50
   .boxin
     .content
-      %h2 Track Status
-      %p 
+      .inner-content
+        %h2 Track Status
+        - if @daq_status[:result]["status"] == "active"
+          %h4.green Communication with Controller is GOOD!
+          
+        = form_for @setting, :html => {:class => "fields"} do |f|
+          .inner-form
+
+          = f.label :daq_controller_host
+          = f.text_field :daq_controller_host
+
+          = f.label :daq_controller_port
+          = f.text_field :daq_controller_port
+
+          = f.label :api_key
+          = f.text_field :api_key
+        
+          = f.hidden_field :return_to, :value => "track_test#index"
+          .sep
+            = f.submit :class => "button"
+        .grey-box
+          Response (raw): #{@daq_status[:response]}
+          %br Result (raw): #{@daq_status[:result]}
+          %br Errors (raw): #{@daq_status[:error]}
+          %br Response time: #{@daq_status[:elapsed]}
+            

@@ -43,6 +43,8 @@ class DaqController
     { :response => result.response,
       :result => (result.parsed_response),
       :elapsed => "#{(Time.new - t_in).round(4)}s" }
+  rescue
+    {:error => $!}
   end
   
   def self.exec_post(command, opts)
@@ -51,5 +53,8 @@ class DaqController
     { :response => result.response,
       :result => (result.parsed_response),
       :elapsed => "#{(Time.new - t_in).round(4)}s" }
+    rescue
+      {:error => $!}
+      
   end
 end

@@ -9,6 +9,8 @@ Racearama::Application.routes.draw do
 
   resources :heat_groups
 
+  resources :settings
+  
   match 'parent' => 'parent#index'
   match 'track_manager' => 'track_manager#index'
   match 'staging' => 'staging#index'
@@ -38,7 +40,10 @@ Racearama::Application.routes.draw do
   # devise_for :users
   devise_for :users, :controllers => { :sessions => "users/sessions"}
 
-  match 'track_test' => "track_test#index"  
+  match 'track_test' => "track_test#index"
+  match 'track_test/gate_up' => "track_test#gate_up"
+  match 'track_test/gate_down' => "track_test#gate_down"
+  match 'track_test/test_race' => "track_test#test_race"
   get "page/copyright"
   get "page/about"
   

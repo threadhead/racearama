@@ -7,8 +7,8 @@ require 'ap'
 AUTH_KEY = "development"
 
 configure do
-  # @@logger = Logger.new("daq_controller.log")
-  @@logger = nil
+  @@logger = Logger.new("daq_controller.log")
+  # @@logger = nil
   @@gate_status = "down"
 end
 
@@ -34,7 +34,7 @@ end
 post '/start_race' do
   log "POST /starting_gate_down"
   
-  { :status => "OK",
+  { :status => "ok",
     :units => "miliseconds",
     :results => [ {:lane => 1, :time => Time.now.to_i/1000},
                   {:lane => 2, :time => Time.now.to_i/1000}
@@ -46,14 +46,14 @@ end
 post '/starting_gate_down' do
   log "POST /starting_gate_down"
   @@gate_status = "down"
-	{:gate => "down"}.to_json
+	{:status => "ok", :gate => "down"}.to_json
 end
 
 
 post '/starting_gate_up' do
   log "POST /starting_gate_up"
   @@gate_status = "up"
-	{:gate => "up"}.to_json
+	{:status => "ok",:gate => "up"}.to_json
 end
 
 

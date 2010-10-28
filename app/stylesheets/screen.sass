@@ -192,8 +192,9 @@ h1#logo
 		position: fixed
 		z-index: -99
 
-// div.content
-// 	padding: 18px
+div.content
+	.inner-content
+		padding: 18px
 
 
 		
@@ -249,8 +250,7 @@ h1#logo
 				+border-top-right-radius(5px)
 				margin-left: 0px
 				padding: 12px 13px 7px
-		
-	
+
 .inner-container
 	width: 960px
 	margin: 0px auto
@@ -279,10 +279,10 @@ span.scout-icon
 	p
 		background: url($image_url) no-repeat
 
-.msg-ok
+.msg_ok
 	+msg-box(#336801, "/images/ok.png")
 
-.alert
+.alert, .error
 	+msg-box(#8d0d0d, "/images/error.png")
 
 .warn
@@ -378,10 +378,10 @@ form
 			display: inline	
 		
 			
-.error
-	color: #b70b0b
-	background: none
-	padding: 0px
+// .error
+// 	color: #b70b0b
+// 	background: none
+// 	padding: 0px
 	
 
 table
@@ -433,7 +433,18 @@ table
 		tr:hover, tr.even:hover
 			background: darken(#f0f9ff, 5)
 
+
+
+.grey-box
+	color: #666
+	font-size: .8em
+	padding: 8px
+	background: #ddd
+	border: 2px solid #ccc
+	+border-radius(6px)
 	
+	
+
 #welcome, #track-manager
 	#dashboard
 		ul
