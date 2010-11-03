@@ -1,1 +1,3 @@
-test lanes coming
+-for lane_status in @lane_status['lane_status']
+  %ul
+    %li= "#{lane_status['lane']}:#{lane_status['status']}"

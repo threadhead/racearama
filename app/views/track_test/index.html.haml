@@ -1,4 +1,5 @@
 - nav_buttons render(:partial => 'index_nav_buttons')
+- javascript "track_test"
 
 #track-manager.box.box-50
   .boxin
@@ -27,18 +28,22 @@
 - if @test_race
   #test-race.box.box-50
     .boxin
+      .header
+        %h3 Test Race
       .content
         .inner-content
-          %h2 Test Race
           = render "test_race"
           
 - if @lane_status
-  #lane-status.box.box-50
+  #test-lanes.box.box-50
     .boxin
+      .header
+        %h3 Lane Status
       .content
         .inner-content
-          %h2 Lane Status
-          = render "test_lanes"
+          #lane-status
+            = render "test_lanes"
+          = link_to "Stop Lane Test", "#", :class => "button running", :id => "lane-test-control"
           
 #track-test.box.box-50
   .boxin

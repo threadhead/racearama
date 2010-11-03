@@ -1,5 +1,7 @@
 class TrackTestController < ApplicationController
-  before_filter :get_controller_status
+  before_filter :set_status
+  before_filter :get_controller_status, :except => [:test_lanes]
+  
   def index
   end
 
@@ -20,18 +22,27 @@ class TrackTestController < ApplicationController
   
   def test_lanes
     lane_status
-    render :action => :index
+    respond_to do |format|
+      format.html { 
+        get_controller_status
+        render :action => :index
+        }
+      format.js  { render 'test_lanes' }
+    end
+    
   end
 
 
 
   private
   def do_test_race
-    @test_race = DaqController.send("start_race".to_sym, @setting.opts)
+    @return = DaqController.send("start_race".to_sym, @setting.opts)
+    @race_results = @return[:result][:results]
   end
   
   def lane_status
-    @lane_status = DaqController.send("test_lanes".to_sym, @setting.opts)
+    @return = DaqController.send("test_lanes".to_sym, @setting.opts)
+    @lane_status = @return[:result]#[:lane_status]
   end
   
   def gate_test(direction)
@@ -44,10 +55,11 @@ class TrackTestController < ApplicationController
     end
   end
   
+  def set_status
+    @setting = Setting.first
+  end
   
   def get_controller_status
-    @setting = Setting.first
-    
     @daq_status = DaqController.status(@setting.opts)
     if @daq_status.has_key?(:error)
       flash[:error] = "Can not communicate with DAQ Controller service (#{@daq_status[:error]}). Verify that the DAQ Controller host/port/api_key are set properly!"
