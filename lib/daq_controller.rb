@@ -35,6 +35,11 @@ class DaqController
     exec_post("start_race", opts)
   end
 
+
+  def self.test_lanes(opts)
+    exec_post("lane_status", opts)
+  end
+  
   
   private
   def self.exec_get(command, opts)

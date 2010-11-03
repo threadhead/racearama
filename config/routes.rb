@@ -44,6 +44,7 @@ Racearama::Application.routes.draw do
   match 'track_test/gate_up' => "track_test#gate_up"
   match 'track_test/gate_down' => "track_test#gate_down"
   match 'track_test/test_race' => "track_test#test_race"
+  match 'track_test/test_lanes' => "track_test#test_lanes"
   get "page/copyright"
   get "page/about"
   

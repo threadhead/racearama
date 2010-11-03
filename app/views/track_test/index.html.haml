@@ -8,22 +8,48 @@
     #dashboard.content.clearfix
       %ul
         %li
-          = link_to "Test Race", test_race_path, :class => "button big"
-          .description drops the gate and returns elapsed times
+          = form_tag "/track_test/test_race" do
+            = link_to "Test Race", track_test_test_race_path, :class => "button big"
+            .description drops the gate and returns elapsed times
+        
+            #slider
+            Maximum Race Duration:
+            %input#slider-amount{:type => "text"}
+        %li
+          = link_to "Lane Test", track_test_test_lanes_path, :class => "button big"
         %li
           = link_to "Gate Down", track_test_gate_down_path, :class => "button big"
           .description send a gate down command
         %li
           = link_to "Gate Up", track_test_gate_up_path, :class => "button big"
           .description send a gate up command
-
+          
+- if @test_race
+  #test-race.box.box-50
+    .boxin
+      .content
+        .inner-content
+          %h2 Test Race
+          = render "test_race"
+          
+- if @lane_status
+  #lane-status.box.box-50
+    .boxin
+      .content
+        .inner-content
+          %h2 Lane Status
+          = render "test_lanes"
+          
 #track-test.box.box-50
   .boxin
     .content
       .inner-content
         %h2 Track Status
-        - if @daq_status[:result]["status"] == "active"
-          %h4.green Communication with Controller is GOOD!
+        - if @daq_status[:result]
+          -if @daq_status[:result]["status"] == "active"
+            %h4.green Communication with controller is GOOD
+        -else
+          %h4.red Communication with controller is DOWN!
           
         = form_for @setting, :html => {:class => "fields"} do |f|
           .inner-form
@@ -41,8 +67,8 @@
           .sep
             = f.submit :class => "button"
         .grey-box
-          Response (raw): #{@daq_status[:response]}
-          %br Result (raw): #{@daq_status[:result]}
-          %br Errors (raw): #{@daq_status[:error]}
-          %br Response time: #{@daq_status[:elapsed]}
+          Response (raw): #{@daq_status[:response]} <br />
+          Result (raw): #{@daq_status[:result]} <br />
+          Errors (raw): #{@daq_status[:error]} <br />
+          Response time: #{@daq_status[:elapsed]}
             

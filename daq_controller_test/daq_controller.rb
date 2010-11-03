@@ -43,6 +43,18 @@ post '/start_race' do
 end
 
 
+post '/lane_status' do
+  log "POST /lane_stauts"
+  
+  { :status => "ok",
+    :lane_status => [ 
+      (1...12).map {|n| {:lane => n, :status => "#{rand > 0.5 ? 'open' : 'closed'}"}}
+                    ]
+    
+  }.to_jason
+end
+
+
 post '/starting_gate_down' do
   log "POST /starting_gate_down"
   @@gate_status = "down"

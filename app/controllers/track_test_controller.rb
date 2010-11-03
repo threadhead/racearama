@@ -14,12 +14,26 @@ class TrackTestController < ApplicationController
   end
   
   def test_race
-    
+    do_test_race
+    render :action => :index
+  end
+  
+  def test_lanes
+    lane_status
+    render :action => :index
   end
 
 
 
   private
+  def do_test_race
+    @test_race = DaqController.send("start_race".to_sym, @setting.opts)
+  end
+  
+  def lane_status
+    @lane_status = DaqController.send("test_lanes".to_sym, @setting.opts)
+  end
+  
   def gate_test(direction)
     @gate_status = DaqController.send("starting_gate_#{direction}".to_sym, @setting.opts)
     
