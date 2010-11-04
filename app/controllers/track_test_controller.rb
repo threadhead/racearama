@@ -7,12 +7,12 @@ class TrackTestController < ApplicationController
 
   def gate_down
     gate_test("down")
-    render :action => :index    
+    render :action => :index
   end
   
   def gate_up
     gate_test("up")
-    render :action => :index    
+    render :action => :index
   end
   
   def test_race
@@ -38,7 +38,7 @@ class TrackTestController < ApplicationController
   private
   def do_test_race(duration)
     @return = DaqController.send("start_race".to_sym, @setting.opts, duration)
-    @race_results = @return[:result][:results]
+    @race_results = @return[:result]#[:results]
   end
   
   def lane_status

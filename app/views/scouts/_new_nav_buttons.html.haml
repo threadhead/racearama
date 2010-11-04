@@ -1,8 +1,8 @@
 %ul
   %li
     - if current_user.role?(:check_in)
-      = link_to(check_in_path, :class => "big-button") do
+      = link_to(check_in_path, :class => "button nav") do
         %span.scouts-icon Return to Check In
     - else
-      = link_to(scouts_path, :class => "big-button") do
+      = link_to(scouts_path, :class => "button nav") do
         %span Return to All Scouts
