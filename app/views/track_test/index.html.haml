@@ -9,13 +9,15 @@
     #dashboard.content.clearfix
       %ul
         %li
-          = form_tag "/track_test/test_race" do
-            = link_to "Test Race", track_test_test_race_path, :class => "button big"
-            .description drops the gate and returns elapsed times
-        
+          = link_to "Test Race", "#", :class => "button big", :id => "test-race-submit"
+          .description drops the gate and returns elapsed times
+          
+          = form_tag "/track_test/test_race", :id => "testrace" do
             #slider
             Maximum Race Duration:
-            %input#slider-amount{:type => "text"}
+            %span#slider-display{:type => "text"}
+            = hidden_field_tag "slider-amount", @race_duration
+            
         %li
           = link_to "Lane Test", track_test_test_lanes_path, :class => "button big"
         %li
@@ -47,9 +49,10 @@
           
 #track-test.box.box-50
   .boxin
+    .header
+      %h3 Track Controller Status
     .content
       .inner-content
-        %h2 Track Status
         - if @daq_status[:result]
           -if @daq_status[:result]["status"] == "active"
             %h4.green Communication with controller is GOOD

@@ -1,16 +1,26 @@
 $(document).ready( function(){
  
 	$(function() {
+		var start_val = $('input#slider-amount').val();
 		$("#slider").slider({
-			value: 10,
+			value: start_val,
 			min: 4,
 			max: 30,
 			step: 1,
 			slide: function(event, ui) {
-				$("#slider-amount").val(ui.value + " seconds");
+				setSliderAmount(ui.value);
 			}
 		});
-		$("#slider-amount").val($("#slider").slider("value") + " seconds");
+		setSliderAmount($("#slider").slider("value"));
+	});
+	
+	function setSliderAmount (val) {
+		$("span#slider-display").html(val + " seconds");
+		$("input#slider-amount").val(val);
+	}
+
+	$('a#test-race-submit').click( function() {
+		$('form#testrace').submit();
 	});
 
 	

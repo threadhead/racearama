@@ -31,8 +31,8 @@ class DaqController
   end
 
 
-  def self.start_race(opts)
-    exec_post("start_race", opts)
+  def self.start_race(opts, duration=10)
+    exec_post("start_race", opts, {'duration' => duration})
   end
 
 
@@ -42,9 +42,10 @@ class DaqController
   
   
   private
-  def self.exec_get(command, opts)
+  def self.exec_get(command, opts, params={})
     t_in = Time.new
-    result = get("http://#{opts[:host]}:#{opts[:port]}/#{command}", :query => {:apikey => opts[:apikey]})
+    result = get("http://#{opts[:host]}:#{opts[:port]}/#{command}",
+                 :query => {:apikey => opts[:apikey]}.merge(params))
     { :response => result.response,
       :result => (result.parsed_response),
       :elapsed => "#{(Time.new - t_in).round(4)}s" }
@@ -52,9 +53,10 @@ class DaqController
     {:error => $!}
   end
   
-  def self.exec_post(command, opts)
+  def self.exec_post(command, opts, params={})
     t_in = Time.new
-    result = post("http://#{opts[:host]}:#{opts[:port]}/#{command}", :body => {:apikey => opts[:apikey]})
+    result = post("http://#{opts[:host]}:#{opts[:port]}/#{command}",
+                  :body => {:apikey => opts[:apikey]}.merge(params))
     { :response => result.response,
       :result => (result.parsed_response),
       :elapsed => "#{(Time.new - t_in).round(4)}s" }

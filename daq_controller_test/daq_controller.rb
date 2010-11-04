@@ -32,13 +32,11 @@ end
 
 
 post '/start_race' do
-  log "POST /starting_gate_down"
+  log "POST /start_race, duration: #{params['duration']}"
   
   { :status => "ok",
     :units => "miliseconds",
-    :results => [ {:lane => 1, :time => Time.now.to_i/1000},
-                  {:lane => 2, :time => Time.now.to_i/1000}
-                ]
+    :results => (1..12).map { |n| {:lane => n, :time => rand(10000)} }
   }.to_json
 end
 
@@ -48,7 +46,7 @@ post '/lane_status' do
   
   { :status => "ok",
     :lane_status =>
-      (1..12).map {|n| {:lane => n, :status => "#{rand > 0.5 ? 'open' : 'closed'}"}}
+      (1..12).map {|n| {:lane => n, :status => "#{rand > 0.5 ? 'open' : 'closed'}"} }
     
   }.to_json
 end

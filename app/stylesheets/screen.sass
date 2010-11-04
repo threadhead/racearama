@@ -47,8 +47,8 @@ body.bp
 					background: white
 					color: #444
 					+linear-gradient(color-stops(#ddd, white), top)
-			.button
-				margin-left: 15px
+			// .button
+			// margin-left: 15px
 
 	ul, ol
 		padding-left: 1.2em
@@ -76,36 +76,33 @@ body.bp
 		color: #aaa	
 		
 		
-.button
+a.button, input.button
+	$med_blue: #0567ad
+	$dark_grey: #2a2a2a
+	font-weight: bold
 	color: white !important
-	font-size: .9em
-	+shaded-button(#0567ad, #2a2a2a)
+	font-size: 16px
+	+shaded-button($med_blue, $dark_grey)
+	+shaded-button-size($med_blue, $dark_grey)
+	&.small
+		font-size: 12px
+		+shaded-button-size($med_blue, $dark_grey, 5px, 1px)
+	&.medium
+		font-size: 22px
+		+shaded-button-size($med_blue, $dark_grey)
+	&.big
+		font-size: 42px
+		+shaded-button-size($med_blue, $dark_grey, 16px, 3px)
+	&.nav
+		font-size: 24px
+		+shaded-button-size($med_blue, $dark_grey, 10px, 2px)
 	&.dark
 		+shaded-button(#2a2a2a, #00487a)
-		
-
-a.big-button
-	border-top: 2px solid #ddd
-	border-bottom: 0 !important
-	background: #65a9d7
-	padding: 13px 26px
-	+linear-gradient(color-stops(#ccc, #eee), right)
-	color: darken($background_blue, 10)
-	+border-radius(8px)
-	font-size: 1.8em
-	font-weight: bold
-	+box-shadow(#333, 1px, 1px, 6px, 0, false)
-	+text-shadow(#fff, 2px, 2px, 3px)
-	&:hover
-		+text-shadow(white, 0px, 0px, 0px)
-		border-top-color: #28597a
-		background: $background_blue
-		color: white !important
-	&:active
-		border-top-color: darker($background_blue, 10)
-		background: #1b435e
-
-
+	&.red
+		+shaded-button(#800000, #00487a)
+	&.green
+		+shaded-button(#393, #00487a)
+	
 				
 .box-50
 	width: 470px
@@ -405,8 +402,9 @@ table
 		text-align: center !important
 	tr.even
 		background: whiteSmoke
-	tr:hover, tr.even:hover
-		background: darken(white, 5)
+	&.hoverable
+		tr:hover, tr.even:hover
+			background: darken(white, 5)
 	.first
 	.last
 		border-right: 0px !important
@@ -418,7 +416,6 @@ table
 			margin-right: 5px
 			a
 				border-bottom: 0
-				
 
 .blue
 	.header
@@ -430,8 +427,9 @@ table
 	table
 		tr.even
 			background: #f0f9ff
-		tr:hover, tr.even:hover
-			background: darken(#f0f9ff, 5)
+		&.hoverable
+			tr:hover, tr.even:hover
+				background: darken(#f0f9ff, 5)
 
 
 
@@ -452,32 +450,25 @@ table
 			padding: 20px 0px 40px 0px
 			li
 				+horizontal-list
-				// list-style-type: none
-				// display: inline
 				min-height: 150px
 				width: (958px / 2 - 60)
 				float: left
-				padding: 30px
+				padding: 20px
 				a
 					display: block
 					width: 300px
 					margin: 0px auto
-				.button
-					+shaded-button(#0567ad, #2a2a2a, 16px, 3px)			
-					text-align: center
-					font-size: 3em
-					padding: 20px 30px
 				.description
 					font-size: 1.2em
 					text-align: center
 
-#scout-check-in
-	table
-		.button
-			&.check-in
-				+shaded-button(#393, #00487a)
-			&.check-out
-				+shaded-button(#800000, #00487a)
+// #scout-check-in
+// 	table
+// 		.button
+// 			&.check-in
+// 				+shaded-button(#393, #00487a)
+// 			&.check-out
+// 				+shaded-button(#800000, #00487a)
 				
 #event-index
 	table
@@ -488,7 +479,21 @@ table
 	.description
 		font-size: 1.2em
 		float: right
-		
+
+#lane-status
+	table
+		th, td
+			font-weight: bold
+			text-align: center
+			line-height: 36px
+			font-size: 2em
+			padding: 0px !important
+		td.status img
+			vertical-align: middle
+			
+#slider
+	margin-bottom: 8px
+	
 #show-scout
 	font-size: 1.4em
 	.check-in

@@ -16,7 +16,8 @@ class TrackTestController < ApplicationController
   end
   
   def test_race
-    do_test_race
+    @race_duration = params["slider-amount"] || "10"
+    do_test_race(@race_duration.to_i)
     render :action => :index
   end
   
@@ -35,8 +36,8 @@ class TrackTestController < ApplicationController
 
 
   private
-  def do_test_race
-    @return = DaqController.send("start_race".to_sym, @setting.opts)
+  def do_test_race(duration)
+    @return = DaqController.send("start_race".to_sym, @setting.opts, duration)
     @race_results = @return[:result][:results]
   end
   

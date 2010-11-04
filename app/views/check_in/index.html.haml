@@ -8,7 +8,7 @@
     .content
       .scout-search.clearfix
         .all
-          = button_to "Show All Scouts", {:action => "index"}, :class => "button"
+          = button_to "Show All Scouts", {:action => "index"}, :class => "button medium"
 
         =form_tag url_for(:controller  => :check_in, :action => :index), :method => :get, :class => "basic" do
           / =f.error_messages
@@ -17,13 +17,13 @@
             = image_tag "search.png"
           .search
             = text_field_tag :scout_search, @scout_search, :class => 'txt'
-            = submit_tag 'search', :class => 'button'
+            = submit_tag 'search', :class => 'button medium'
             = #link_to "Show All Scouts", check_in_path, :class => "button"
             .description
               enter any part of the first or last name
           
 
-      %table
+      %table.hoverable
         %thead
           %tr
             %th Scout
@@ -39,6 +39,6 @@
               %td= scout.den.try(:rank)
               %td= scout.den.try(:leader_name)
               - if scout.has_current_event?
-                %td= link_to "Check Out", check_out_scout_path(scout), :class => "button check-out"
+                %td= link_to "Check Out", check_out_scout_path(scout), :class => "button small red"
               -else
-                %td= link_to "Check In", scout_path(scout), :class => "button check-in"
+                %td= link_to "Check In", scout_path(scout), :class => "button small green"
