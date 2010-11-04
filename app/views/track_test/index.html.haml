@@ -12,7 +12,7 @@
           = link_to "Test Race", "#", :class => "button big", :id => "test-race-submit"
           .description drops the gate and returns elapsed times
           
-          = form_tag "/track_test/test_race", :id => "testrace" do
+          = form_tag "/track_test/test_race", :method => :get, :id => "testrace", :remote => true do
             #slider
             Maximum Race Duration:
             %span#slider-display{:type => "text"}
@@ -26,15 +26,18 @@
         %li
           = link_to "Gate Up", track_test_gate_up_path, :class => "button big"
           .description send a gate up command
-          
-- if @race_results
-  #test-race.box.box-50
-    .boxin
-      .header
-        %h3 Test Race
-      .content
-        .inner-content
-          = render "test_race"
+
+#test-race.box.box-50{:style => "display: none;"}
+  .boxin
+    .header
+      %h3 Test Race
+    .content
+      .inner-content
+        #loader{:style => "display: none;"}
+          = image_tag "loader_gear_blue.gif"
+          %h3 Racing...
+        #race-results
+          = render("test_race") if @race_results
           
 - if @lane_status
   #test-lanes.box.box-50

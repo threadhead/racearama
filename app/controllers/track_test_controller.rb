@@ -1,36 +1,26 @@
 class TrackTestController < ApplicationController
-  before_filter :set_status
-  before_filter :get_controller_status, :except => [:test_lanes]
+  respond_to :html, :rjs
+  before_filter :get_settings
+  before_filter :get_controller_status #, :except => [:test_lanes, :test_race]
   
   def index
   end
 
   def gate_down
     gate_test("down")
-    render :action => :index
   end
   
   def gate_up
     gate_test("up")
-    render :action => :index
   end
   
   def test_race
-    @race_duration = params["slider-amount"] || "10"
     do_test_race(@race_duration.to_i)
-    render :action => :index
+    sleep(4)
   end
   
   def test_lanes
     lane_status
-    respond_to do |format|
-      format.html { 
-        get_controller_status
-        render :action => :index
-        }
-      format.js  { render 'test_lanes' }
-    end
-    
   end
 
 
@@ -56,8 +46,9 @@ class TrackTestController < ApplicationController
     end
   end
   
-  def set_status
+  def get_settings
     @setting = Setting.first
+    @race_duration = params["slider-amount"] || "10"
   end
   
   def get_controller_status

@@ -20,6 +20,11 @@ $(document).ready( function(){
 	}
 
 	$('a#test-race-submit').click( function() {
+		$('#lane-status').stopTime();
+		$('#test-lanes').hide();
+		$('#test-race').show();
+		$('#race-results').hide();
+		$('#loader').slideDown();
 		$('form#testrace').submit();
 	});
 
