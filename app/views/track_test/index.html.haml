@@ -9,17 +9,19 @@
     #dashboard.content.clearfix
       %ul
         %li
-          = link_to "Test Race", "#", :class => "button big", :id => "test-race-submit"
-          .description drops the gate and returns elapsed times
-          
           = form_tag "/track_test/test_race", :method => :get, :id => "testrace", :remote => true do
-            #slider
             Maximum Race Duration:
             %span#slider-display{:type => "text"}
+            #slider
             = hidden_field_tag "slider-amount", @race_duration
+          
+          = link_to "Run Test Race", "#", :class => "button big", :id => "test-race-submit"
+          .description drops the gate and returns elapsed times
             
         %li
           = link_to "Lane Test", track_test_test_lanes_path, :class => "button big"
+          .description continuously shows lane open/close
+          
         %li
           = link_to "Gate Down", track_test_gate_down_path, :class => "button big"
           .description send a gate down command
@@ -67,13 +69,16 @@
 
           = f.label :daq_controller_host
           = f.text_field :daq_controller_host
-
+          .description 192.168.0.5, localhost, no http://
+          
           = f.label :daq_controller_port
           = f.text_field :daq_controller_port
-
+          .description number or blank for none
+          
           = f.label :api_key
           = f.text_field :api_key
-        
+          .description see Karl Smith for help
+          
           = f.hidden_field :return_to, :value => "track_test#index"
           .sep
             = f.submit :class => "button"

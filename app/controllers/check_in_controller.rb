@@ -6,17 +6,9 @@ class CheckInController < ApplicationController
   def index
     session[:username] = nil
     @scout_search = params[:scout_search] || ""
+    @mode = "check_in"
     authorize! :read, Scout
-
-    if params[:scout_search]
-      like_param = "%" + params[:scout_search] + "%"
-      @scouts = Scout.where(
-        "first_name LIKE ? OR last_name LIKE ?", like_param, like_param).includes(:den).sort_fl_name
-        
-    else
-      @scouts = Scout.includes(:den).sort_fl_name
-    end
-    
+    @scouts = Scout.includes(:den).sort_fl_name
   end
   
   private

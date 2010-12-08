@@ -1,7 +1,48 @@
-%h1 Editing heat
-
-= render 'form'
-
-= link_to 'Show', @heat
-\|
-= link_to 'Back', heats_path
+.box.box-100
+  .boxin
+    .header
+      %h3= "Step 3: Add Scouts to Heat #{@heat.name}"
+      
+    #dashboard.content
+      .inner-content
+        %h4 Add a heat to the selected heat group. You may wish to divided the heat by Dens or you can just number them.
+        .flash.notice.bigger
+          Current Event: 
+          %strong= @event.name
+          %br Heat Group:
+          %strong= @heat_group.name
+          %span.smaller= link_to " (return to all heat groups)", race_heat_groups_path
+          %br Heat:
+          %strong= @heat.name
+          %span.smaller= link_to " (return to all #{@heat_group.name} heats)", race_heat_group_heats_path(@heat_group)
+          
+        %h3= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
+        %table.scouts
+          %thead
+            %tr
+              %th
+              %th
+          %tbody
+            - @heat.scouts.includes(:den => :pack).each do |scout|
+              %tr
+                %td= scout.full_name
+                %td= scout.den.den_leader_pack
+                %td= link_to "Remove from Heat", heat_remove_scout_path(@heat, scout), :class => "button red"
+        
+        .sep &nbsp;
+        
+        %h3 Scouts that are checked-in for this event
+        %table.heat_groups
+          %thead
+            %tr
+              %th
+              %th
+              %th
+          %tbody
+            - @scouts_not_in_heat.each do |scout|
+            - #@event.scouts.each do |scout|
+              %tr
+                %td= scout.full_name
+                %td= scout.den.den_leader_pack
+                %td= link_to "Add to Heat", heat_add_scout_path(@heat, scout), :class => "button"
+                  

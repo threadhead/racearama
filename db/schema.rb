@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101006024554) do
+ActiveRecord::Schema.define(:version => 20101208084724) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20101006024554) do
     t.integer "event_id"
   end
 
+  add_index "events_scouts", ["event_id", "scout_id"], :name => "index_events_scouts_on_event_id_and_scout_id"
+
   create_table "heat_groups", :force => true do |t|
     t.string   "name"
     t.integer  "event_id"
@@ -61,7 +63,15 @@ ActiveRecord::Schema.define(:version => 20101006024554) do
     t.integer  "heat_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
+
+  create_table "heats_scouts", :id => false, :force => true do |t|
+    t.integer "scout_id"
+    t.integer "heat_id"
+  end
+
+  add_index "heats_scouts", ["heat_id", "scout_id"], :name => "index_heats_scouts_on_heat_id_and_scout_id"
 
   create_table "lane_assignments", :force => true do |t|
     t.integer  "lane"

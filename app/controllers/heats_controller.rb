@@ -1,83 +1,80 @@
 class HeatsController < ApplicationController
-  # GET /heats
-  # GET /heats.xml
+  before_filter :current_event
+  
   def index
-    @heats = Heat.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @heats }
-    end
+    @heat_group = HeatGroup.find(params[:heat_group_id])
+    @heats = @heat_group.heats
+    @heat = Heat.new
   end
 
-  # GET /heats/1
-  # GET /heats/1.xml
+
   def show
     @heat = Heat.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @heat }
-    end
   end
 
-  # GET /heats/new
-  # GET /heats/new.xml
+
   def new
     @heat = Heat.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @heat }
-    end
   end
 
-  # GET /heats/1/edit
+
   def edit
+    @heat_group = HeatGroup.find(params[:heat_group_id])
     @heat = Heat.find(params[:id])
+    @scouts_not_in_heat = current_event.scouts.includes(:den => :pack) - @heat.scouts
   end
 
-  # POST /heats
-  # POST /heats.xml
+
   def create
-    @heat = Heat.new(params[:heat])
+    @heat_group = HeatGroup.find(params[:heat_group_id])
+    @heat = @heat_group.heats.build(params[:heat])
 
-    respond_to do |format|
       if @heat.save
-        format.html { redirect_to(@heat, :notice => 'Heat was successfully created.') }
-        format.xml  { render :xml => @heat, :status => :created, :location => @heat }
+        redirect_to race_heat_group_heats_url(@heat.heat_group), :notice => 'Heat was successfully created.'
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @heat.errors, :status => :unprocessable_entity }
+        @heats = @heat_group.reload.heats
+        render :action => "index"
       end
-    end
   end
 
-  # PUT /heats/1
-  # PUT /heats/1.xml
   def update
     @heat = Heat.find(params[:id])
 
-    respond_to do |format|
-      if @heat.update_attributes(params[:heat])
-        format.html { redirect_to(@heat, :notice => 'Heat was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @heat.errors, :status => :unprocessable_entity }
-      end
+    if @heat.update_attributes(params[:heat])
+      redirect_to(@heat, :notice => 'Heat was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
-  # DELETE /heats/1
-  # DELETE /heats/1.xml
+
   def destroy
+    heat_group = HeatGroup.find(params[:heat_group_id])
     @heat = Heat.find(params[:id])
     @heat.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(heats_url) }
-      format.xml  { head :ok }
+    redirect_to race_heat_group_heats_url(heat_group)
+  end
+  
+  
+  def remove_scout
+    @heat = Heat.find(params[:heat_id])
+    @scout = Scout.find(params[:scout_id])
+    @heat.scouts.delete @scout
+    @heat_group = @heat.heat_group
+    
+    redirect_to edit_race_heat_group_heat_url(@heat_group, @heat)
+  end
+  
+  
+  def add_scout
+    @heat = Heat.find(params[:heat_id])
+    @scout = Scout.find(params[:scout_id])
+    unless @heat.scouts.exists?(@scout)
+      @heat.scouts << @scout
     end
+    @heat_group = @heat.heat_group
+    
+    redirect_to edit_race_heat_group_heat_url(@heat_group, @heat)
   end
 end

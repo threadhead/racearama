@@ -20,10 +20,18 @@ class ApplicationController < ActionController::Base
       super
     end
   end
+
+
+  def current_event
+    Event.current_event
+  end
   
+
   private
   def check_for_current_event
-    if !Event.active_event?
+    @event = Event.current_event
+
+    if @event.blank?
       if current_user && current_user.role?(:track_manager)
         flash[:alert] = "There is NO active Event. Please correct this immediately!"
       else
@@ -31,4 +39,5 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
 end

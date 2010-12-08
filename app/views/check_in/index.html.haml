@@ -3,42 +3,23 @@
 #scout-check-in.box.box-100.blue
   .boxin
     .header
-      %h3 Find Scout to Check In
+      %h3 Check In Scouts to Race
   	  
     .content
       .scout-search.clearfix
         .all
           = button_to "Show All Scouts", {:action => "index"}, :class => "button medium"
 
-        =form_tag url_for(:controller  => :check_in, :action => :index), :method => :get, :class => "basic" do
-          / =f.error_messages
+        =form_tag scouts_path, :method => :get, :class => "basic", :remote => true do
+          = hidden_field_tag 'mode', 'check_in'
           .label
-            = #label_tag :scout_search, "Scout"
             = image_tag "search.png"
           .search
             = text_field_tag :scout_search, @scout_search, :class => 'txt'
             = submit_tag 'search', :class => 'button medium'
-            = #link_to "Show All Scouts", check_in_path, :class => "button"
             .description
               enter any part of the first or last name
           
 
-      %table.hoverable
-        %thead
-          %tr
-            %th Scout
-            %td Den
-            %td Rank
-            %td Den Leader
-            %td Action
-        %tbody
-          - for scout in @scouts        
-            %tr
-              %td= link_to scout.full_name, scout_path(scout)
-              %td= "Den #{scout.den.try(:den_number)}"
-              %td= scout.den.try(:rank)
-              %td= scout.den.try(:leader_name)
-              - if scout.has_current_event?
-                %td= link_to "Check Out", check_out_scout_path(scout), :class => "button small red"
-              -else
-                %td= link_to "Check In", scout_path(scout), :class => "button small green"
+      #scouts-list
+        = render 'scouts/index_list'

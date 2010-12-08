@@ -1,9 +1,17 @@
 class ScoutsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :current_event
   authorize_resource
+  respond_to :html, :rjs
   
   def index
-    @scouts = Scout.all
+    # @scouts = Scout.all
+    if params[:scout_search]
+      @scouts = Scout.search_names(params[:scout_search])        
+    else
+      @scouts = Scout.includes(:den).sort_fl_name
+    end
+    @mode = params[:mode] || ""
   end
   
   def show
@@ -47,7 +55,7 @@ class ScoutsController < ApplicationController
   end
   
   def check_in
-    @event = Event.current_event
+    # @event = Event.current_event
     @scout = Scout.find(params[:id])
     # @scout.update_attribute(:checked_in, true)
     @scout.events << @event
@@ -56,7 +64,7 @@ class ScoutsController < ApplicationController
   end
   
   def check_out
-    @event = Event.current_event
+    # @event = Event.current_event
     @scout = Scout.find(params[:id])
     # @scout.update_attribute(:checked_in, false)
     @scout.events.delete(@event)

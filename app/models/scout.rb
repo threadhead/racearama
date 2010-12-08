@@ -6,6 +6,7 @@ class Scout < ActiveRecord::Base
   
   belongs_to :den
   has_and_belongs_to_many :events
+  has_and_belongs_to_many :heats, :uniq => true
   
   has_attached_file :picture, :styles => {:thumb => "100x100>"}, :default_url => "missing.png"
   
@@ -20,6 +21,26 @@ class Scout < ActiveRecord::Base
   
   def self.number_checked_in
     Scout.checked_in.count
+  end
+  
+  def self.search_names(name, event=nil)
+    like_param = "%" + name + "%"
+    if event
+      event.scouts.where("first_name LIKE ? OR last_name LIKE ?", like_param, like_param).includes(:den).sort_fl_name.all
+    else
+      Scout.where("first_name LIKE ? OR last_name LIKE ?", like_param, like_param).includes(:den).sort_fl_name.all
+    end
+  end
+  
+  def in_another_heat?(event)
+    heat_groups = event.heat_groups
+    heat_groups.each do |heat_group|
+      heats = heat_group.heats
+      heats.each do |heat|
+        return true if heat.scouts.exists?(self)
+      end
+    end
+    return false
   end
   
   def has_event?(event)

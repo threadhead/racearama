@@ -44,24 +44,34 @@ class DaqController
   private
   def self.exec_get(command, opts, params={})
     t_in = Time.new
-    result = get("http://#{opts[:host]}:#{opts[:port]}/#{command}",
-                 :query => {:apikey => opts[:apikey]}.merge(params))
+    result = get(command_address(opts), :query => {:apikey => opts[:apikey]}.merge(params))
     { :response => result.response,
       :result => (result.parsed_response),
-      :elapsed => "#{(Time.new - t_in).round(4)}s" }
+      :elapsed => elapsed(t_in) }
   rescue
     {:error => $!}
   end
   
   def self.exec_post(command, opts, params={})
     t_in = Time.new
-    result = post("http://#{opts[:host]}:#{opts[:port]}/#{command}",
-                  :body => {:apikey => opts[:apikey]}.merge(params))
+    result = post(command_address(opts), :body => {:apikey => opts[:apikey]}.merge(params))
     { :response => result.response,
       :result => (result.parsed_response),
-      :elapsed => "#{(Time.new - t_in).round(4)}s" }
+      :elapsed => elapsed(t_in) }
     rescue
       {:error => $!}
       
+  end
+  
+  def command_address(opts)
+    if opts[:port].blank?
+      "http://#{opts[:host]}/#{command}"
+    else
+      "http://#{opts[:host]}:#{opts[:port]}/#{command}"
+    end
+  end
+  
+  def elapased(t_in)
+    "#{(Time.new - t_in).round(4)}s"
   end
 end

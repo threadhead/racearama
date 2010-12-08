@@ -1,21 +1,45 @@
-%h1 Listing heats
+.box.box-100
+  .boxin
+    .header
+      %h3= "Step 2: Add Heats to Heat Group #{@heat_group.name}"
+      
+    #dashboard.content
+      .inner-content
+        %h4 Add a heat to the selected heat group. You may wish to divided the heat by Dens or you can just number them.
+        .flash.notice.bigger
+          Current Event: 
+          %strong= @event.name
+          %br Selected Heat Group:
+          %strong= @heat_group.name
+          %span.smaller= link_to " (return to all heat groups)", race_heat_groups_path
+        
+        = form_for [:race, :heat_group, @heat], :html => {:class => "fields"} do |f|
+          = render :partial => 'layouts/errors', :locals => {:f => @heat}
+          
+          .inner-form
+            = f.label :name, "New Heat Name"
+            = f.text_field :name
+            = f.submit "Add Heat",:class => "button"
 
-%table
-  %tr
-    %th Heat group
-    %th Heat number
-    %th
-    %th
-    %th
-
-  - @heats.each do |heat|
-    %tr
-      %td= heat.heat_group_id
-      %td= heat.heat_number
-      %td= link_to 'Show', heat
-      %td= link_to 'Edit', edit_heat_path(heat)
-      %td= link_to 'Destroy', heat, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New heat', new_heat_path
+            .description Den 4, Den 8, or just numbers
+            .sep &nbsp;
+        
+        %h3 Select a heat to add scouts to or race
+        %table.heat_groups
+          %thead
+            %tr
+              %th
+              %th
+              %th
+          %tbody
+            - @heats.each do |heat|
+              %tr
+                %td= heat.name
+                %td= "#{heat.scout_count} scouts"
+                %td
+                  = link_to "Add Scouts & Race", edit_race_heat_group_heat_path(@heat_group, heat), :class => "button"
+                  - if heat.scout_count > 0
+                    * can't delete heats with scouts
+                  -else
+                    = link_to 'Destroy', race_heat_group_heat_path(@heat_group, heat), :confirm => 'Are you sure?', :method => :delete, :class => "button red"
+                  

@@ -1,21 +1,38 @@
-%h1 Listing heat_groups
+#track-manager.box.box-100
+  .boxin
+    .header
+      %h3 Step 1: Select or Create Heat Group
+      
+    #dashboard.content
+      .inner-content
+        %h4 Heat Groups combine the results of multiple heats so that the winners will be determined by the group. If you have two Wolf heats, you might name them 'WOLF 1' and 'WOLF 2', or you may want to create groups for each den like 'DEN 4 - WOLVES' and 'DEN 9 - WOLVES'.
 
-%table
-  %tr
-    %th Name
-    %th Event
-    %th
-    %th
-    %th
+        .flash.notice.bigger
+          Current Event: 
+          %strong= @event.name        
+        
+        = form_for race_heat_groups_path, :html => {:class => "fields"} do |f|
+          .inner-form
+            = f.label :name, "New Heat Group Name"
+            = f.text_field :name
+            = f.submit "Add Heat Group",:class => "button"
 
-  - @heat_groups.each do |heat_group|
-    %tr
-      %td= heat_group.name
-      %td= heat_group.event_id
-      %td= link_to 'Show', heat_group
-      %td= link_to 'Edit', edit_heat_group_path(heat_group)
-      %td= link_to 'Destroy', heat_group, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New heat_group', new_heat_group_path
+            .description 192.168.0.5, localhost, no http://
+            .sep &nbsp;
+        
+        %h3 Select a heat group to add heat to or race
+        %table.heat_groups
+          %thead
+            %tr
+              %th
+              %th
+              %th
+          %tbody
+            - for heat_group in @heat_groups
+              %tr
+                %td= heat_group.name
+                %td= "#{heat_group.heats.count} heats"
+                %td
+                  = link_to "Add Heats to #{heat_group.name}", race_heat_group_heats_path(heat_group.id), :class => "button"
+                  = link_to 'Destroy', race_heat_group_path(heat_group), :confirm => 'Are you sure?', :method => :delete, :class => "button red"
+                  

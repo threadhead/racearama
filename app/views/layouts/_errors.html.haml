@@ -1,0 +1,7 @@
+-if f.errors.any?
+  .flash.error
+    %p
+      = "#{pluralize(f.errors.count, "error")} prohibited this record from being saved:"
+    %ul
+      - f.errors.full_messages.each do |msg|
+        %li= msg

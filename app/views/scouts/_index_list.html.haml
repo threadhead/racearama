@@ -1,0 +1,21 @@
+%table.hoverable
+  %thead
+    %tr
+      %th Scout
+      %td Den
+      %td Rank
+      %td Den Leader
+      - if check_in?
+        %td Action
+  %tbody
+    - for scout in @scouts        
+      %tr
+        %td= link_to scout.full_name, scout_path(scout)
+        %td= "Den #{scout.den.try(:den_number)}"
+        %td= scout.den.try(:rank)
+        %td= scout.den.try(:leader_name)
+        - if check_in?
+          - if scout.has_current_event?
+            %td= link_to "Check Out", check_out_scout_path(scout), :class => "button small red"
+          -else
+            %td= link_to "Check In", scout_path(scout), :class => "button small green"

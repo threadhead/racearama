@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_and_belongs_to_many :scouts
+  has_many :heat_groups
   
   validate :only_one_active_event
   validates_presence_of :name

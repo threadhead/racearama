@@ -56,7 +56,7 @@
       %p
         = link_to "Edit Information", edit_scout_path(@scout), :class => "button"
 
-        - if current_user.role?(:check_in)
+        - if current_user.role?(:check_in) || current_user.role?(:track_manager)
           -if @scout.has_current_event?
             = link_to "Check Out #{@scout.first_name} from #{@current_event.name}", check_out_scout_path(@scout), {:confirm => "Are you sure? Checking out a Scout will remove them from the race.", :class => "button"}
           -else
