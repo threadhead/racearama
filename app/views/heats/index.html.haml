@@ -5,13 +5,8 @@
       
     #dashboard.content
       .inner-content
-        %h4 Add a heat to the selected heat group. You may wish to divided the heat by Dens or you can just number them.
-        .flash.notice.bigger
-          Current Event: 
-          %strong= @event.name
-          %br Selected Heat Group:
-          %strong= @heat_group.name
-          %span.smaller= link_to " (return to all heat groups)", race_heat_groups_path
+        %h4 Add a heat to the selected heat group. You may wish to divide the heat by Dens or you can just number them.
+        = render 'layouts/event_heat_group'          
         
         = form_for [:race, :heat_group, @heat], :html => {:class => "fields"} do |f|
           = render :partial => 'layouts/errors', :locals => {:f => @heat}

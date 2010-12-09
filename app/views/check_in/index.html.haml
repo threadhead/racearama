@@ -18,8 +18,8 @@
             = text_field_tag :scout_search, @scout_search, :class => 'txt'
             = submit_tag 'search', :class => 'button medium'
             .description
-              enter any part of the first or last name
+              enter any part of the first or last name, den number, or den leader's name
           
 
-      #scouts-list
+      #scout-list
         = render 'scouts/index_list'

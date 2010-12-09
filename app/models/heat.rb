@@ -8,6 +8,19 @@ class Heat < ActiveRecord::Base
   def scout_count
     @scout_count ||= self.scouts.count
   end
+
+  def add_scout_by_ids(scout_ids)
+    scout_ids.each do |id|
+      scout = Scout.find_by_id(id)
+      add_scout(scout) if scout
+    end
+  end
+  
+  def add_scout(scout)
+    unless self.scouts.exists?(scout)
+      self.scouts << scout
+    end
+  end
   
   private
 end

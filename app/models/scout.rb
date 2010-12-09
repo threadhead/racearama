@@ -10,10 +10,17 @@ class Scout < ActiveRecord::Base
   
   has_attached_file :picture, :styles => {:thumb => "100x100>"}, :default_url => "missing.png"
   
+  default_scope includes(:den => :pack)
   scope :not_checked_in, where(:checked_in => false)
   scope :checked_in, where(:checked_in => true)
   scope :sort_fl_name, order("first_name ASC, last_name ASC")
   scope :sort_lf_name, order("last_name ASC, first_name ASC")
+  scope :name_or_den_contains, 
+          lambda {|n|
+            joins(:den)
+            .where("first_name LIKE ? OR last_name LIKE ? OR dens.den_number = ? OR dens.leader_name LIKE ?",
+             "%#{n}%", "%#{n}%", n, "%#{n}%")}
+  scope :den_contains, lambda { |n| joins(:den).where("dens.den_number = '#{n}' OR dens.leader_name LIKE '%#{n}%'") }
   
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -24,11 +31,10 @@ class Scout < ActiveRecord::Base
   end
   
   def self.search_names(name, event=nil)
-    like_param = "%" + name + "%"
     if event
-      event.scouts.where("first_name LIKE ? OR last_name LIKE ?", like_param, like_param).includes(:den).sort_fl_name.all
+      event.scouts.name_or_den_contains(name).sort_fl_name.all
     else
-      Scout.where("first_name LIKE ? OR last_name LIKE ?", like_param, like_param).includes(:den).sort_fl_name.all
+      Scout.name_or_den_contains(name).sort_fl_name.all
     end
   end
   

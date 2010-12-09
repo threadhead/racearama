@@ -110,7 +110,7 @@ a.button, input.button
 	&.red
 		+shaded-button(#800000, #00487a)
 	&.green
-		+shaded-button(#393, #00487a)
+		+shaded-button(#2F8D2E, #00487a)
 	
 				
 .box-50
@@ -325,7 +325,9 @@ div.field_with_errors
 	display: inline
 
 .scout-search
-	font-size: 1.5em
+	font-size: 1.4em
+	form
+		padding-top: 4px
 	.label
 		float: left
 		display: inline
@@ -335,16 +337,19 @@ div.field_with_errors
 		display: inline
 		input.txt
 			padding: 3px 0px 3px 5px
-			width: 500px
+			width: 400px
 		input[type="submit"]
 			position: relative
 			top: -5px
 	.all
 		display: inline
 		float: right
-		margin-top: 1px
-
-
+		padding-top: 8px
+		// margin-top: -7px
+		
+#scout-list, #scout-heat-list
+	font-size: 1.2em
+	
 form
 	font-size: 1.2em
 	padding: 18px
@@ -473,13 +478,6 @@ table
 					font-size: 1.2em
 					text-align: center
 
-// #scout-check-in
-// 	table
-// 		.button
-// 			&.check-in
-// 				+shaded-button(#393, #00487a)
-// 			&.check-out
-// 				+shaded-button(#800000, #00487a)
 				
 #event-index
 	table

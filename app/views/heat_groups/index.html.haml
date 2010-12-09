@@ -7,9 +7,7 @@
       .inner-content
         %h4 Heat Groups combine the results of multiple heats so that the winners will be determined by the group. If you have two Wolf heats, you might name them 'WOLF 1' and 'WOLF 2', or you may want to create groups for each den like 'DEN 4 - WOLVES' and 'DEN 9 - WOLVES'.
 
-        .flash.notice.bigger
-          Current Event: 
-          %strong= @event.name        
+        = render 'layouts/event_heat_group'          
         
         = form_for race_heat_groups_path, :html => {:class => "fields"} do |f|
           .inner-form

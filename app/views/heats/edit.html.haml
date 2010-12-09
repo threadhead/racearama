@@ -5,44 +5,33 @@
       
     #dashboard.content
       .inner-content
-        %h4 Add a heat to the selected heat group. You may wish to divided the heat by Dens or you can just number them.
-        .flash.notice.bigger
-          Current Event: 
-          %strong= @event.name
-          %br Heat Group:
-          %strong= @heat_group.name
-          %span.smaller= link_to " (return to all heat groups)", race_heat_groups_path
-          %br Heat:
-          %strong= @heat.name
-          %span.smaller= link_to " (return to all #{@heat_group.name} heats)", race_heat_group_heats_path(@heat_group)
-          
-        %h3= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
-        %table.scouts
-          %thead
-            %tr
-              %th
-              %th
-          %tbody
-            - @heat.scouts.includes(:den => :pack).each do |scout|
-              %tr
-                %td= scout.full_name
-                %td= scout.den.den_leader_pack
-                %td= link_to "Remove from Heat", heat_remove_scout_path(@heat, scout), :class => "button red"
+        %h4 Add Scouts to the selected heat. Click the Generate Lane Assignment when all Scouts are added.
+        = render 'layouts/event_heat_group'          
         
+        %h3= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
+        #scout-heat-list
+          = render 'heats/scout_list', :heat => @heat, :scout => @scout
+          
+          
         .sep &nbsp;
         
-        %h3 Scouts that are checked-in for this event
-        %table.heat_groups
-          %thead
-            %tr
-              %th
-              %th
-              %th
-          %tbody
-            - @scouts_not_in_heat.each do |scout|
-            - #@event.scouts.each do |scout|
-              %tr
-                %td= scout.full_name
-                %td= scout.den.den_leader_pack
-                %td= link_to "Add to Heat", heat_add_scout_path(@heat, scout), :class => "button"
-                  
+        
+        %h3= "Scouts checked-in for #{@event.name}"
+        .scout-search.clearfix
+          .all
+            = link_to "Show All Scouts", scouts_path(:mode => "heats", :heat_id => @heat.id), :remote => true, :class => "button medium"
+            = #link_to "Show All Scouts", edit_race_heat_group_heat_url(@heat_group, @heat), :class => "button medium"
+
+          = form_tag scouts_path, :method => :get, :class => "basic", :remote => true do
+            = hidden_field_tag 'mode', 'heats'
+            = #hidden_field_tag 'event_id', @event.id
+            = hidden_field_tag 'heat_id', @heat.id
+            .label
+              = image_tag "search.png"
+            .search
+              = text_field_tag :scout_search, @scout_search, :class => 'txt'
+              = submit_tag 'search', :class => 'button medium'
+              .description
+                enter any part of the first or last name, den number, or den leader's name
+        #scout-list
+          = render 'scouts/index_list', :scouts => @scouts_not_in_heat, :mode => "heats", :heat_id => @heat.id

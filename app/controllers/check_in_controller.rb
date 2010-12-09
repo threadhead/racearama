@@ -8,7 +8,7 @@ class CheckInController < ApplicationController
     @scout_search = params[:scout_search] || ""
     @mode = "check_in"
     authorize! :read, Scout
-    @scouts = Scout.includes(:den).sort_fl_name
+    @scouts = Scout.sort_fl_name
   end
   
   private

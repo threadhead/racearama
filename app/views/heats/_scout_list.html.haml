@@ -1,0 +1,12 @@
+%table.scouts.hoverable
+  %thead
+    %tr
+      %th Name
+      %th Den
+      %th Action
+  %tbody
+    - heat.scouts.sort_fl_name.each do |scout|
+      %tr
+        %td= scout.full_name
+        %td= scout.den.den_leader_pack
+        %td= link_to "Remove from Heat", heat_remove_scout_path(heat, scout), :class => "button red"

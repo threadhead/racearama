@@ -1,1 +1,1 @@
-$('#scouts-list').html("<%= escape_javascript(render 'index_list')%>")
+$('#scout-list').html("<%= escape_javascript(render 'index_list', :scouts => @scouts, :mode => @mode, :heat_id => @heat_id)%>")

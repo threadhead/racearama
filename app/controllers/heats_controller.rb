@@ -1,5 +1,7 @@
 class HeatsController < ApplicationController
   before_filter :current_event
+  respond_to :html, :js
+  
   
   def index
     @heat_group = HeatGroup.find(params[:heat_group_id])
@@ -21,7 +23,7 @@ class HeatsController < ApplicationController
   def edit
     @heat_group = HeatGroup.find(params[:heat_group_id])
     @heat = Heat.find(params[:id])
-    @scouts_not_in_heat = current_event.scouts.includes(:den => :pack) - @heat.scouts
+    @scouts_not_in_heat = current_event.scouts.sort_fl_name - @heat.scouts
   end
 
 
@@ -68,13 +70,21 @@ class HeatsController < ApplicationController
   
   
   def add_scout
+    @mode = "heats"
     @heat = Heat.find(params[:heat_id])
-    @scout = Scout.find(params[:scout_id])
-    unless @heat.scouts.exists?(@scout)
-      @heat.scouts << @scout
+    if params[:scout_id] == "0"
+      @heat.add_scout_by_ids(params[:scout_ids])
+    else
+      @scout = Scout.find(params[:scout_id])
+      @heat.add_scout(@scout)
     end
     @heat_group = @heat.heat_group
+    # @scouts = Scout.search_names(params[:scout_search], @event)        
     
-    redirect_to edit_race_heat_group_heat_url(@heat_group, @heat)
+    respond_with do |format|
+      format.html { redirect_to edit_race_heat_group_heat_url(@heat_group, @heat) }
+      format.js  { render :action => 'add_scout' }
+    end
+    
   end
 end
