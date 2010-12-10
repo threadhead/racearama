@@ -12,6 +12,8 @@ gem 'devise'
 gem 'cancan'
 gem 'paperclip'
 gem 'httparty'
+gem 'faker'
+gem 'factory_girl_rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,14 +38,12 @@ group :development, :test do
   gem 'awesome_print'
   gem 'hirb'
   gem 'wirble'
-  gem 'faker'
   gem "nifty-generators"
   gem "rspec-rails", ">= 2.0.0.beta.20"
   gem 'autotest'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
   gem 'mocha'
-  gem 'factory_girl_rails'
   gem 'hpricot'
   gem 'ruby_parser'
   gem 'haml-rails'

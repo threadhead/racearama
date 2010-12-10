@@ -19,7 +19,7 @@ class HeatGroupsController < ApplicationController
   end
 
   def create
-    @heat_group = @event.build.heat_group(params["/race/heat_groups"])
+    @heat_group = @event.heat_groups.build(params["/race/heat_groups"])
 
     if @heat_group.save
       redirect_to(race_heat_groups_url, :notice => 'Heat group was successfully created.')

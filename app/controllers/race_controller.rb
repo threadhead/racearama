@@ -10,9 +10,9 @@ class RaceController < ApplicationController
     @heat_group = HeatGroup.new(params[:heat_group])
 
     if @heat_group.save
-      redirect_to(race_heat_group_path, :notice => 'Heat group was successfully created.') }
+      redirect_to(race_heat_group_path, :notice => 'Heat group was successfully created.')
     else
-      render :action => "new" }
+      render :action => "new"
     end
     
   end
