@@ -41,8 +41,8 @@ group :development, :test do
   gem "nifty-generators"
   gem "rspec-rails", ">= 2.0.0.beta.20"
   gem 'autotest'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
+  # gem 'autotest-growl'
+  # gem 'autotest-fsevent'
   gem 'mocha'
   gem 'hpricot'
   gem 'ruby_parser'
