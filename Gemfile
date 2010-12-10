@@ -51,5 +51,5 @@ group :development, :test do
 end
 
 group :mac do
-  gem 'rb-appscript', :require => false
+  # gem 'rb-appscript', :require => false
 end
