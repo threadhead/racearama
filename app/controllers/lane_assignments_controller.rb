@@ -1,13 +1,7 @@
 class LaneAssignmentsController < ApplicationController
-  # GET /lane_assignments
-  # GET /lane_assignments.xml
   def index
+    @heat = Heat.find(params[:heat_id])
     @lane_assignments = LaneAssignment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @lane_assignments }
-    end
   end
 
   # GET /lane_assignments/1

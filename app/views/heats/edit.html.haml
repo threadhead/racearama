@@ -12,7 +12,7 @@
         #scout-heat-list
           = render 'heats/scout_list', :heat => @heat, :scout => @scout
         %div
-          When you are done adding scout, #{link_to "Creat Lane Assignments"}
+          When you are done adding scouts, #{link_to "Create Lane Assignments", heat_lane_assignments_path(@heat)}
           
         .sep &nbsp;
         
