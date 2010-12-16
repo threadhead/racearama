@@ -94,7 +94,8 @@ a.button, input.button
 	+shaded-button($med_blue, $dark_grey)
 	+shaded-button-size($med_blue, $dark_grey)
 	&.small
-		font-size: 12px
+		font-size: 14px
+		font-weight: normal
 		+shaded-button-size($med_blue, $dark_grey, 5px, 1px)
 	&.medium
 		font-size: 22px
@@ -345,11 +346,25 @@ div.field_with_errors
 		display: inline
 		float: right
 		padding-top: 8px
-		// margin-top: -7px
 		
 #scout-list, #scout-heat-list
 	font-size: 1.2em
-	
+	#scout-count
+		float: right
+		padding-right: 12px
+		color: #aaa
+		font-style: italic
+	form
+		padding-left: 0px
+		padding-right: 0px
+		
+#heats-edit
+	h3
+		background: $background_blue
+		color: white
+		padding: 8px
+		+border-radius(5px)
+		
 form
 	font-size: 1.2em
 	padding: 18px

@@ -5,6 +5,9 @@ class Heat < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :heat_group_id
   
+  scope :by_name, order("name ASC")
+  default_scope order("name ASC")
+  
   def scout_count
     @scout_count ||= self.scouts.count
   end

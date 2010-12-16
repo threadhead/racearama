@@ -17,7 +17,7 @@ $blueprint-table-stripe-color: whiteSmoke;
 
 @mixin shaded-button($base_color, $hover_color, $border_radius: 5px, $border_width: 1px) {
 	text-align: center;
-	padding: .5em 1em;
+	padding: .4em .9em;
 	$dark_base: darken($base_color, 10);
 	
 	background: $base_color;

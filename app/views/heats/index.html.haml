@@ -5,7 +5,7 @@
       
     #dashboard.content
       .inner-content
-        %h4 Add a heat to the selected heat group. You may wish to divide the heat by Dens or you can just number them.
+        %h4 Add a heat to the selected heat group. You may wish to divide the heat by Dens or you can just number them, 'Den 1', 'Den 2' or '1', '2'.
         = render 'layouts/event_heat_group'          
         
         = form_for [:race, :heat_group, @heat], :html => {:class => "fields"} do |f|

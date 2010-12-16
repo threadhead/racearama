@@ -1,1 +1,7 @@
-$('#scout-list').html("<%= escape_javascript(render 'index_list', :scouts => @scouts, :mode => @mode, :heat_id => @heat_id)%>")
+<% if @mode == "heats" %>
+	$('#scout-list').html("<%= escape_javascript(render 'heats_list', :scouts => @scouts, :heat_id => @heat_id)%>")
+	
+<% else %>
+  $('#scout-list').html("<%= escape_javascript(render 'check_in_list', :scouts => @scouts, :heat_id => @heat_id)%>")
+
+<% end %>

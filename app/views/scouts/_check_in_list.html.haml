@@ -1,0 +1,22 @@
+#scout-count
+  = "#{scouts.size} scouts"
+%table.hoverable
+  %thead
+    %tr
+      %th Scout
+      %th Den
+      %th Rank
+      %th Den Leader
+      %th Action
+  %tbody
+    %tr
+    - scouts.each do |scout|
+      %tr
+        %td= link_to scout.full_name, scout_path(scout)
+        %td= "Den #{scout.den.try(:den_number)}"
+        %td= scout.den.try(:rank)
+        %td= scout.den.try(:leader_name)
+        - if scout.has_current_event?
+          %td= link_to "Check Out", check_out_scout_path(scout), :class => "button small red"
+        -else
+          %td= link_to "Check In", scout_path(scout), :class => "button small green"

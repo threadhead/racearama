@@ -1,4 +1,4 @@
-.box.box-100
+#heats-edit.box.box-100
   .boxin
     .header
       %h3= "Step 3: Add Scouts to Heat #{@heat.name}"
@@ -34,4 +34,4 @@
               .description
                 enter any part of the first or last name, den number, or den leader's name
         #scout-list
-          = render 'scouts/index_list', :scouts => @scouts_not_in_heat, :mode => "heats", :heat_id => @heat.id
+          = render 'scouts/heats_list', :scouts => @scouts_not_in_heat, :heat_id => @heat.id
