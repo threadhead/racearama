@@ -20,7 +20,7 @@ Racearama::Application.routes.draw do
   match 'heats/:heat_id/add_scout/:scout_id' => 'heats#add_scout', :as => 'heat_add_scout'
 
   resource :heats do
-    resouce :lane_assignments
+    resouce :races
   end
   # resources :races
   # resources :lane_assignments

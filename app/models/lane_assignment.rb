@@ -1,3 +1,3 @@
 class LaneAssignment < ActiveRecord::Base
-  belongs_to :heat
+  belongs_to :race
 end
