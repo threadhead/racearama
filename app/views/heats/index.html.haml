@@ -1,11 +1,11 @@
-.box.box-100
+#heats-index.box.box-100
   .boxin
     .header
       %h3= "Step 2: Add Heats to Heat Group #{@heat_group.name}"
       
     #dashboard.content
       .inner-content
-        %h4 Add a heat to the selected heat group. You may wish to divide the heat by Dens or you can just number them, 'Den 1', 'Den 2' or '1', '2'.
+        %p.bigger Add a heat to the selected heat group. You may wish to divide the heat by Dens or you can just number them, 'Den 1', 'Den 2' or '1', '2'.
         = render 'layouts/event_heat_group'          
         
         = form_for [:race, :heat_group, @heat], :html => {:class => "fields"} do |f|
@@ -17,15 +17,14 @@
             = f.submit "Add Heat",:class => "button"
 
             .description Den 4, Den 8, or just numbers
-            .sep &nbsp;
         
-        %h3 Select a heat to add scouts to or race
-        %table.heat_groups
+        %h4= "Heats in heat group #{@heat_group.name}"
+        %table.heat-groups
           %thead
             %tr
-              %th
-              %th
-              %th
+              %th Name
+              %th Scouts
+              %th Action
           %tbody
             - @heats.each do |heat|
               %tr
@@ -34,7 +33,6 @@
                 %td
                   = link_to "Add Scouts & Race", edit_race_heat_group_heat_path(@heat_group, heat), :class => "button"
                   - if heat.scout_count > 0
-                    * can't delete heats with scouts
+                    %span.smaller* can't delete heats that have scouts
                   -else
                     = link_to 'Destroy', race_heat_group_heat_path(@heat_group, heat), :confirm => 'Are you sure?', :method => :delete, :class => "button red"
-                  

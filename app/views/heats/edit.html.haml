@@ -5,10 +5,10 @@
       
     #dashboard.content
       .inner-content
-        %h4 Add Scouts to the selected heat. Click the Generate Lane Assignment when all Scouts are added.
+        %p.bigger Add Scouts to the selected heat. Click the Generate Lane Assignment when all Scouts are added.
         = render 'layouts/event_heat_group'          
         
-        %h3= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
+        %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
         #scout-heat-list
           = render 'heats/scout_list', :heat => @heat, :scout => @scout
           
@@ -16,7 +16,7 @@
         .sep &nbsp;
         
         
-        %h3= "Scouts checked-in for #{@event.name}"
+        %h4= "Scouts checked-in for #{@event.name}"
         .scout-search.clearfix
           .all
             = link_to "Show All Scouts", scouts_path(:mode => "heats", :heat_id => @heat.id), :remote => true, :class => "button medium"

@@ -32,9 +32,6 @@ GEM
     arel (2.0.6)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
-    autotest-fsevent (0.2.4)
-      sys-uname
-    autotest-growl (0.2.9)
     awesome_print (0.3.1)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
@@ -97,7 +94,6 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
-    rb-appscript (0.5.3)
     rspec (2.2.0)
       rspec-core (~> 2.2)
       rspec-expectations (~> 2.2)
@@ -117,7 +113,6 @@ GEM
     sinatra (1.1.0)
       rack (~> 1.1)
       tilt (~> 1.1)
-    sys-uname (0.8.4)
     thor (0.14.6)
     tilt (1.1)
     treetop (1.4.9)
@@ -132,8 +127,6 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
-  autotest-fsevent
-  autotest-growl
   awesome_print
   cancan
   compass
@@ -150,7 +143,6 @@ DEPENDENCIES
   nifty-generators
   paperclip
   rails (= 3.0.3)
-  rb-appscript
   rspec-rails (>= 2.0.0.beta.20)
   ruby_parser
   sinatra
