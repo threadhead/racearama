@@ -1,6 +1,6 @@
 class AddRacesAndMethodToHeats < ActiveRecord::Migration
   def self.up
-    add_column :heats, :generate_races, :index
+    add_column :heats, :races_to_generate, :integer
     add_column :heats, :generate_method, :string
     add_column :heats, :generate_time, :datetime
   end

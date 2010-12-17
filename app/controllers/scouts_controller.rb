@@ -1,6 +1,6 @@
 class ScoutsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :current_event
+  # before_filter :current_event
   authorize_resource
   respond_to :html, :rjs
   

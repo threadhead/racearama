@@ -1,6 +1,6 @@
 class TrackManagerController < ApplicationController
   before_filter :store_params_and_authenticate
-  skip_before_filter :check_for_current_event, :only => [:index]
+  # skip_before_filter :check_for_current_event, :only => [:index]
   
   def index
     session[:username] = nil

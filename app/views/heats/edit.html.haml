@@ -8,11 +8,12 @@
         %p.bigger Add Scouts to the selected heat. Click the Generate Lane Assignment when all Scouts are added.
         = render 'layouts/event_heat_group'          
         
+        %div
+          When you are done adding scouts, #{link_to "Create Lane Assignments", heat_races_path(@heat)}
+
         %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
         #scout-heat-list
           = render 'heats/scout_list', :heat => @heat, :scout => @scout
-        %div
-          When you are done adding scouts, #{link_to "Create Lane Assignments", heat_lane_assignments_path(@heat)}
           
         .sep &nbsp;
         

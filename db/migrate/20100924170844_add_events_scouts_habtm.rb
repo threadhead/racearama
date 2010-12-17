@@ -3,7 +3,7 @@ class AddEventsScoutsHabtm < ActiveRecord::Migration
     create_table :events_scouts, :id => false do |t|
       t.integer :scout_id
       t.integer :event_id
-    end    
+    end
   end
 
   def self.down

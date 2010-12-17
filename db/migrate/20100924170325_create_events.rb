@@ -12,8 +12,8 @@ class CreateEvents < ActiveRecord::Migration
       t.string :location_zipcode
       t.string :derby_chair
       t.string :race_manager
-      t.text :notes
-      t.text :track
+      t.text :race_day_notes
+      t.text :track_notes
       t.boolean :active
 
       t.timestamps

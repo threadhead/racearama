@@ -4,4 +4,6 @@ class HeatGroup < ActiveRecord::Base
   
   scope :by_name, order("name ASC")
   default_scope order("name ASC")
+  
+  validates_presence_of :name
 end

@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  belongs_to :track
   has_and_belongs_to_many :scouts
   has_many :heat_groups
   
@@ -30,7 +31,7 @@ class Event < ActiveRecord::Base
   
   private
   def only_one_active_event
-    if self.active && Event.active_event?
+    if self.active && (Event.current_event.id != self.id)
       errors.add(:base, "Events can have only one active event")
     end
   end

@@ -1,6 +1,6 @@
 class Heat < ActiveRecord::Base
   belongs_to :heat_group
-  has_many :lane_assignments
+  has_many :races
   has_and_belongs_to_many :scouts, :uniq => true
   
   validates_presence_of :name

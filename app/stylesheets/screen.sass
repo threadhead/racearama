@@ -79,6 +79,8 @@ body.bp
 		font-size: 1.2em
 	.bigger
 		font-size: 1.4em
+	.strong
+		font-weight: bold
 	.description
 		font-style: italic
 		font-size: .8em
@@ -375,6 +377,23 @@ div.field_with_errors
 		margin-top: 2em
 		margin-bottom: 0px
 		
+#race-container
+	+container
+#scout-list-small
+	+column(4)
+	+append(1)
+	table
+		tbody
+			tr
+				td
+					padding: 0px 0px 0px 8px !important
+#race-generate
+	+column(6, true)
+	h4
+		background: none
+#race-list
+	+column(11, true)
+	
 form
 	font-size: 1.2em
 	padding: 18px

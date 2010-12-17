@@ -1,5 +1,5 @@
 class HeatGroupsController < ApplicationController
-  before_filter :current_event
+  # before_filter :current_event
   
   def index
     @heat_group = HeatGroup.new

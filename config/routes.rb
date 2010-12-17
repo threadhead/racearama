@@ -1,5 +1,7 @@
 Racearama::Application.routes.draw do
 
+  resources :tracks
+
   # get "race/heat_group"
   # post "race/heat_group_create"
   # match "race/heat_group/:heat_group_id/heat"  => "race#heat", :as => :heat_group_heat
@@ -19,8 +21,8 @@ Racearama::Application.routes.draw do
   match 'heats/:heat_id/remove_scout/:scout_id' => 'heats#remove_scout', :as => 'heat_remove_scout'
   match 'heats/:heat_id/add_scout/:scout_id' => 'heats#add_scout', :as => 'heat_add_scout'
 
-  resource :heats do
-    resouce :races
+  resources :heats do
+    resources :races
   end
   # resources :races
   # resources :lane_assignments

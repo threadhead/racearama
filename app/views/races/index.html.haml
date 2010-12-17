@@ -1,23 +1,39 @@
-%h1 Listing races
+#heats-edit.box.box-100
+  .boxin
+    .header
+      %h3= "Step 4: Create races for Heat #{@heat.name}"
+      
+    #dashboard.content
+      .inner-content
+        %p.bigger Specify the number of races you want to run for this heat. The lane assignment and rotation will automatically be calculated.
+        %p.bigger IMPORTANT: you can not modify or delete any races that have been partially run. Create a new heat, add scouts to that heat, then generate a new race schedule.
+        = #render 'layouts/event_heat_group'          
+        
+        #race-container
+          #scout-list-small
+            %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
+            %table.heat-groups
+              %tbody
+                %tr
+                - @heat.scouts.each do |scout|
+                  %tr
+                    %td= scout.full_name
+          #race-generate
+            .sep &nbsp;
+            .sep &nbsp;
+            %p.bigger There are no races generated for this heat. <br/>Generate some!
+            = form_tag heat_races_path(@heat.id), :class => "basic" do
+              = hidden_field_tag 'heat_id', @heat.id
+              = hidden_field_tag 'generate_method', "rotation"
+              = label_tag 'races_to_generate', 'Number of Races to Generate'
+              = text_field_tag :races_to_generate, "4", :class => 'txt', :size => 3
+              %br
+              = submit_tag 'Generate Race Schedule', :class => 'button medium'
+            
+          #race-list
+            race list goes here
+            asdfasdfasdfasdf
+            = #render 'heat_race_list', :heat => @heat, :scout => @scout
 
-%table
-  %tr
-    %th Line number
-    %th Lane
-    %th Elapsed seconds
-    %th
-    %th
-    %th
-
-  - @races.each do |race|
-    %tr
-      %td= race.line_number
-      %td= race.lane_id
-      %td= race.elapsed_seconds
-      %td= link_to 'Show', race
-      %td= link_to 'Edit', edit_race_path(race)
-      %td= link_to 'Destroy', race, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New race', new_race_path
+          .sep &nbsp;
+        

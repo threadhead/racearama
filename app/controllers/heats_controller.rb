@@ -1,5 +1,5 @@
 class HeatsController < ApplicationController
-  before_filter :current_event
+  # before_filter :current_event
   respond_to :html, :js
   
   
@@ -23,7 +23,7 @@ class HeatsController < ApplicationController
   def edit
     @heat_group = HeatGroup.find(params[:heat_group_id])
     @heat = Heat.find(params[:id])
-    @scouts_not_in_heat = current_event.scouts.sort_fl_name - @heat.scouts
+    @scouts_not_in_heat = @event.scouts.sort_fl_name - @heat.scouts
   end
 
 

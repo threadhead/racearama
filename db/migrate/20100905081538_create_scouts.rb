@@ -13,9 +13,11 @@ class CreateScouts < ActiveRecord::Migration
       t.string :parent_email2
       t.timestamps
     end
+    add_index :scouts, :den_id
   end
   
   def self.down
+    remove_index :scouts, :den_id
     drop_table :scouts
   end
 end

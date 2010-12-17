@@ -3,11 +3,28 @@
     .header
       %h3 Track Management
       
+    #checklist
+      .content.box.box-50
+        %h3 Race Day Checklist
+        %p.strong Current Event
+        %p= @event.name
+        = current_event_set_icon
+        
+        %p.strong Racing on Track
+        %p= @event.track.name_lanes
+        = track_set_icon
+        
+        %p.strong Heats Ready to Race
+        
+      
     #dashboard.content.clearfix
       %ul
         %li
           = link_to "Events", events_path, :class => "button big"
-          .description set or edit the current race
+          .description set events and the current race
+        %li
+          = link_to "Tracks", tracks_path, :class => "button big"
+          .description create or edit a track, each event has a track
         %li
           = link_to "Scouts", scouts_path, :class => "button big"
           .description edit scouts, dens, and packs

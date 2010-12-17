@@ -1,0 +1,25 @@
+%h1 Listing tracks
+
+%table
+  %tr
+    %th Name
+    %th Pack
+    %th Total lanes
+    %th Active lanes
+    %th
+    %th
+    %th
+
+  - @tracks.each do |track|
+    %tr
+      %td= track.name
+      %td= track.pack_id
+      %td= track.total_lanes
+      %td= track.active_lanes
+      %td= link_to 'Show', track
+      %td= link_to 'Edit', edit_track_path(track)
+      %td= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Track', new_track_path

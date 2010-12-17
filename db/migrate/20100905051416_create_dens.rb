@@ -10,9 +10,11 @@ class CreateDens < ActiveRecord::Migration
       t.string :assistant_leader_email
       t.timestamps
     end
+    add_index :dens, :pack_id
   end
   
   def self.down
+    remove_index :dens, :pack_id
     drop_table :dens
   end
 end

@@ -22,13 +22,13 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def current_event
-    Event.current_event
-  end
+  # def current_event
+  #   Event.current_event
+  # end
   
 
-  private
   def check_for_current_event
+    puts "CHECKING_FOR_CURRENT_EVENT"
     @event = Event.current_event
 
     if @event.blank?

@@ -1,6 +1,9 @@
 = form_for @event, :html => {:class => "fields"} do |f|
   .inner-form
-  = #f.error_messages
+  = f.error_messages
+
+  = f.label :track_id, "Track"
+  = f.collection_select :track_id, Track.all, :id, :name_pack
 
   = f.label :name
   = f.text_field :name, :size => 50

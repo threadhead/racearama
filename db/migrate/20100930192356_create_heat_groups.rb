@@ -6,9 +6,11 @@ class CreateHeatGroups < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :heat_groups, :event_id
   end
 
   def self.down
+    remove_index :heat_groups, :event_id
     drop_table :heat_groups
   end
 end
