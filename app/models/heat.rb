@@ -26,5 +26,16 @@ class Heat < ActiveRecord::Base
     end
   end
   
+  def generate_races(races_to_generate, selected_lanes)
+    track = self.heat_group.event.track
+    scouts = self.scouts
+    races_to_generate.times do |n|
+      a_race = self.race.build({:index => n+1})      
+      scouts.each do |scout|
+        a_race.lane_assignment.build({:scout_id => scout.id, :lane => n+1})
+      end
+    end
+  end
+  
   private
 end

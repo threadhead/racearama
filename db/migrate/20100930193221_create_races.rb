@@ -2,9 +2,9 @@ class CreateRaces < ActiveRecord::Migration
   def self.up
     create_table :races do |t|
       t.integer :heat_id
-      t.boolean :current
-      t.boolean :completed
-      t.integer :index
+      t.boolean :current, :default => false
+      t.boolean :completed, :default => false
+      t.integer :index, :default => 0
       
       t.timestamps
     end

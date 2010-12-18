@@ -28,6 +28,8 @@
               = label_tag 'races_to_generate', 'Number of Races to Generate'
               = text_field_tag :races_to_generate, "4", :class => 'txt', :size => 3
               %br
+              = render 'lanes'
+              %br
               = submit_tag 'Generate Race Schedule', :class => 'button medium'
             
           #race-list

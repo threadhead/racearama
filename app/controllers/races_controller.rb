@@ -20,17 +20,18 @@ class RacesController < ApplicationController
   end
 
   def create
-    @race = Race.new(params[:race])
-
-    respond_to do |format|
-      if @race.save
-        format.html { redirect_to(@race, :notice => 'Race was successfully created.') }
-        format.xml  { render :xml => @race, :status => :created, :location => @race }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @race.errors, :status => :unprocessable_entity }
-      end
-    end
+    @heat = Heat.find(params[:heat_id])
+    @heat.update_attributes({:races_to_generate => params[:races_to_generate], :generate_method => params[:generate_method], :generate_time => Time.now })
+    @lane_to_race = params[:selected_lanes]
+    
+    redirect_to heat_races_path
+    # @race = Race.new(params[:race])
+    # 
+    # if @race.save
+    #   redirect_to(@race, :notice => 'Race was successfully created.')
+    # else
+    #   render :action => "new"
+    # end
   end
 
   # PUT /races/1
