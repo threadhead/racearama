@@ -30,8 +30,8 @@ Factory.define :event do |p|
   p.location_zipcode      "85331"
   p.derby_chair           "Tracy Steward"
   p.race_manager          "Karl Smith"
-  p.notes                 "ask Tracy to wear pants this year"
-  p.track                 "the track looks good and fast, lanes 1,2,11 are not functioning"
+  p.race_day_notes                 "ask Tracy to wear pants this year"
+  p.track_notes                 "the track looks good and fast, lanes 1,2,11 are not functioning"
   p.active                {Factory.next(:active)}
   
   p.after_build do |event|

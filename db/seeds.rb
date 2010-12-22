@@ -53,6 +53,12 @@ dens = []
                            :pack => @pack) }
 
 
+#generate 3 events
+puts "Creating 3 events"
+@events = []
+3.times { @events << Factory(:event, :track => @track) }
+
+
 #generate 100 scouts in random dens
 puts "..Adding 100 scouts to the Dens"
 100.times { 
@@ -60,8 +66,3 @@ puts "..Adding 100 scouts to the Dens"
   events = @events.sort_by{rand}
   (rand(3)+1).times{ |t| scout.events << events[t] }
   }
-
-#generate 3 events
-puts "Creating 3 events"
-@events = []
-3.times { @events << Factory(:event, :track => @track) }
