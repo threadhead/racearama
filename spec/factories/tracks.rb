@@ -1,12 +1,12 @@
-Factory.sequence :name do |r|
+Factory.sequence :name do |n|
   ["Aluminum", "Wood", "Plastic"][rand(3)]
 end
 
-Factory.sequence :total_lanes do |r|
+Factory.sequence :total_lanes do |n|
   [12, 4, 3][n]
 end
 
-Factory.sequence :available_lanes do |r|
+Factory.sequence :available_lanes do |n|
   ["2,3,4,5,6,8,9,11", "1,3,4", "1,3"][n]
 end
 
