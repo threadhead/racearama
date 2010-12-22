@@ -29,10 +29,15 @@ class Heat < ActiveRecord::Base
   def generate_races(races_to_generate, selected_lanes)
     track = self.heat_group.event.track
     scouts = self.scouts
+    scouts.shuffle!
+    lane_shift = (selected_lanes.size - scouts.size) >
+    
     races_to_generate.times do |n|
       a_race = self.race.build({:index => n+1})      
+      hold_scout = scouts.pop
+      scouts.insert(0, hold_scout) # rotates the scout array
       scouts.each do |scout|
-        a_race.lane_assignment.build({:scout_id => scout.id, :lane => n+1})
+        a_race.lane_assignment.build({:scout_id => scout.id, :lane => selected_lanes[n]})
       end
     end
   end
