@@ -1,6 +1,6 @@
 class Heat < ActiveRecord::Base
   belongs_to :heat_group
-  has_many :races
+  has_many :races, :dependent => :destroy
   has_and_belongs_to_many :scouts, :uniq => true
   
   validates_presence_of :name
@@ -30,17 +30,26 @@ class Heat < ActiveRecord::Base
     track = self.heat_group.event.track
     scouts = self.scouts
     scouts.shuffle!
-    lane_shift = (selected_lanes.size - scouts.size) >
+    # we would like to move cars to the center of the track if possible
+    lane_shift = (selected_lanes.size - scouts.size) > 1 ? 1 : 0
     
     races_to_generate.times do |n|
-      a_race = self.race.build({:index => n+1})      
-      hold_scout = scouts.pop
-      scouts.insert(0, hold_scout) # rotates the scout array
-      scouts.each do |scout|
-        a_race.lane_assignment.build({:scout_id => scout.id, :lane => selected_lanes[n]})
+      a_race = Race.new({:index => (n+1)})
+      self.races << a_race
+      scouts = rotate_scouts(scouts)
+      scouts.each_with_index do |scout, idx|
+        a_race.lane_assignments << LaneAssignment.new(
+          {:scout_id => scout.id, :lane => selected_lanes[idx + lane_shift]}
+        )
       end
+      a_race.save
     end
   end
   
   private
+  def rotate_scouts(scouts_array)
+    hold_scout = scouts_array.pop
+    scouts_array.insert(0, hold_scout)
+    return scouts_array
+  end
 end

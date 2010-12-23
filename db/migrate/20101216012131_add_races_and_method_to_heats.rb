@@ -8,6 +8,6 @@ class AddRacesAndMethodToHeats < ActiveRecord::Migration
   def self.down
     remove_column :heats, :generate_time
     remove_column :heats, :generate_method
-    remove_column :heats, :generate_races
+    remove_column :heats, :races_to_generate
   end
 end

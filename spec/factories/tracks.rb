@@ -1,5 +1,5 @@
 Factory.sequence :name do |n|
-  ["Aluminum", "Wood", "Plastic"][rand(3)]
+  ["Aluminum", "Wood", "Plastic"][n]
 end
 
 Factory.sequence :total_lanes do |n|

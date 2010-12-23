@@ -66,3 +66,4 @@ puts "..Adding 100 scouts to the Dens"
   events = @events.sort_by{rand}
   (rand(3)+1).times{ |t| scout.events << events[t] }
   }
+  
