@@ -3,18 +3,24 @@
 #heats-edit.box.box-100
   .boxin
     .header
-      %h3= "Step 3: Add Scouts to Heat #{@heat.name}"
+      %h3= "Step 3: Add Scouts to #{@heat.name} heat"
       
     #dashboard.content
       .inner-content
-        %p.bigger Add Scouts to the selected heat. Click the Generate Lane Assignment when all Scouts are added.
+        %p.bigger Add Scouts to the <em>#{@heat.name}</em> heat.
+        - if @heat.scouts.size > 0
+          %p.bigger #{link_to "Generate Lane Assignments", heat_races_path(@heat)} when all Scouts are added to create the races for this heat.
+          
+        - else
+          %p.bigger Add scouts to this heat, then you can generate lane assignments.
+          
         = render 'layouts/event_heat_group'          
         
-        %div
-          When you are done adding scouts, #{link_to "Create Lane Assignments", heat_races_path(@heat)}
-
-        %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
+        %h4
+          Scouts to race in #{@heat_group.name}-#{@heat.name} heat
+          = link_to "Generate Lane Assignments", heat_races_path(@heat), :class => "button green"
         #scout-heat-list
+        
           = render 'heats/scout_list', :heat => @heat, :scout => @scout
           
         .sep &nbsp;
