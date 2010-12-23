@@ -1,13 +1,15 @@
+- nav_buttons render(:partial => 'index_nav_buttons')
+
 #heats-edit.box.box-100
   .boxin
     .header
-      %h3= "Step 4: Create races for Heat #{@heat.name}"
+      %h3= "Step 4: Create races for #{@heat_group.name}-#{@heat.name} heat"
       
     #dashboard.content
       .inner-content
         %p.bigger Specify the number of races you want to run for this heat. The lane assignment and rotation will automatically be calculated.
         %p.bigger IMPORTANT: you can not modify or delete any races that have been partially run. Create a new heat, add scouts to that heat, then generate a new race schedule.
-        = #render 'layouts/event_heat_group'          
+        = render 'layouts/event_heat_group'          
         
         #race-container
           #scout-list-small
@@ -18,6 +20,7 @@
                 - @heat.scouts.each do |scout|
                   %tr
                     %td= scout.full_name
+            %p= link_to "Add or edit scouts in #{@heat.name} heat", edit_race_heat_group_heat_path(@heat_group, @heat)
           #race-generate
             .sep &nbsp;
             .sep &nbsp;

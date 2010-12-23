@@ -1,0 +1,10 @@
+%ul
+  %li
+    = link_to(edit_race_heat_group_heat_path(@heat_group, @heat), :class => "button nav") do
+      %span.scouts-icon= "Back to #{@heat_group.name}-#{@heat.name} Heat"
+  %li
+    = link_to(race_heat_groups_path, :class => "button nav") do
+      %span.scouts-icon Back to Heat Groups
+  %li
+    = link_to(track_manager_path, :class => "button nav") do
+      %span.scouts-icon Track Management

@@ -1,14 +1,15 @@
 - total_lanes = @event.track.total_lanes
-- active_lanes = @event.track.active_lanes.split(",")
+- @active_lanes = @event.track.active_lanes.split(",")
+
 %table
   %thead
     %tr
-      %th{:colspan => "#{total_lanes}"}= "#{@event.track.pack.name} #{@event.track.name} - Available Racing Lanes"
+      %th{:colspan => "#{total_lanes}"}= "#{@event.track.pack.name} #{@event.track.name} - Available Lanes"
     %tr
     - total_lanes.times do |n|
-      %th= "#{n+1}"
+      %th{:class => lane_color(n+1)}= "#{n+1}"
   %tbody
     %tr
       - total_lanes.times do |n|
-        %td= check_box_tag 'selected_lanes[]', n+1, (active_lanes.include?("#{n+1}"))
+        %td= check_box_tag 'selected_lanes[]', n+1, active_lane?(n+1), :disabled => !active_lane?(n+1)
 
