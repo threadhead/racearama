@@ -4,7 +4,7 @@ class CreateRaces < ActiveRecord::Migration
       t.integer :heat_id
       t.boolean :current, :default => false
       t.boolean :completed, :default => false
-      t.integer :index, :default => 0
+      t.integer :order_index, :default => 0
       
       t.timestamps
     end

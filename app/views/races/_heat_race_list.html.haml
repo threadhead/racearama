@@ -1,14 +1,14 @@
-- heat.races.each do |race|
+- heat.races.order("order_index ASC").each do |race|
   .race-table{:class => cycle("mid", "mid", "last")}
     %table
       %thead
         %tr
-          %th{:colspan => 2, :class => "centered"} Race #{race.index}
+          %th{:colspan => 2, :class => "centered"} Race #{race.order_index}
         %tr
           %th.lane Lane
           %th.scout Scout
       %tbody
-        - race.lane_assignments.each do |lane_asgn|
+        - race.lane_assignments.order("lane ASC").each do |lane_asgn|
           %tr
             %td.lane #{lane_asgn.lane}
             %td.scout #{lane_asgn.scout.full_name}

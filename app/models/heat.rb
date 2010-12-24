@@ -34,7 +34,7 @@ class Heat < ActiveRecord::Base
     lane_shift = (selected_lanes.size - scouts.size) > 1 ? 1 : 0
     
     races_to_generate.to_i.times do |n|
-      a_race = Race.new({:index => (n+1)})
+      a_race = Race.new({:order_index => (n+1)})
       self.races << a_race
       scouts = rotate_scouts(scouts)
       scouts.each_with_index do |scout, idx|
@@ -45,6 +45,17 @@ class Heat < ActiveRecord::Base
       a_race.save
     end
   end
+  
+  
+  def has_completed_races?
+    self.races.where(:completed => true).count > 0
+  end
+  
+  
+  def has_current_race?
+    self.races.where(:current => true).count > 0
+  end
+  
   
   private
   def rotate_scouts(scouts_array)

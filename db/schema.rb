@@ -120,9 +120,9 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
 
   create_table "races", :force => true do |t|
     t.integer  "heat_id"
-    t.boolean  "current",    :default => false
-    t.boolean  "completed",  :default => false
-    t.integer  "index",      :default => 0
+    t.boolean  "current",     :default => false
+    t.boolean  "completed",   :default => false
+    t.integer  "order_index", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
