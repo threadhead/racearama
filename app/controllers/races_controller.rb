@@ -21,6 +21,8 @@ class RacesController < ApplicationController
 
   def create
     @heat = Heat.find(params[:heat_id])
+    @heat.generate_races(params[:races_to_generate], params[:selected_lanes])
+    
     @heat.update_attributes({:races_to_generate => params[:races_to_generate], :generate_method => params[:generate_method], :generate_time => Time.now })
     @lane_to_race = params[:selected_lanes]
     

@@ -14,7 +14,7 @@
         #race-container
           #scout-list-small
             %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
-            %table.heat-groups
+            %table.scouts-race
               %tbody
                 %tr
                 - @heat.scouts.each do |scout|
@@ -36,9 +36,8 @@
               = submit_tag 'Generate Race Schedule', :class => 'button medium'
             
           #race-list
-            race list goes here
-            asdfasdfasdfasdf
-            = #render 'heat_race_list', :heat => @heat, :scout => @scout
+            %h4= "Races generated for the #{@heat.name} heat"
+            = render 'heat_race_list', :heat => @heat
 
           .sep &nbsp;
         

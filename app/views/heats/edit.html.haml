@@ -14,11 +14,12 @@
         - else
           %p.bigger Add scouts to this heat, then you can generate lane assignments.
           
-        = render 'layouts/event_heat_group'          
+        = render 'layouts/event_heat_group'
         
         %h4
           Scouts to race in #{@heat_group.name}-#{@heat.name} heat
-          = link_to "Generate Lane Assignments", heat_races_path(@heat), :class => "button green"
+          - if @heat.scouts.size > 0
+            = link_to "Generate Lane Assignments", heat_races_path(@heat), :class => "button green"
         #scout-heat-list
         
           = render 'heats/scout_list', :heat => @heat, :scout => @scout

@@ -362,10 +362,13 @@ div.field_with_errors
 	table.heat-groups
 		margin-top: 0px
 		font-size: 1.2em
+	table.scouts-race
+		margin-top: 0px
+		font-size: 1.2em
 		border:	1px solid $background_blue
 		border-top: none
 		+border-bottom-left-radius(5px)
-		+border-bottom-right-radius(5px)
+		+border-bottom-right-radius(5px)		
 	h4
 		font-size: 1.4em
 		height: 1.5em
@@ -380,7 +383,27 @@ div.field_with_errors
 		margin-bottom: 0px
 		.button
 			float: right
-		
+
+#race-list
+	h4
+		+column(12, true)
+	.race-table
+		&.mid
+			+column(4)
+		&.last
+			+column(4, last)
+		table
+			border: 1px solid #999
+			tr
+				td.lane, th.lane
+					width: 25%
+				td.scout, th.scout
+					width: 75%
+				th, td
+					padding: 0px 10px 0px 10px !important
+
+
+
 #race-container
 	+container
 #scout-list-small
@@ -391,12 +414,12 @@ div.field_with_errors
 			tr
 				td
 					padding: 0px 0px 0px 8px !important
+
+
 #race-generate
-	+column(6, true)
+	+column(7, true)
 	h4
 		background: none
-#race-list
-	+column(11, true)
 	
 form
 	font-size: 1.2em

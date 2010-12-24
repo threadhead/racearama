@@ -33,13 +33,13 @@ class Heat < ActiveRecord::Base
     # we would like to move cars to the center of the track if possible
     lane_shift = (selected_lanes.size - scouts.size) > 1 ? 1 : 0
     
-    races_to_generate.times do |n|
+    races_to_generate.to_i.times do |n|
       a_race = Race.new({:index => (n+1)})
       self.races << a_race
       scouts = rotate_scouts(scouts)
       scouts.each_with_index do |scout, idx|
         a_race.lane_assignments << LaneAssignment.new(
-          {:scout_id => scout.id, :lane => selected_lanes[idx + lane_shift]}
+          {:scout_id => scout.id, :lane => selected_lanes[idx + lane_shift].to_i}
         )
       end
       a_race.save

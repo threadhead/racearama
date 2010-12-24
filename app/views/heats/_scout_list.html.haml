@@ -10,3 +10,5 @@
         %td= scout.full_name
         %td= scout.den.den_leader_pack
         %td= link_to "Remove from Heat", heat_remove_scout_path(heat, scout), :class => "button red"
+    %tr
+      %td{:colspan => 3} <em>Scouts: #{heat.scouts.count}</em>

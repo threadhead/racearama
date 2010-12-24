@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
   
 
   def check_for_current_event
-    puts "CHECKING_FOR_CURRENT_EVENT"
     @event = Event.current_event
 
     if @event.blank?
