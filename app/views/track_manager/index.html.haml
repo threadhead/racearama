@@ -2,35 +2,43 @@
   .boxin
     .header
       %h3 Track Management
+    #track-manager-container
       
-    #checklist
-      .content.box.box-50
+      #buttons
+        #racing
+          %h3 Racing!
+          %ul
+            %li
+              = link_to "Create Heats and Races", race_heat_groups_path, :class => "button medium"
+              .description gentlemen, start your engines
+        #management.grey-back
+          %h3 Management
+          %ul
+            %li
+              = link_to "Events", events_path, :class => "button medium"
+              .description set events and the current race
+            %li
+              = link_to "Tracks", tracks_path, :class => "button medium"
+              .description create or edit a track, each event has a track
+            %li
+              = link_to "Scouts", scouts_path, :class => "button medium"
+              .description edit scouts, dens, and packs
+        #testing
+          %h3 Testing
+          %ul
+            %li
+              = link_to "Track Test", track_test_path, :class => "button medium"
+              .description perform gate and timer tests
+
+
+      #checklist
         %h3 Race Day Checklist
         %p.strong Current Event
         %p= @event.name
         = current_event_set_icon
-        
+
         %p.strong Racing on Track
         %p= @event.track.name_lanes
         = track_set_icon
-        
+
         %p.strong Heats Ready to Race
-        
-      
-    #dashboard.content.clearfix
-      %ul
-        %li
-          = link_to "Events", events_path, :class => "button big"
-          .description set events and the current race
-        %li
-          = link_to "Tracks", tracks_path, :class => "button big"
-          .description create or edit a track, each event has a track
-        %li
-          = link_to "Scouts", scouts_path, :class => "button big"
-          .description edit scouts, dens, and packs
-        %li
-          = link_to "Track Test", track_test_path, :class => "button big"
-          .description perform gate and timer tests
-        %li
-          = link_to "Race!", race_heat_groups_path, :class => "button big"
-          .description gentlemen, start your engines

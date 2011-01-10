@@ -552,6 +552,49 @@ table
 				.description
 					font-size: 1.2em
 					text-align: center
+	#checklist
+		+column(4, true)
+		padding-top: 20px
+	#buttons
+		+column(5)
+		+append(2)
+		ul
+			width: 100%
+			li
+				+horizontal-list
+				padding: 14px
+				a
+					display: block
+					margin: 0px auto
+					width: 260px
+				.description
+					font-size: 1.2em
+					text-align: center
+#track-manager-container
+	+container
+	
+.grey-back
+	background-color: #E6E6E6
+	border: 1px solid darken(#E6E6E6, 10)
+
+
+.big-button-list
+	ul
+		width: 100%
+		padding: 20px 0px 40px 0px
+		li
+			+horizontal-list
+			min-height: 150px
+			width: (958px / 2 - 60)
+			float: left
+			padding: 20px
+			a
+				display: block
+				width: 300px
+				margin: 0px auto
+			.description
+				font-size: 1.2em
+				text-align: center
 
 				
 #event-index

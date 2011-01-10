@@ -13,4 +13,8 @@ class Track < ActiveRecord::Base
   def name_lanes
     "#{self.name}-#{self.total_lanes} lanes"
   end
+  
+  def active_lanes_count
+    self.active_lanes.split(",").size
+  end
 end

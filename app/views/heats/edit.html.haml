@@ -8,7 +8,7 @@
     #dashboard.content
       .inner-content
         %p.bigger Add Scouts to the <em>#{@heat.name}</em> heat.
-        - if @heat.scouts.size > 0
+        - if @heat.scouts.size > 0 && enough_lanes?
           %p.bigger #{link_to "Generate Lane Assignments", heat_races_path(@heat)} when all Scouts are added to create the races for this heat.
           
         - else
@@ -18,7 +18,7 @@
         
         %h4
           Scouts to race in #{@heat_group.name}-#{@heat.name} heat
-          - if @heat.scouts.size > 0
+          - if @heat.scouts.size > 0 && enough_lanes?
             = link_to "Generate Lane Assignments", heat_races_path(@heat), :class => "button green"
         #scout-heat-list
         

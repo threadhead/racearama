@@ -1,5 +1,5 @@
 #race-generate
-  %p.bigger There are no races generated for this heat. <br/>Generate some!
+  %p.bigger.centered There are no races generated for this heat. <br/>Generate some!
   = form_tag heat_races_path(@heat.id), :class => "basic" do
     = hidden_field_tag 'heat_id', @heat.id
     = hidden_field_tag 'generate_method', "rotation"
@@ -7,5 +7,5 @@
     = text_field_tag :races_to_generate, "4", :class => 'txt', :size => 3
     %br
     = render 'lanes'
-    %br
-    = submit_tag 'Generate Race Schedule', :class => 'button medium'
+    %p.centered
+      = submit_tag 'Generate Race Schedule', :class => 'button medium'
