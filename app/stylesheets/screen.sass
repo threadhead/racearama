@@ -401,7 +401,10 @@ div.field_with_errors
 					width: 75%
 				th, td
 					padding: 0px 10px 0px 10px !important
-
+			&.completed
+				background-color: red
+			&.current
+				background-color: green
 
 
 #race-container
@@ -560,6 +563,7 @@ table
 		+append(2)
 		ul
 			width: 100%
+			padding-left: 0px
 			li
 				+horizontal-list
 				padding: 14px
@@ -576,6 +580,9 @@ table
 .grey-back
 	background-color: #E6E6E6
 	border: 1px solid darken(#E6E6E6, 10)
+	padding: 12px
+	margin: 20px 0px 40px 0px
+	+border-radius(6px)
 
 
 .big-button-list

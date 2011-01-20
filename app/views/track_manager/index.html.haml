@@ -5,7 +5,7 @@
     #track-manager-container
       
       #buttons
-        #racing
+        #racing.grey-back
           %h3 Racing!
           %ul
             %li
@@ -23,7 +23,7 @@
             %li
               = link_to "Scouts", scouts_path, :class => "button medium"
               .description edit scouts, dens, and packs
-        #testing
+        #testing.grey-back
           %h3 Testing
           %ul
             %li
@@ -42,3 +42,7 @@
         = track_set_icon
 
         %p.strong Heats Ready to Race
+        - @ready_to_race.each do |heat|
+          %ul
+            %li
+              = link_to "Race #{heat.heat_group.name}-#{heat.name}!", race_heat_path(heat)

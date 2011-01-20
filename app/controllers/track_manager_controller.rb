@@ -4,6 +4,7 @@ class TrackManagerController < ApplicationController
   
   def index
     session[:username] = nil
+    @ready_to_race = Heat.ready_to_race(@event)
   end
 
   private

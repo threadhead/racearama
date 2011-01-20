@@ -27,8 +27,17 @@ Racearama::Application.routes.draw do
         delete 'destroy_races'
       end
     end
+    member do
+      get 'race'
+    end
   end
-  # resources :races
+  resources :races do
+    member do
+      post "stage"
+      post "complete"
+    end
+  end
+  
   # resources :lane_assignments
   # resources :heats
   # resources :heat_groups

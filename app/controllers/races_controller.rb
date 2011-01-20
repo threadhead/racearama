@@ -50,4 +50,20 @@ class RacesController < ApplicationController
     @heat.races.each{ |race| race.destroy }
     redirect_to heat_races_path
   end
+  
+  
+  def stage
+    if request.post?
+      @race = Race.find(params[:id])
+      @race.update_attribute(:current, true)
+    end
+  end
+  
+  
+  def complete
+    if request.post?
+      @race = Race.find(params[:id])
+      @race.update_attribute(:completed, true)
+    end
+  end
 end

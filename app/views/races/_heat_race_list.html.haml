@@ -1,6 +1,6 @@
-- heat.races.order("order_index ASC").each do |race|
+- heat.races.each do |race|
   .race-table{:class => cycle("mid", "mid", "last")}
-    %table
+    %table{:class => race_class(race)}
       %thead
         %tr
           %th{:colspan => 2, :class => "centered"} Race #{race.order_index}

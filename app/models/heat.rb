@@ -6,9 +6,11 @@ class Heat < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :heat_group_id
   
-  scope :by_name, order("name ASC")
-  default_scope order("name ASC")
+  scope :by_name, order("heats.name ASC")
+  default_scope order("heats.name ASC")
   
+  
+    
   def scout_count
     @scout_count ||= self.scouts.count
   end
@@ -54,6 +56,18 @@ class Heat < ActiveRecord::Base
   
   def has_current_race?
     self.races.where(:current => true).count > 0
+  end
+  
+  
+  def has_races?
+    self.races.count > 0
+  end
+  
+  
+  def self.ready_to_race(event)
+    # event.heat_groups.map{|g| g.heats}.flatten.keep_if{|h| h.has_races?}
+    event_heats = Heat.includes(:heat_group => :event).where('events.active' => true)
+    event_heats.keep_if{|h| h.has_races?}
   end
   
   

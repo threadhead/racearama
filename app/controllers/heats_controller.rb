@@ -88,6 +88,13 @@ class HeatsController < ApplicationController
       format.html { redirect_to edit_race_heat_group_heat_url(@heat_group, @heat) }
       format.js  { render :action => 'add_scout' }
     end
-    
+  end
+  
+  
+  def race
+    @heat = Heat.find(params[:id])
+    if @heat.has_current_race?
+      
+    end
   end
 end

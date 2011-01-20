@@ -1,0 +1,22 @@
+#track-manager.box.box-50
+  .boxin
+    .header
+      %h3 #{@heat.heat_group.name} - #{@heat.name}
+    .content
+      = render "races/heat_race_list", :heat => @heat
+      
+#test-race.box.box-50
+  .boxin
+    .header
+      %h3 Current Race
+    .content
+      .inner-content
+        - unless any_races_current?
+          %h4 Start racing this heat by clicking the Stage Race button. This will tell the staging crew which race to start staging.
+          %p= link_to "Stage Race ##{next_race_to_stage.order_index}", stage_race_path(next_race_to_stage, :redirect_to => race_heat_path(@heat)), :method => :post
+      
+        #loader{:style => "display: none;"}
+          = image_tag "loader_gear_blue.gif"
+          %h3 Racing...
+        #race-results
+          = render("test_race") if @race_results
