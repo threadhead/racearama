@@ -10,8 +10,9 @@ class Setting < ActiveRecord::Base
       :port => self.daq_controller_port,
       :apikey => self.api_key
     }
-    
   end
+  
+  
   
   private
   def can_not_destroy

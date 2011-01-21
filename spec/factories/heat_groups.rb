@@ -1,5 +1,5 @@
 Factory.sequence :name do |r|
-  ["Tigers", "Wolves", "Bears", "Webelos1", "Webelos2"][r]
+  ["Tigers", "Wolves", "Bears", "Webelos1", "Webelos2"][r-1]
 end
 
 Factory.define :heat_group do |p|

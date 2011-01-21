@@ -11,4 +11,8 @@ module HeatsHelper
     # find the first, non-completed, non-staged race that is ready to stage
     @heat.races.not_completed.not_current.by_index.first
   end
+  
+  def current_race
+    @heat.races.current.first
+  end
 end

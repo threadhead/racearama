@@ -56,6 +56,7 @@ class RacesController < ApplicationController
     if request.post?
       @race = Race.find(params[:id])
       @race.update_attribute(:current, true)
+      redirect_to params[:redirect_to]
     end
   end
   
@@ -64,6 +65,7 @@ class RacesController < ApplicationController
     if request.post?
       @race = Race.find(params[:id])
       @race.update_attribute(:completed, true)
+      redirect_to params[:redirect_to]
     end
   end
 end
