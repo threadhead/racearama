@@ -14,12 +14,17 @@
       .inner-content
         - if !any_races_current?
           %h4 Start racing this heat by clicking the Stage Race button. This will tell the staging crew which race to start staging.
-          %p= link_to "Stage Race ##{next_race_to_stage.order_index}", stage_race_path(next_race_to_stage, :redirect_to => race_heat_path(@heat)), :method => :post
+          %p= link_to "Stage Race ##{next_race_to_stage.order_index}",
+                      stage_race_path(next_race_to_stage,
+                      :redirect_to => race_heat_path(@heat)),
+                      :method => :post,
+                      :class => "button medium"
           
         - else
           %h4 Race ##{current_race.order_index} is currently staged.
           
-          %p= 
+          %p When the cars are ready, click RACE.
+          %p link_to "START - Race ##{current_race.order_index}"
       
         #loader{:style => "display: none;"}
           = image_tag "loader_gear_blue.gif"

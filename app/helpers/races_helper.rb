@@ -16,4 +16,8 @@ module RacesHelper
       ""
     end
   end
+  
+  def race_title(race)
+    "Race ##{race.order_index} - #{race_class(race).titleize}"
+  end
 end

@@ -3,7 +3,7 @@
     %table{:class => race_class(race)}
       %thead
         %tr
-          %th{:colspan => 2, :class => "centered"} Race #{race.order_index}
+          %th{:colspan => 2, :class => "centered"}= "#{race_title(race)}"
         %tr
           %th.lane Lane
           %th.scout Scout

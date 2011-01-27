@@ -35,6 +35,7 @@ Racearama::Application.routes.draw do
     member do
       post "stage"
       post "complete"
+      post "run"
     end
   end
   

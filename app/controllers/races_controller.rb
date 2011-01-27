@@ -1,5 +1,7 @@
 class RacesController < ApplicationController
   # before_filter :current_event
+  before_filter :get_settings
+  before_filter :get_controller_status, :only => [:index, :create]
   
   def index
     @heat = Heat.find(params[:heat_id])
@@ -45,6 +47,14 @@ class RacesController < ApplicationController
   #   redirect_to(races_url)
   # end
   
+  
+  def run
+    @race = Race.find(params[:id])
+    run_race(@race_duration.to_i)
+    sleep(4)
+  end
+  
+  
   def destroy_races
     @heat = Heat.find(params[:heat_id])
     @heat.races.each{ |race| race.destroy }
@@ -66,6 +76,28 @@ class RacesController < ApplicationController
       @race = Race.find(params[:id])
       @race.update_attribute(:completed, true)
       redirect_to params[:redirect_to]
+    end
+  end
+  
+  
+  
+  private
+  def run_race(duration)
+    @return = DaqController.send("start_race".to_sym, @setting.opts, duration)
+    @race_results = @return[:result]#[:results]
+  end
+  
+  
+  def get_settings
+    @setting = Setting.first
+    @race_duration = params["slider-amount"] || "10"
+  end
+  
+  
+  def get_controller_status
+    @daq_status = DaqController.status(@setting.opts)
+    if @daq_status.has_key?(:error)
+      flash[:error] = "Can not communicate with DAQ Controller service (#{@daq_status[:error]}). Verify that the DAQ Controller host/port/api_key are set properly!"
     end
   end
 end
