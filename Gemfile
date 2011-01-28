@@ -14,6 +14,7 @@ gem 'paperclip'
 gem 'httparty'
 gem 'faker'
 gem 'factory_girl_rails'
+gem 'state_machine'
 
 # Use unicorn as the web server
 # gem 'unicorn'
