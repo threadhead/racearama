@@ -93,8 +93,8 @@ class HeatsController < ApplicationController
   
   def race
     @heat = Heat.find(params[:id])
-    if @heat.has_current_race?
-      
-    end
+    # if @heat.has_current_race?
+    #   
+    # end
   end
 end

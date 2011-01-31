@@ -1,7 +1,7 @@
 class RacesController < ApplicationController
   # before_filter :current_event
-  before_filter :get_settings
-  before_filter :get_controller_status, :only => [:index, :create]
+  # before_filter :get_settings
+  # before_filter :get_controller_status, :only => [:index, :create]
   
   def index
     @heat = Heat.find(params[:heat_id])
@@ -50,8 +50,20 @@ class RacesController < ApplicationController
   
   def run
     @race = Race.find(params[:id])
-    run_race(@race_duration.to_i)
-    sleep(4)
+    @race_results = RaceCom.do_race(@race_duration.to_i)
+    pp @race_results
+    if @race_results[:error]
+      flash[:error] = "ERROR! #{@race_results[:error]}"
+    elsif @race_results[:result]['status'] == "ok"
+      @race_results[:result]['results'].each do |r|
+        rt = RaceTime.new({:lane => r['lane'], :elapsed_seconds => r['time']/1000.0})
+        @race.race_times << rt
+      end
+      @race.update_attributes({:completed => true, :daq_seconds => @race_results[:elapsed]})
+    else
+      flash[:error] = "The race controller did not return an OK status."
+    end
+    render :do_race
   end
   
   
@@ -82,22 +94,22 @@ class RacesController < ApplicationController
   
   
   private
-  def run_race(duration)
-    @return = DaqController.send("start_race".to_sym, @setting.opts, duration)
-    @race_results = @return[:result]#[:results]
-  end
-  
-  
-  def get_settings
-    @setting = Setting.first
-    @race_duration = params["slider-amount"] || "10"
-  end
-  
-  
-  def get_controller_status
-    @daq_status = DaqController.status(@setting.opts)
-    if @daq_status.has_key?(:error)
-      flash[:error] = "Can not communicate with DAQ Controller service (#{@daq_status[:error]}). Verify that the DAQ Controller host/port/api_key are set properly!"
-    end
-  end
+  # def run_race(duration)
+  #   @return = DaqController.send("start_race".to_sym, @setting.opts, duration)
+  #   @race_results = @return[:result]#[:results]
+  # end
+  # 
+  # 
+  # def get_settings
+  #   @setting = Setting.first
+  #   @race_duration = params["slider-amount"] || "10"
+  # end
+  # 
+  # 
+  # def get_controller_status
+  #   @daq_status = DaqController.status(@setting.opts)
+  #   if @daq_status.has_key?(:error)
+  #     flash[:error] = "Can not communicate with DAQ Controller service (#{@daq_status[:error]}). Verify that the DAQ Controller host/port/api_key are set properly!"
+  #   end
+  # end
 end

@@ -5,6 +5,7 @@ class CreateRaces < ActiveRecord::Migration
       t.boolean :current, :default => false
       t.boolean :completed, :default => false
       t.integer :order_index, :default => 0
+      t.float   :daq_seconds, :default => 0.0
       
       t.timestamps
     end

@@ -14,7 +14,7 @@ class TrackTestController < ApplicationController
   end
   
   def test_race
-    @race_results = RaceCom.do_test_race(@race_duration.to_i)
+    @race_results = RaceCom.do_race(@race_duration.to_i)
     sleep(4)
   end
   

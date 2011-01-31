@@ -12,8 +12,8 @@
         = render 'layouts/event_heat_group'          
         
         #race-container          
-          - if enough_lanes?
-            %p.bigger There are more scouts than active lanes on the #{@event.track.name} track. You will need to #{link_to "remove some scouts", edit_race_heat_group_heat_path(@heat_group, @heat)} remove some scouts before you can generate races.
+          - if !enough_lanes?
+            %p.bigger There are more scouts than active lanes on the #{@event.track.name} track. You will need to #{link_to "remove some scouts", edit_race_heat_group_heat_path(@heat_group, @heat)} before you can generate races.
             
           - elsif @heat.races.size > 0
             %p.bigger All the races have been generated for this heat.

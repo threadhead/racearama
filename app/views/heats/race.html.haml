@@ -24,7 +24,7 @@
           %h4 Race ##{current_race.order_index} is currently staged.
           
           %p When the cars are ready, click RACE.
-          %p link_to "START - Race ##{current_race.order_index}"
+          %p= link_to "RUN - Race ##{current_race.order_index}", run_race_path(current_race), :class => "button, medium", :method => :post
       
         #loader{:style => "display: none;"}
           = image_tag "loader_gear_blue.gif"

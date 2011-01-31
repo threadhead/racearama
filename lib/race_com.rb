@@ -1,13 +1,13 @@
 class RaceCom
-  def self.do_test_race(duration)
-    ret = DaqController.send("start_race".to_sym, get_settings.opts, duration)
-    ret[:result]#[:results]
+  def self.do_race(duration)
+    DaqController.send("start_race".to_sym, get_settings.opts, duration)
+    # ret[:result]#[:results]
   end
   
   
   def self.lane_status
-    ret = DaqController.send("test_lanes".to_sym, get_settings.opts)
-    ret[:result]#[:lane_status]
+    DaqController.send("test_lanes".to_sym, get_settings.opts)
+    # ret[:result]#[:lane_status]
   end
   
   

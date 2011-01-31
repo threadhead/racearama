@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
   end
 
   create_table "race_times", :force => true do |t|
+    t.integer  "race_id"
     t.integer  "lane"
     t.integer  "lane_id"
     t.float    "elapsed_seconds"
@@ -118,11 +119,15 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.datetime "updated_at"
   end
 
+  add_index "race_times", ["lane"], :name => "index_race_times_on_lane"
+  add_index "race_times", ["race_id"], :name => "index_race_times_on_race_id"
+
   create_table "races", :force => true do |t|
     t.integer  "heat_id"
     t.boolean  "current",     :default => false
     t.boolean  "completed",   :default => false
     t.integer  "order_index", :default => 0
+    t.float    "daq_seconds", :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
