@@ -1,54 +1,82 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+ruby '1.9.3'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-gem 'compass'
+gem 'sqlite3'
+gem 'thin'
+# gem 'mysql2'
 gem 'haml'
 gem 'devise'
 gem 'cancan'
 gem 'paperclip'
+# gem 'carrierwave'
+gem 'fog'
+gem 'mini_magick'
 gem 'httparty'
 gem 'faker'
 gem 'factory_girl_rails'
 gem 'state_machine'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'jquery-rails'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  # gem 'webrat'
-  gem 'awesome_print'
-  gem 'hirb'
-  gem 'wirble'
-  gem "nifty-generators"
-  gem "rspec-rails", ">= 2.0.0.beta.20"
-  gem 'autotest'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
-  gem 'mocha'
-  gem 'hpricot'
-  gem 'ruby_parser'
   gem 'haml-rails'
-  gem 'sinatra'
+  gem 'rspec-rails'
+  gem 'ffi'
+  gem 'capybara'
+end
+
+group :development do
+  # gem 'meta_request'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
+  gem 'sextant'
+  gem "letter_opener"
+  gem 'wirble', require: false
+  gem 'hirb', require: false
+end
+
+
+
+group :test do
+  gem 'rake' # for travis-ci
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'spork-rails'
+  gem 'rb-fsevent'
+  gem 'terminal-notifier-guard'
+
+  gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'rspec-nc'
+
+  gem 'database_cleaner'
+  gem 'capybara-webkit'
+  gem 'capybara-screenshot'
+
+  # gem 'simplecov', '>= 0.4.0', require: false
+  # gem 'simplecov-rcov', require: false
+end
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  gem 'uglifier', '>= 1.0.3'
+  gem 'therubyracer'
+  gem 'less-rails'
+
+  gem 'twitter-bootstrap-rails'
+  gem 'compass-rails'
 end
 
 group :mac do
