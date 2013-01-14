@@ -31,3 +31,4 @@
 /lib/tasks/asset_sync.rake
 .powenv
 .powrc
+daq_controller_test/*.log
