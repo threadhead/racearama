@@ -13,49 +13,50 @@
 // @import "partials/two_col"
 
 @import "compass/css3"
-@import "compass/utilities/lists"
-
+// @import "compass/utilities/lists"
+@import "compass/typography/lists"
+@import "compass/css3/images"
 
 @mixin shaded-button($base_color, $hover_color, $border_radius: 5px, $border_width: 1px)
   text-align: center
   padding: .4em .9em
   $dark_base: darken($base_color, 10)
-  
+
   background: $base_color
-  @include linear-gradient(color-stops($base_color, lighten($base_color, 13)), bottom)
-  
+  border: $border_width solid darken($base_color, 20) !important
+  border-top: $border_width solid lighten($base_color, 20) !important
+  // @include linear-gradient(color-stops($base_color, lighten($base_color, 13)), bottom)
+  @include background-image(linear-gradient(bottom, $base_color, lighten($base_color, 13) ))
+
   &:hover, &:focus
     background: $hover_color
-    @include linear-gradient(color-stops($hover_color, lighten($hover_color, 20)), bottom)
+    border: $border_width solid darken($hover_color, 20) !important
+    border-top: $border_width solid lighten($hover_color, 20) !important
+    // @include linear-gradient(color-stops(lighten($hover_color, 20), $hover_color), bottom)
+    @include background-image(linear-gradient(bottom, lighten($hover_color, 20), $hover_color))
 
   &:active
     background: $dark_base
-    @include linear-gradient(color-stops($dark_base, lighten($dark_base, 15)), top)
+    border: $border_width solid darken($dark_base, 20) !important
+    border-bottom: $border_width solid lighten($dark_base, 20) !important
+    // @include linear-gradient(color-stops($dark_base, lighten($dark_base, 15)), top)
+    @include background-image(linear-gradient(top, $dark_base, lighten($dark_base, 15) ))
 
 
 @mixin shaded-button-size($base_color, $hover_color, $border_radius: 5px, $border_width: 1px)
   $dark_base: darken($base_color, 10)
   $shadow_depth: $border_width
   $shadow_blur: $border_width
-  
-  border: $border_width solid $dark_base !important
-  border-top: $border_width solid lighten($base_color, 20) !important
-  @include border-radius($border_radius)
-  @include text-shadow(darken($base_color, 20), $shadow_depth, $shadow_depth, $shadow_blur)
-  &:hover, &:focus, &:active
-    @include text-shadow(darken($hover_color, 40), $shadow_depth, $shadow_depth, $shadow_blur)
-  
-  &:hover, &:focus
-    border: $border_width solid darken($hover_color, 20) !important
-    border-top: $border_width solid lighten($hover_color, 40) !important
 
-  &:active
-    border: $border_width solid darken($dark_base, 20) !important
-    border-bottom: $border_width solid lighten($dark_base, 30) !important
-    
+  border-width: $border_width !important
+  @include border-radius($border_radius)
+  @include single-text-shadow(darken($base_color, 20), $shadow_depth, $shadow_depth, $shadow_blur)
+  &:hover, &:focus, &:active
+    @include single-text-shadow(darken($hover_color, 40), $shadow_depth, $shadow_depth, $shadow_blur)
+    border-width: $border_width !important
+
 
 $background_blue: #0F508D
-
 
 body.bp
   background: #ddd
@@ -81,15 +82,12 @@ body.bp
       ul
         a
           background: #777
-          +linear-gradient(color-stops(#666, #777), top)
+          +background-image(linear-gradient(top, #666666, #777777))
           color: white
         a.active, a:hover, a:focus, a:active
           background: white
           color: #444
-          +linear-gradient(color-stops(#ddd, white), top)
-      // .button
-      // margin-left: 15px
-
+          +background-image(linear-gradient(top, #dddddd, #ffffff))
   ul, ol
     padding-left: 1.2em
   .flash
@@ -99,7 +97,7 @@ body.bp
     p
       margin: 0px 0px 4px
       padding-left: 45px
-      height: 36px
+      min-height: 36px
     ul
       padding-top: 0px
       li
@@ -109,6 +107,8 @@ body.bp
     color: #008000
   .red
     color: red
+  .white
+    color: white
   .centered
     text-align: center
   .smaller
@@ -117,41 +117,48 @@ body.bp
     font-size: 1.2em
   .bigger
     font-size: 1.4em
+  .huge
+    font-size: 3em
   .strong
     font-weight: bold
   .description
+    padding-left: 1em
     font-style: italic
     font-size: .8em
-    color: #888 
+    color: #888
 
 
 a.button, input.button
+  display: inline-block
   $med_blue: #0567ad
   $dark_grey: #2a2a2a
   font-weight: bold
   color: white !important
   font-size: 16px
-  +shaded-button($med_blue, $dark_grey)
-  +shaded-button-size($med_blue, $dark_grey)
-  &.small
-    font-size: 14px
+  line-height: 1em !important
+  margin-bottom: 0px !important
+  +shaded-button($med_blue, darken($med_blue, 30))
+  +shaded-button-size($med_blue, darken($med_blue, 30))
+  &.dark
+    +shaded-button(#2a2a2a, #00487a)
+  &.red
+    +shaded-button(#800000, #250002)
+  &.green
+    +shaded-button(#2F8D2E, #00487a)
+
+  &.little
+    font-size: 12px
     font-weight: normal
     +shaded-button-size($med_blue, $dark_grey, 5px, 1px)
   &.medium
     font-size: 22px
-    +shaded-button-size($med_blue, $dark_grey)
+    +shaded-button-size($med_blue, $dark_grey, 6px, 2px)
   &.big
-    font-size: 42px
-    +shaded-button-size($med_blue, $dark_grey, 16px, 3px)
+    font-size: 38px
+    +shaded-button-size($med_blue, $dark_grey, 14px, 3px)
   &.nav
-    font-size: 24px
-    +shaded-button-size($med_blue, $dark_grey, 10px, 2px)
-  &.dark
-    +shaded-button(#2a2a2a, #00487a)
-  &.red
-    +shaded-button(#800000, #00487a)
-  &.green
-    +shaded-button(#2F8D2E, #00487a)
+    font-size: 16px
+    +shaded-button-size($med_blue, $dark_grey, 5px, 1px)
 
 
 .box-50
@@ -163,17 +170,17 @@ a.button, input.button
 #header
   height: 101px
   background-color: $background_blue
-  +linear-gradient(color-stops(lighten($background_blue, 15), #{$background_blue} 70%, #{$background_blue}), top)
+  +background-image(linear-gradient(top, lighten($background_blue, 15), $background_blue 70%, $background_blue))
   border-bottom: 1px solid #2A9FEC
   .inner-container
     padding: 20px 0px 16px
 
 
   #userbox
-    +linear-gradient(color-stops(#{$background_blue}, lighten($background_blue, 2), #{$background_blue}), top)
+    +background-image(linear-gradient($background_blue, lighten($background_blue, 2), $background_blue))
     +border-top-left-radius(6px)
     +border-top-right-radius(6px)
-    +box-shadow(lighten($background_blue, 20), 0px, -1px, 1px, 0, false)
+    +single-box-shadow(lighten($background_blue, 20), 0px, -1px, 1px, 0, false)
     float: right
     height: 65px
     width: 225px
@@ -183,7 +190,7 @@ a.button, input.button
       width: 65px
       height: 65px
       float: left
-      background: url("/images/consulting.png") no-repeat center center
+      background: image-url("consulting.png") no-repeat center center
     .inner
       padding: 11px 12px 0px 68px
       a
@@ -201,23 +208,28 @@ h1#logo
   height: 28px
   a
     color: white
-    +text-shadow(#111, 2px, 2px, 5px)
+    +single-text-shadow(#111, 2px, 2px, 5px)
     -webkit-text-stroke: 1px #777
     border-bottom: 0
 
 
 
 #nav
+  height: 56px
   background-color: white
   border-bottom: 1px solid #999
   border-top: 1px solid #004483
-  +box-shadow(#777, 0px, 1px, 5px, 0, false)
+  +single-box-shadow(#777, 0px, 1px, 5px, 0, false)
   .inner-container
-    padding: 12px 0px 5px
+    padding: 6px 0px 5px
   ul
     +horizontal-list
     li
-      margin: 10px 20px 16px 4px
+      margin: 8px 12px 6px 0px
+
+
+div#container
+  margin-top: 8px
 
 
 div.content
@@ -228,7 +240,7 @@ div.content
 .boxin
   background: white
   +border-radius(6px)
-  +box-shadow(#aaa, 0px, 0px, 10px, 0, false)
+  +single-box-shadow(#aaa, 0px, 0px, 10px, 0, false)
   border: 1px solid #999
   .content
     margin-bottom: 5px
@@ -237,14 +249,15 @@ div.content
     +border-top-right-radius(6px)
     border-top: 2px solid #ccc
     height: 25px
-    +linear-gradient(color-stops(#555, #333), top)
+    // +linear-gradient(color-stops(#555, #333), top)
+    +background-image(linear-gradient(top, #555555, #333333))
     margin: -1px -1px 0px
     padding: 7px 0px 9px 20px
     position: relative
     h3
       color: white
       font-size: 1.4em
-      +text-shadow(#151515, 0px, 1px, 0px)
+      +single-text-shadow(#151515, 0px, 1px, 0px)
       position: relative
       top: 4px
       display: inline
@@ -288,24 +301,25 @@ div.content
   font-size: 1.2em
 
 
-@mixin msg-box($color, $image_url)
+@mixin msg-box($color, $image)
   color: $color
   background-color: lighten($color, 65)
   border: 1px solid lighten($color, 55)
+  height: 100%
   p
-    background: url($image_url) no-repeat
+    background: image-url($image) no-repeat
 
 .msg_ok
-  +msg-box(#336801, "/images/ok.png")
+  +msg-box(#336801, "ok.png")
 
 .alert, .error
-  +msg-box(#8d0d0d, "/images/error.png")
+  +msg-box(#8d0d0d, "error.png")
 
 .warn
-  +msg-box(#6c6600, "/images/warning_32.png")
+  +msg-box(#6c6600, "warning_32.png")
 
 .notice
-  +msg-box(#005898, "/images/info.png")
+  +msg-box(#005898, "info.png")
 
 
 
@@ -313,6 +327,14 @@ input.button
   font-family: "myriad pro", helvetica, Arial, sans-serif
 
 
+textarea
+  width: 26em
+input[type="text"], input[type="password"]
+  width: 12em
+  &.state
+    width: 3em
+  &.zip-code
+    width: 7em
 textarea, input[type="text"], input[type="password"]
   font-size: 1.1em
   border: 1px solid #999
@@ -322,6 +344,7 @@ textarea, input[type="text"], input[type="password"]
 
 select
   font-size: 1.1em
+  background: #fffffe
 
 
 input.error, textarea.error
@@ -364,6 +387,7 @@ form
     fieldset
       border: 1px solid #ccc
       padding: 10px 15px 15px
+      margin: 20px 0px 20px 0px
       +border-radius(8px)
       legend
         font-size: 1em
@@ -372,9 +396,9 @@ form
       margin-bottom: 0px
     label, div.sep
       display: block
-      margin-top: 8px
+      margin-top: 16px
     label.check, label.radio
-      display: inline 
+      display: inline
 
 
 // .error
@@ -391,14 +415,14 @@ table
     background: #ddd !important
     border-left: 1px solid #ccc
     border-right: 1px solid #d5d5e5
-    +text-shadow(white, 1px, 1px, 1px)
+    +single-text-shadow(white, 1px, 1px, 1px)
   tfoot th, tfoot td
     background: white
     border-top: 1px solid #ccc
   th:first, td:first
     padding-left: 20px
   th, td
-    padding: 10px 10px 8px !important
+    padding: 6px 8px 6px 8px !important
     // font-weight: normal !important
   .tc
     text-align: center !important
@@ -423,9 +447,10 @@ table
   .header
     background: $background_blue
     border-top-color: lighten($background_blue, 40)
-    +linear-gradient(color-stops($background_blue, lighten($background_blue, 10)), bottom)
+    // +linear-gradient(color-stops($background_blue, lighten($background_blue, 10)), bottom)
+    +background-image(linear-gradient(bottom, $background_blue, lighten($background_blue, 10)))
     h3
-      +text-shadow(darken($background_blue, 40), 0px, 1px, 0px)
+      +single-text-shadow(darken($background_blue, 40), 0px, 1px, 0px)
   table
     tr.even
       background: #f0f9ff
@@ -479,7 +504,7 @@ table
     margin: 0px auto
     width: 600px
   .boxin
-    +box-shadow(#111, 0px, 0px, 10px)
+    +single-box-shadow(#111, 0px, 0px, 10px)
     border: 0px
   .header
     height: 55px
@@ -523,4 +548,4 @@ table
     float: right
     text-align: center
 
-@import "screen"
+@import "partials/screen"

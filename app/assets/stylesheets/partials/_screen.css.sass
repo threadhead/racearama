@@ -81,7 +81,8 @@ span.loading
   h4
     font-size: 1.4em
     height: 1.5em
-    +linear-gradient(color-stops($background_blue, white), top)
+    // +linear-gradient(color-stops($background_blue, white), top)
+    @include background-image(linear-gradient(top, $background_blue, white))
     +text-shadow(black, 1px, 1px, 0px)
     background-color: $background_blue
     color: white
@@ -187,7 +188,9 @@ span.loading
     tfoot
       tr
         td
-          +linear-gradient(color-stops(#eee, white), top)
+          // +linear-gradient(color-stops(#eee, white), top)
+          @include background-image(linear-gradient(top, #eee, white))
+
   .description
     font-size: 1.2em
     float: right

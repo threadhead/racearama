@@ -4,21 +4,21 @@
     %title
       = yield(:title) || "Untitled"
     = render :partial => 'layouts/head'
-    
+
   %body.bp#welcome
     #opaque
     #header
       .inner-container
         %h1#logo
           %a.home{:href => "/"} race.A.rama
-                
+
     #container.clearfix
       .inner-container
         #content
           = #render :partial => 'layouts/flash', :locals => {:flash => flash}
-      
+
           = yield
-        
+
     #footer.clearfix
       .inner-container
         .box
@@ -32,3 +32,8 @@
           &copy; 2010, Karl Smith
           %br
           %small All rights reserved.
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"
