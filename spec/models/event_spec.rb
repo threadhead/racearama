@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Event do
   before(:each) do
-    pack = Factory(:pack)
-    den = Factory(:den, :pack => pack)
-    scout = Factory(:scout, :den => den)
-    @event = Factory(:event)
+    pack = FactoryGirl.create(:pack)
+    den = FactoryGirl.create(:den, :pack => pack)
+    scout = FactoryGirl.create(:scout, :den => den)
+    @event = FactoryGirl.create(:event)
     @event.scouts << scout
   end
-  
+
   it "should be valid" do
     @event.persisted?.should be_true
   end
-  
+
   it "should have a related scout" do
     @event.scouts.count.should eql(1)
   end
@@ -27,7 +27,7 @@ describe Event do
   end
 
   it "should find the current_event if available" do
-    @event2 = Factory(:event, :active => true)
+    @event2 = FactoryGirl.create(:event, :active => true)
     Event.current_event.should be_instance_of(Event)
     Event.current_event.should_not be_nil
   end
@@ -44,8 +44,8 @@ describe Event do
   # turned off until fixed
 
   # it "should not be able to create a new, active event if one already exists" do
-  #   Factory(:event, :active => true)
-  #   Factory.build(:event, :active => true).should_not be_valid
+  #   FactoryGirl(:event, :active => true)
+  #   FactoryGirl.build(:event, :active => true).should_not be_valid
   # end
-  
+
 end

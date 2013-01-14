@@ -1,4 +1,4 @@
-require 'spec_helper'
+# require 'spec_helper'
 
 # describe "races/show.html.haml" do
 #   before(:each) do
@@ -8,7 +8,7 @@ require 'spec_helper'
 #       :elapsed_seconds => 1.5
 #     ))
 #   end
-# 
+#
 #   it "renders attributes in <p>" do
 #     render
 #     rendered.should contain(1.to_s)

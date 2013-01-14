@@ -1,18 +1,20 @@
-Factory.sequence :name do |n|
-  ["Aluminum", "Wood", "Plastic"][rand(3)]
-end
+FactoryGirl.define do
+  sequence :track_name do |n|
+    ["Aluminum", "Wood", "Plastic"][rand(3)]
+  end
 
-Factory.sequence :total_lanes do |n|
-  [12, 4, 3][n-1]
-end
+  sequence :total_lanes do |n|
+    [12, 4, 3][n-1]
+  end
 
-Factory.sequence :available_lanes do |n|
-  ["2,3,4,5,6,8,9,11", "1,3,4", "1,3"][n-1]
-end
+  sequence :available_lanes do |n|
+    ["2,3,4,5,6,8,9,11", "1,3,4", "1,3"][n-1]
+  end
 
-Factory.define :track do |p|
-  p.name               {Factory.next(:name)}
-  p.total_lanes        {Factory.next(:total_lanes)}
-  p.active_lanes       {Factory.next(:available_lanes)}
-  p.association :pack, :factory => :pack
+  factory :track do
+    name               { FactoryGirl.generate(:track_name) }
+    total_lanes        { FactoryGirl.generate(:total_lanes) }
+    active_lanes       { FactoryGirl.generate(:available_lanes) }
+    association :pack, :factory => :pack
+  end
 end

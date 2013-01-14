@@ -1,8 +1,10 @@
-Factory.sequence :name do |r|
-  ["Tigers", "Wolves", "Bears", "Webelos1", "Webelos2"][r-1]
-end
+FactoryGirl.define do
+  sequence :heat_group_name do |r|
+    ["Tigers", "Wolves", "Bears", "Webelos1", "Webelos2"][(r-1)%5]
+  end
 
-Factory.define :heat_group do |p|
-  p.name               {Factory.next(:name)}
-  p.association :event, :factory => :event
+  factory :heat_group do
+    name               { FactoryGirl.generate(:heat_group_name) }
+    association :event, :factory => :event
+  end
 end

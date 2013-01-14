@@ -1,10 +1,13 @@
-Factory.sequence :order_index do |n|
-  n
-end
+FactoryGirl.define do
+  sequence :order_index do |n|
+    n
+  end
 
-Factory.define :race do |p|
-  p.current           false
-  p.completed         false
-  p.order_index       {Factory.next(:order_index)}
-  p.association :heat, :factory => :heat
+  factory :race do
+    current           false
+    completed         false
+    order_index       { FactoryGirl.generate(:order_index) }
+
+    association :heat, :factory => :heat
+  end
 end

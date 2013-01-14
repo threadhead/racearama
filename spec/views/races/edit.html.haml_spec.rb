@@ -1,4 +1,4 @@
-require 'spec_helper'
+# require 'spec_helper'
 
 # describe "races/edit.html.haml" do
 #   before(:each) do
@@ -9,10 +9,10 @@ require 'spec_helper'
 #       :elapsed_seconds => 1.5
 #     ))
 #   end
-# 
+#
 #   it "renders the edit race form" do
 #     render
-# 
+#
 #     rendered.should have_selector("form", :action => race_path(@race), :method => "post") do |form|
 #       form.should have_selector("input#race_line_number", :name => "race[line_number]")
 #       form.should have_selector("input#race_lane_id", :name => "race[lane_id]")

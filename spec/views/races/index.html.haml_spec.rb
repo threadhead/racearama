@@ -1,4 +1,4 @@
-require 'spec_helper'
+# require 'spec_helper'
 
 # describe "races/index.html.haml" do
 #   before(:each) do
@@ -15,7 +15,7 @@ require 'spec_helper'
 #       )
 #     ])
 #   end
-# 
+#
 #   it "renders a list of races" do
 #     render
 #     rendered.should have_selector("tr>td", :content => 1.to_s, :count => 2)
