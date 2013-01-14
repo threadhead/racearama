@@ -1,9 +1,6 @@
 class AddInfoToUsers < ActiveRecord::Migration
-  def self.up
+  def change
     add_column :users, :username, :string
-  end
-
-  def self.down
-    remove_column :users, :username
+    add_index :users, :username
   end
 end

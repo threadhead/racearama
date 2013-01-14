@@ -1,9 +1,5 @@
 class AddNameToHeats < ActiveRecord::Migration
-  def self.up
+  def change
     add_column :heats, :name, :string
-  end
-
-  def self.down
-    remove_column :heats, :name
   end
 end

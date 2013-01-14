@@ -1,5 +1,5 @@
 class CreateDens < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :dens do |t|
       t.integer :pack_id
       t.string :den_number
@@ -11,10 +11,5 @@ class CreateDens < ActiveRecord::Migration
       t.timestamps
     end
     add_index :dens, :pack_id
-  end
-  
-  def self.down
-    remove_index :dens, :pack_id
-    drop_table :dens
   end
 end

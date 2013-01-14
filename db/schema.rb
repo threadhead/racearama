@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -20,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.string   "leader_email"
     t.string   "assistant_leader_name"
     t.string   "assistant_leader_email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   add_index "dens", ["pack_id"], :name => "index_dens_on_pack_id"
@@ -41,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.text     "race_day_notes"
     t.text     "track_notes"
     t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.boolean  "archived"
     t.integer  "track_id"
   end
@@ -59,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
   create_table "heat_groups", :force => true do |t|
     t.string   "name"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "heat_groups", ["event_id"], :name => "index_heat_groups_on_event_id"
@@ -68,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
   create_table "heats", :force => true do |t|
     t.integer  "heat_group_id"
     t.integer  "heat_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "name"
     t.integer  "races_to_generate"
     t.string   "generate_method"
@@ -89,8 +90,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.integer  "lane"
     t.integer  "scout_id"
     t.integer  "race_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "lane_assignments", ["race_id"], :name => "index_lane_assignments_on_race_id"
@@ -106,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.string   "pinewood_derby_chair"
     t.string   "website_url"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "race_times", :force => true do |t|
@@ -115,8 +116,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.integer  "lane"
     t.integer  "lane_id"
     t.float    "elapsed_seconds"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "race_times", ["lane"], :name => "index_race_times_on_lane"
@@ -128,8 +129,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.boolean  "completed",   :default => false
     t.integer  "order_index", :default => 0
     t.float    "daq_seconds", :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "races", ["completed"], :name => "index_races_on_completed"
@@ -147,8 +148,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.string   "zipcode"
     t.string   "parent_email1"
     t.string   "parent_email2"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.boolean  "checked_in",           :default => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -163,8 +164,8 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.string   "daq_controller_host"
     t.string   "daq_controller_port"
     t.string   "api_key"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "tracks", :force => true do |t|
@@ -172,24 +173,39 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
     t.integer  "pack_id"
     t.integer  "total_lanes"
     t.string   "active_lanes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                              :default => "", :null => false
-    t.string   "encrypted_password",  :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                      :default => "", :null => false
-    t.string   "remember_token"
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "username"
   end
+
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

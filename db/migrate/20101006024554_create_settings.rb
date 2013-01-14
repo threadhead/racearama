@@ -1,5 +1,5 @@
 class CreateSettings < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :settings do |t|
       t.string :daq_controller_host
       t.string :daq_controller_port
@@ -12,9 +12,5 @@ class CreateSettings < ActiveRecord::Migration
                       :daq_controller_port => "8011",
                       :api_key => "77asdf77"})
     end
-  end
-
-  def self.down
-    drop_table :settings
   end
 end

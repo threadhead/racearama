@@ -1,5 +1,5 @@
 class CreateScouts < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :scouts do |t|
       t.integer :den_id
       t.string :first_name
@@ -15,9 +15,5 @@ class CreateScouts < ActiveRecord::Migration
     end
     add_index :scouts, :den_id
   end
-  
-  def self.down
-    remove_index :scouts, :den_id
-    drop_table :scouts
-  end
+
 end

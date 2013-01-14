@@ -1,5 +1,5 @@
 class CreateRaceTimes < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :race_times do |t|
       t.integer :race_id
       t.integer :lane
@@ -8,12 +8,9 @@ class CreateRaceTimes < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :race_times, :race_id
     add_index :race_times, :lane
   end
 
-  def self.down
-    drop_table :race_times
-  end
 end

@@ -1,5 +1,5 @@
 class CreateLaneAssignments < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :lane_assignments do |t|
       t.integer :lane
       t.integer :scout_id
@@ -10,8 +10,4 @@ class CreateLaneAssignments < ActiveRecord::Migration
     add_index :lane_assignments, :race_id
   end
 
-  def self.down
-    remove_index :lane_assignments, :race_id
-    drop_table :lane_assignments
-  end
 end

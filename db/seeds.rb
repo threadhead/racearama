@@ -32,22 +32,22 @@ User.create({
   :username => "car_staging",
   :password => "pack134"
 })
-  
-  
+
+
 # generate one pack
 puts "Creating 1 Pack"
-@pack = Factory.create(:pack)
+@pack = FactoryGirl.create(:pack)
 
 
 # generate 1 track
 puts "Creating 1 Track"
-@track = Factory.create(:track, :pack => @pack)
+@track = FactoryGirl.create(:track, :pack => @pack)
 
 
 # generate 12 dens for this pack
 puts "..Adding 12 Dens to the Pack"
 dens = []
-12.times { dens << Factory(:den, 
+12.times { dens << FactoryGirl.create(:den,
                            :leader_name => Faker::Name.name,
                            :assistant_leader_name => Faker::Name.name,
                            :pack => @pack) }
@@ -56,14 +56,14 @@ dens = []
 #generate 3 events
 puts "Creating 3 events"
 @events = []
-3.times { @events << Factory(:event, :track => @track) }
+3.times { @events << FactoryGirl.create(:event, :track => @track) }
 
 
 #generate 100 scouts in random dens
 puts "..Adding 100 scouts to the Dens"
-100.times { 
-  scout = Factory(:scout, :den => dens[rand(10)])
+100.times {
+  scout = FactoryGirl.create(:scout, :den => dens[rand(10)])
   events = @events.sort_by{rand}
   (rand(3)+1).times{ |t| scout.events << events[t] }
   }
-  
+

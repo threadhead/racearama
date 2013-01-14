@@ -1,5 +1,5 @@
 class CreatePacks < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :packs do |t|
       t.string :name
       t.string :address1
@@ -14,8 +14,5 @@ class CreatePacks < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
-  def self.down
-    drop_table :packs
-  end
+
 end

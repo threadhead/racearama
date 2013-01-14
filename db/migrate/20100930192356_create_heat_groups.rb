@@ -1,5 +1,5 @@
 class CreateHeatGroups < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :heat_groups do |t|
       t.string :name
       t.integer :event_id
@@ -9,8 +9,4 @@ class CreateHeatGroups < ActiveRecord::Migration
     add_index :heat_groups, :event_id
   end
 
-  def self.down
-    remove_index :heat_groups, :event_id
-    drop_table :heat_groups
-  end
 end
