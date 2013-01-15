@@ -3,9 +3,10 @@ class EventsController < ApplicationController
   skip_before_filter :check_for_current_event
 
   authorize_resource
-  
+
   def index
     @events = Event.all
+    render :index, layout: 'layouts/application_bootstrap'
   end
 
   def show
@@ -45,11 +46,11 @@ class EventsController < ApplicationController
     @event.destroy
 
     redirect_to(events_url)
-    
+
   rescue ActiveRecord::ActiveRecordError
     redirect_to @event, :alert => "Events with races or scouts can not be deleted!"
   end
-  
+
   def set_active
     @event = Event.find(params[:id])
     Event.all.each{ |event| event.update_attributes({:active => false}) }
