@@ -1,63 +1,85 @@
-- title "Scout"
-- nav_buttons render(:partial => 'show_nav_buttons')
+/ - title "Scout"
+/ - nav_buttons render(partial: 'show_nav_buttons')
 
-.box.box-100.blue
-  .boxin
-    .header
-      %h3 Verify #{@scout.full_name}&rsquo;s information
-      
-    #show-scout.content.clearfix
-      .flash.warn
-        %p <strong>Please verify the DEN number is correct!</strong>
-        
-      #scout-picture
-        #picture
-          = image_tag @scout.picture.url
-          
-          = form_for @scout, :url => { :action => :update }, :html => { :multipart => true } do |f|
-            = f.file_field :picture
-            = f.submit "Upload Picture"
-          
-          
-      %table
-        %tr
-          %td.label Name:
-          %td.name= @scout.full_name
-              
-        %tr
-          %td.label Den:
-          %td
-            Den #{@scout.den.den_number}, #{@scout.den.rank.pluralize} &ndash; #{@scout.den.pack.name}<br />
-            #{@scout.den.leader_name}, den leader
-          
-        %tr
-          %td.label Address:
-          %td
-            = @scout.address1
+.row-fluid
+  .span12
+    .pull-right
+      = link_to check_in_path, class: 'btn btn-success' do
+        %i
+        Return to Check In
+
+    %h2
+      Verify #{@scout.full_name}&rsquo;s information
+
+.row-fluid
+  .span10.offset1
+    .alert.blink
+      %h2.centered Verify the DEN number is correct!
+
+.row-fluid
+  .span7.offset1.text-xxlarge
+    %table.table-scout-info
+      %tr
+        %td.span4
+          %strong Name:
+        %td
+          %h2.blue.no-pad= @scout.full_name
+
+      %tr
+        %td
+          %strong Den:
+        %td
+          Den #{@scout.den.den_number}, #{@scout.den.rank.pluralize} &ndash; #{@scout.den.pack.name}
+          %br
+          #{@scout.den.leader_name}, den leader
+
+      %tr
+        %td
+          %strong Address:
+        %td
+          = @scout.address1
+          - unless @scout.address2.empty?
             %br= @scout.address2
-            #{@scout.city}, #{@scout.state} #{@scout.zipcode}
-          
-        %tr
-          %td.label Parent Email:
-          %td #{@scout.parent_email1}<br />#{@scout.parent_email2}
+          %br
+          #{@scout.city}, #{@scout.state} #{@scout.zipcode}
 
-        %tr
-          %td.label
-          %td
-            - if @scout.has_current_event?
-              .check-in.green #{@scout.first_name} is checked in for the current race!
-            -else
-              .check-in.red #{@scout.first_name} is not checked in for the current race
-        %tr
-          %td.label Races:
-          %td.smaller
+      %tr
+        %td
+          %strong Parent Email:
+        %td #{@scout.parent_email1}<br />#{@scout.parent_email2}
+
+      %tr
+        %td{colspan: "2"}
+          - if @scout.has_current_event?
+            %h2.green.centered #{@scout.first_name} is checked in for the current race!
+          -else
+            %h2.red.centered #{@scout.first_name} is not checked in for the current race
+      %tr
+        %td
+      %tr
+        %td
+          %strong Races:
+        %td
+          .text-large
             = events_for_scout(@scout)
 
-      %p
-        = link_to "Edit Information", edit_scout_path(@scout), :class => "button"
+  .span4
+    #scout-picture
+      #picture
+        = image_tag @scout.picture.url
 
-        - if current_user.role?(:check_in) || current_user.role?(:track_manager)
-          -if @scout.has_current_event?
-            = link_to "Check Out #{@scout.first_name} from #{@current_event.name}", check_out_scout_path(@scout), {:confirm => "Are you sure? Checking out a Scout will remove them from the race.", :class => "button"}
-          -else
-            = link_to "Check In #{@scout.first_name} to #{@current_event.name}", check_in_scout_path(@scout), :class => "button"
+        = form_for @scout, url: { action: :update }, :html => { multipart: true } do |f|
+          = f.file_field :picture
+          = f.submit "Upload Picture", class: 'btn'
+
+
+%h1 &nbsp;
+.row-fluid
+  .span12.centered
+    = link_to "Edit Information", edit_scout_path(@scout), class: "btn btn-large"
+
+    - if current_user.role?(:check_in) || current_user.role?(:track_manager)
+      -if @scout.has_current_event?
+        = link_to "Check Out #{@scout.first_name} from #{@current_event.name}", check_out_scout_path(@scout), {:confirm => "Are you sure? Checking out a Scout will remove them from the race.", class: "btn btn-large btn-danger"}
+      -else
+        = link_to "Check In #{@scout.first_name} to #{@current_event.name}", check_in_scout_path(@scout), class: "btn btn-large btn-success"

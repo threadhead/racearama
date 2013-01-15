@@ -26,6 +26,7 @@ class ScoutsController < ApplicationController
   def show
     @scout = Scout.find(params[:id])
     @current_event = Event.current_event
+    render :show, layout: 'layouts/application_bootstrap'
   end
 
 
@@ -47,6 +48,7 @@ class ScoutsController < ApplicationController
 
   def edit
     @scout = Scout.find(params[:id])
+    render :edit, layout: 'layouts/application_bootstrap'
   end
 
 

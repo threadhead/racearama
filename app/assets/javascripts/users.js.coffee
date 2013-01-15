@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+@blink = blink = (selector) ->
+  $(selector).delay(700).fadeOut('slow').fadeIn 'fast', ->
+    blink this
+
+@blink_once = blink_once = (selector) ->
+  $(selector).delay(500).fadeOut('slow').fadeIn('fast')
+
+jQuery ->
+  blink '.alert.blink'

@@ -1,9 +1,6 @@
-- title "New Scout"
-- nav_buttons render(:partial => 'new_nav_buttons')
+.page-header
+  %h2 Add a new Scout
 
-.box.box-100
-  .boxin
-    .header
-      %h3 Add a new Scout
-    
-    = render 'form'
+.row-fluid
+  .span8.offset2
+    = render partial: "form"

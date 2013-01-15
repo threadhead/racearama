@@ -1,17 +1,40 @@
-!!! 5
-%html(lang="en")
+!!!
+%html
   %head
-    = render :partial => 'layouts/head_bootstrap'
+    %title
+      = yield(:title) || "Untitled"
+    = render :partial => 'layouts/head'
 
-  %body
-    = render partial: 'layouts/header_bootstrap'
-    .container-fluid
-      .row-fluid
-        .span12
+  %body.bp
+    #header
+      .inner-container
+        = render :partial => 'layouts/header'
+
+    #nav
+      .inner-container
+        = yield :nav_buttons
+
+    #container.clearfix
+      .inner-container
+        #content
+          = render :partial => 'layouts/flash', :locals => {:flash => flash}
+
           = yield
 
-      %footer
-        %p &copy; Karl Smith 2013
+    #footer.clearfix
+      .inner-container
+        .box
+          <strong>Quick Links</strong>
+          %ul
+            %li
+              %a{:href => "/"} Dashboard
+            %li
+              %a{:href => "/"} Scouts
+        .copyright
+          &copy; 2010, Karl Smith
+          %br
+          %small All rights reserved.
+
     /
       Javascripts
       \==================================================

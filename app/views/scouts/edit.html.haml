@@ -1,9 +1,6 @@
-- title "Edit Scout"
-- nav_buttons render(:partial => 'edit_nav_buttons')
+.page-header
+  %h2 Edit #{@scout.full_name}
 
-.box.box-100
-  .boxin
-    .header
-      %h3 Edit #{@scout.full_name}
-    
-    = render 'form'
+.row-fluid
+  .span8.offset2
+    = render partial: "form"
