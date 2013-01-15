@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :scouts
   has_many :heat_groups
 
+  attr_accessible :track_id, :name, :start_time, :end_time, :location_name, :location_address1, :location_address2, :location_city, :location_state, :location_zipcode, :derby_chair, :race_manager, :race_day_notes, :track_notes
+
   # validate :only_one_active_event
   validates_presence_of :name
 

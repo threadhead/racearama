@@ -1,9 +1,6 @@
-- title "Edit Event"
-- nav_buttons render(:partial => 'edit_nav_buttons')
+.page-header
+  %h2 Editing #{@event.name}
 
-.box.box-100
-  .boxin
-    .header
-      %h3 Editing #{@event.name}
-    
-    = render 'form'
+.row-fluid
+  .span8.offset2
+    = render partial: "form"

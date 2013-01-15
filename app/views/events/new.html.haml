@@ -1,10 +1,6 @@
-- title "Add New Event"
-- nav_buttons render(:partial => 'edit_nav_buttons')
+.page-header
+  %h2 Adding New Event
 
-.box.box-100
-  .boxin
-    .header
-      %h3 Adding New Event
-
-    .content
-      = render 'form'
+.row-fluid
+  .span8.offset2
+    = render partial: "form"

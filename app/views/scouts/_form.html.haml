@@ -1,5 +1,5 @@
 = form_for @scout, html: { class: 'form-horizontal' } do |f|
-  = render :partial => 'layouts/flash_bootstrap', :locals => {:flash => flash, :ar_object => @coupon}
+  = render partial: 'layouts/flash_bootstrap', locals: {flash: flash, ar_object: @coupon}
 
   .control-group
     = f.label :den, class: 'control-label'
