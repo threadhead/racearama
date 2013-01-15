@@ -5,9 +5,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.brand(href="/") Racearama
+      %a.brand(href="/") Race.A.rama
       .container.nav-collapse
         %ul.nav
-          %li= link_to "Link 1", "/path1"
-          %li= link_to "Link 2", "/path2"
-          %li= link_to "Link 3", "/path3"
+          %li= link_to 'Sign Out', destroy_user_session_path, method: :delete

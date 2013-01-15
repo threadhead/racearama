@@ -1,48 +1,43 @@
-#track-manager.box.box-100
-  .boxin
-    .header
-      %h3 Track Management
-    #track-manager-container
-      
-      #buttons
-        #racing.grey-back
-          %h3 Racing!
-          %ul
-            %li
-              = link_to "Create Heats and Races", race_heat_groups_path, :class => "button medium"
-              .description gentlemen, start your engines
-        #management.grey-back
-          %h3 Management
-          %ul
-            %li
-              = link_to "Events", events_path, :class => "button medium"
-              .description set events and the current race
-            %li
-              = link_to "Tracks", tracks_path, :class => "button medium"
-              .description create or edit a track, each event has a track
-            %li
-              = link_to "Scouts", scouts_path, :class => "button medium"
-              .description edit scouts, dens, and packs
-        #testing.grey-back
-          %h3 Testing
-          %ul
-            %li
-              = link_to "Track Test", track_test_path, :class => "button medium"
-              .description perform gate and timer tests
+.page-header
+  %h2 Track Management
 
 
-      #checklist
-        %h3 Race Day Checklist
-        %p.strong Current Event
-        %p= @event.name
-        = current_event_set_icon
+.row-fluid
+  .span5.offset1
+    .well
+      %h3 Racing!
+      = link_to "Create Heats and Races", race_heat_groups_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered gentlemen, start your engines
 
-        %p.strong Racing on Track
-        %p= @event.track.name_lanes
-        = track_set_icon
+    .well
+      %h3 Management
+      = link_to "Events", events_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered set events and the current race
+      %br
+      = link_to "Tracks", tracks_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered create or edit a track, each event has a track
+      %br
+      = link_to "Scouts", scouts_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered edit scouts, dens, and packs
 
-        %p.strong Heats Ready to Race
-        - @ready_to_race.each do |heat|
-          %ul
-            %li
-              = link_to "Race #{heat.heat_group.name}-#{heat.name}!", race_heat_path(heat)
+    .well
+      %h3 Testing
+      = link_to "Track Test", track_test_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered perform gate and timer tests
+
+
+  .span5.offset1
+    %h2 Race Day Checklist
+    %h3 Current Event
+    %p= @event.name
+    = current_event_set_icon
+
+    %h3 Racing on Track
+    %p= @event.track.name_lanes
+    = track_set_icon
+
+    %h3 Heats Ready to Race
+    - @ready_to_race.each do |heat|
+      %ul
+        %li
+          = link_to "Race #{heat.heat_group.name}-#{heat.name}!", race_heat_path(heat)

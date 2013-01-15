@@ -2,19 +2,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :layout
   before_filter :check_for_current_event, :except => [:sign_in, :sign_out]
-  
+
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
       # if Event.current_event
-      
+
         if resource_or_scope.role? :check_in
-          check_in_url
-        
+          check_in_path
+
         elsif resource_or_scope.role? :track_manager
-          track_manger_url
-        
+          params[:next] || super
+          # track_manger_path
+
         elsif resource_or_scope.role? :car_staging
-          staging_url
+          staging_path
         end
     else
       super
@@ -25,7 +26,7 @@ class ApplicationController < ActionController::Base
   # def current_event
   #   Event.current_event
   # end
-  
+
 
   def check_for_current_event
     @event = Event.current_event
@@ -38,5 +39,5 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
 end

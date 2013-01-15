@@ -1,10 +1,11 @@
 class TrackManagerController < ApplicationController
   before_filter :store_params_and_authenticate
   # skip_before_filter :check_for_current_event, :only => [:index]
-  
+
   def index
     session[:username] = nil
     @ready_to_race = Heat.ready_to_race(@event)
+    render :index, layout: 'layouts/application_bootstrap'
   end
 
   private

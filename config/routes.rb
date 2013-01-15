@@ -8,7 +8,7 @@ Racearama::Application.routes.draw do
   # get "race/heat"
   # get "race/assign_lanes"
   # get "race/do_race"
-  
+
   resource :race do
     resources :heat_groups do
       resources :heats do
@@ -38,17 +38,17 @@ Racearama::Application.routes.draw do
       post "run"
     end
   end
-  
+
   # resources :lane_assignments
   # resources :heats
   # resources :heat_groups
 
   resources :settings
-  
-  match 'parent' => 'parent#index'
-  match 'track_manager' => 'track_manager#index'
-  match 'staging' => 'staging#index'
-  match 'check_in' => 'check_in#index'
+
+  get 'parent' => 'parent#index'
+  get 'track_manager' => 'track_manager#index'
+  get 'staging' => 'staging#index'
+  get 'check_in' => 'check_in#index'
   get 'check_in/new'
   get "page/welcome"
   get "page/event_not_set"
@@ -64,7 +64,7 @@ Racearama::Application.routes.draw do
 
   resources :dens
   resources :packs
-  
+
   resources :events do
     member do
       get "set_active"
@@ -81,7 +81,7 @@ Racearama::Application.routes.draw do
   match 'track_test/test_lanes' => "track_test#test_lanes"
   get "page/copyright"
   get "page/about"
-  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
