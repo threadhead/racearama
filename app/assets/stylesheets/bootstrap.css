@@ -10,6 +10,6 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
- *= require theme_base
+ *= require screen
  *= require jquery-ui-1.8.5.custom
  */

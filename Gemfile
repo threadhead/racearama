@@ -76,7 +76,7 @@ group :assets do
   gem 'less-rails'
 
   gem 'twitter-bootstrap-rails'
-  gem 'compass-rails'
+  # gem 'compass-rails'
 end
 
 group :mac do

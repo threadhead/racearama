@@ -1,25 +1,27 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
+.row-fluid
+  .pull-right
+    = link_to new_scout_path, class: 'btn btn-success' do
+      %i.icon-plus
+      add scout
 
-#scout-check-in.box.box-100.blue
-  .boxin
-    .header
-      %h3 Check In Scouts to Race
-  	  
-    .content
-      .scout-search.clearfix
-        .all
-          = button_to "Show All Scouts", {:action => "index"}, :class => "button medium"
+  %h2
+    Check In Scouts to Race
+    / %span.badge= @scouts.size
 
-        =form_tag scouts_path, :method => :get, :class => "basic", :remote => true do
-          = hidden_field_tag 'mode', 'check_in'
-          .label
-            = image_tag "search.png"
-          .search
-            = text_field_tag :scout_search, @scout_search, :class => 'txt'
-            = submit_tag 'search', :class => 'button medium'
-            .description
-              enter any part of the first or last name, den number, or den leader's name
-          
+.row-fluid
+  =form_tag scouts_path, method: :get, class: 'well well-thin form-inline', remote: true do
+    = hidden_field_tag 'mode', 'check_in'
+    .input-append
+      = text_field_tag :scout_search, @scout_search, class: "span12", placeholder: "search"
+      %button{:type => 'submit', class: 'btn'}>
+        %i.icon-search
+        search
+      %a{:href => check_in_path, class: 'btn'}>
+        %i.icon-resize-full
+        show all
+    %span.help-block
+      enter any part of the first or last name, den number, or den leader's name
 
-      #scout-list
-        = render 'scouts/check_in_list', :scouts => @scouts, :heat_id => @heat_id
+
+#scout-list.row-fluid
+  = render 'scouts/check_in_list', scouts: @scouts, heat_id: @heat_id

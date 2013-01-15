@@ -1,17 +1,22 @@
-!!! 5
-%html(lang="en")
+!!!
+%html
   %head
+    %title
+      = yield(:title) || "Untitled"
     = render :partial => 'layouts/head_bootstrap'
 
   %body
-    = render partial: 'layouts/header_bootstrap'
+    #header
+      = render :partial => 'layouts/header_bootstrap'
+
     .container-fluid
       .row-fluid
         .span12
+          = render :partial => 'layouts/flash_bootstrap', :locals => {:flash => flash}
+
           = yield
 
-      %footer
-        %p &copy; Karl Smith 2013
+    = render partial: 'layouts/footer_bootstrap'
     /
       Javascripts
       \==================================================
