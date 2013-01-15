@@ -1,7 +1,6 @@
-%h1 Editing track
+.page-header
+  %h2 Editing #{@track.name}
 
-= render 'form'
-
-= link_to 'Show', @track
-\|
-= link_to 'Back', tracks_path
+.row-fluid
+  .span8.offset2
+    = render partial: "form"

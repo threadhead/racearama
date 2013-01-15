@@ -1,22 +1,28 @@
-= form_for @track do |f|
-  -if @track.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@track.errors.count, "error")} prohibited this track from being saved:"
-      %ul
-        - @track.errors.full_messages.each do |msg|
-          %li= msg
+= form_for @track, html: { class: 'form-horizontal' } do |f|
+  = render partial: 'layouts/flash_bootstrap', locals: {flash: flash, ar_object: @track}
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :pack_id, "Pack"
-    = f.collection_select :pack_id, Pack.all, :id, :name
-  .field
-    = f.label :total_lanes
-    = f.text_field :total_lanes
-  .field
-    = f.label :active_lanes
-    = f.text_field :active_lanes
-  .actions
-    = f.submit 'Save'
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name
+      .help-inline examples: 3 Lane Wood, 2 Lane Plastic, 4 Lane Aluminum
+
+  .control-group
+    = f.label :pack_id, "Pack", class: 'control-label'
+    .controls
+      = f.collection_select :pack_id, Pack.all, :id, :name
+
+  .control-group
+    = f.label :total_lanes, class: 'control-label'
+    .controls
+      = f.text_field :total_lanes
+
+  .control-group
+    = f.label :active_lanes, class: 'control-label'
+    .controls
+      = f.text_field :active_lanes
+      .help-inline comma separated list, e.g. 2,3,5,7
+      .help-block active lanes are the only lanes that will be assigned cars to race
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Cancel', tracks_path, class: 'btn'
