@@ -72,7 +72,9 @@ Racearama::Application.routes.draw do
   end
 
   # devise_for :users
-  devise_for :users, :controllers => { :sessions => "users/sessions"}
+  devise_for :users, controllers: { sessions: "users/sessions"}
+  # devise_for :users, controllers: {registrations: "registrations"}
+
 
   match 'track_test' => "track_test#index"
   match 'track_test/gate_up' => "track_test#gate_up"
