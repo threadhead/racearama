@@ -1,36 +1,35 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to 'Track Management', track_manager_path, class: "btn"
 
-#scout-index.box.box-100.blue
-  .boxin
-    .header
-      %h3 All Scouts
-  	  
-    .content.clearfix
-      %table
-        %thead
+        = link_to new_scout_path, class: "btn btn-success" do
+          %i.icon-plus
+          add new scout
+
+      %h2 All Scouts
+
+
+.row-fluid
+  .span12
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Address
+          %th Parent Email
+          %th Action
+      %tbody
+        - for scout in @scouts
           %tr
-            %th Name
-            %td Address
-            %td Parent Email
-            %td Action
-        %tfoot
-          %tr
-            %td{:colspan => "4"}
-              .description edit scout to see additional information
-        %tbody
-          - for scout in @scouts
-            %tr{:class => "#{cycle 'even', 'odd'}"}
-              %td= link_to scout.full_name, edit_scout_path(scout)
-              %td= scout_full_address(scout).html_safe
-              %td
-                #{scout.parent_email1}
-                <br /> 
-                #{scout.parent_email2}
-              %td
-                %ul.actions
-                  %li
-                    = link_to edit_scout_path(scout), :class => "ico" do
-                      = image_tag 'edit.png', :alt => 'edit'
-                  %li
-                    = link_to scout, :confirm => 'Are you sure? Deleting this scout will also delete all their race results.', :method => :delete, :class => "ico" do
-                      = image_tag 'delete.png', :alt => 'delete'
+            %td
+              %span.xlarge= link_to scout.full_name, edit_scout_path(scout)
+            %td= scout_full_address(scout).html_safe
+            %td
+              #{scout.parent_email1}
+              <br />
+              #{scout.parent_email2}
+            %td
+              = link_to 'edit', edit_scout_path(scout), class: 'btn'
+              = link_to 'delete', scout, confirm: 'Are you sure? Deleting this scout will also delete all their race results.', method: :delete, class: 'btn btn-danger'

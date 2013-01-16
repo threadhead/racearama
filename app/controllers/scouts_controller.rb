@@ -3,6 +3,7 @@ class ScoutsController < ApplicationController
   # before_filter :current_event
   authorize_resource
   respond_to :html, :rjs
+  layout 'layouts/application_bootstrap'
 
   def index
     @mode = params[:mode] || ""
@@ -26,7 +27,6 @@ class ScoutsController < ApplicationController
   def show
     @scout = Scout.find(params[:id])
     @current_event = Event.current_event
-    render :show, layout: 'layouts/application_bootstrap'
   end
 
 
@@ -39,16 +39,16 @@ class ScoutsController < ApplicationController
     @scout = Scout.new(params[:scout])
     if @scout.save
       flash[:notice] = "Successfully created scout."
-      redirect_to @scout
+      redirect_to scouts_url
     else
-      render :action => 'new'
+      render :new
     end
   end
 
 
   def edit
     @scout = Scout.find(params[:id])
-    render :edit, layout: 'layouts/application_bootstrap'
+    render :edit
   end
 
 
@@ -56,9 +56,9 @@ class ScoutsController < ApplicationController
     @scout = Scout.find(params[:id])
     if @scout.update_attributes(params[:scout])
       flash[:notice] = "Successfully updated scout."
-      redirect_to @scout
+      redirect_to scouts_url
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 

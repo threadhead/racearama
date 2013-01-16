@@ -11,14 +11,20 @@
 
     .well
       %h3 Management
-      = link_to "Events", events_path, class: "btn btn-xlarge btn-block btn-primary"
-      .help-block.centered set events and the current race
+      = link_to "Packs", packs_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered packs have Dens and Tracks
+      %br
+      = link_to "Dens", dens_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered dens have Scouts
       %br
       = link_to "Tracks", tracks_path, class: "btn btn-xlarge btn-block btn-primary"
-      .help-block.centered create or edit a track, each event has a track
+      .help-block.centered tracks belong to a pack, each event has a track
       %br
       = link_to "Scouts", scouts_path, class: "btn btn-xlarge btn-block btn-primary"
-      .help-block.centered edit scouts, dens, and packs
+      .help-block.centered scouts belong to a den
+      %br
+      = link_to "Events", events_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered set events and the current race
 
     .well
       %h3 Testing
