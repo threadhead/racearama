@@ -1,41 +1,48 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to 'Track Management', track_manager_path, class: "btn"
+        = link_to 'Back to Heat Groups', race_heat_groups_path, class: 'btn'
 
-#heats-index.box.box-100
-  .boxin
-    .header
-      %h3= "Step 2: Add Heats to #{@heat_group.name} heat group"
-      
-    #dashboard.content
-      .inner-content
-        %p.bigger You are adding heats to the <em>#{@heat_group.name}</em> heat group.
-        %p.bigger You can divide the heats by Dens or you can just number them, 'Den 1', 'Den 2' or '1', '2'.
-        = render 'layouts/event_heat_group'          
-        
-        = form_for [:race, :heat_group, @heat], :html => {:class => "fields"} do |f|
-          = render :partial => 'layouts/errors', :locals => {:f => @heat}
-          
-          .inner-form
-            = f.label :name, "New Heat Name"
-            = f.text_field :name
-            = f.submit "Add Heat",:class => "button"
+      %h2 Step 2: Add Heats to #{@heat_group.name} heat group
 
-            .description Den 4, Den 8, or just numbers
-        
-        %h4= "Heats in heat group #{@heat_group.name}"
-        %table.heat-groups
-          %thead
+
+.row-fluid
+  .span10.offset1
+    %p.xxlarge You are adding heats to the <em>#{@heat_group.name}</em> heat group.
+    %p.xxlarge You can divide the heats by Dens or you can just number them, 'Den 1', 'Den 2' or '1', '2'.
+
+    %br
+    = render 'layouts/event_heat_group'
+    %br
+
+    = form_for [:race, :heat_group, @heat], html: {class: "fields"} do |f|
+      = render partial: 'layouts/flash_bootstrap', locals: {flash: flash, ar_object: @heat}
+
+      = f.label :name, "New Heat Name"
+      = f.text_field :name
+      = f.submit "Add Heat", class: "btn btn-success"
+      .help-block Den 4, Den 8, or just numbers
+
+    .alert.alert-block.text-xlarge After you add a heat, add scouts to each heat.
+
+    %h3 Heats in heat group #{@heat_group.name}
+    .text-xxlarge
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th Name
+            %th Scouts
+            %th Action
+        %tbody
+          - @heats.each do |heat|
             %tr
-              %th Name
-              %th Scouts
-              %th Action
-          %tbody
-            - @heats.each do |heat|
-              %tr
-                %td= heat.name
-                %td= "#{heat.scout_count} scouts"
-                %td
-                  = link_to "Add Scouts to #{heat.name} Heat", edit_race_heat_group_heat_path(@heat_group, heat), :class => "button"
-                  - if heat.scout_count > 0
-                    %span.smaller* can't delete heats that have scouts
-                  -else
-                    = link_to 'Destroy', race_heat_group_heat_path(@heat_group, heat), :confirm => 'Are you sure?', :method => :delete, :class => "button red"
+              %td= heat.name
+              %td #{heat.scout_count} scouts
+              %td
+                = link_to "Add Scouts to #{heat.name} Heat", edit_race_heat_group_heat_path(@heat_group, heat), class: "btn btn-primary"
+                - if heat.scout_count > 0
+                  %span.smaller* can't delete heats that have scouts
+                -else
+                  = link_to 'Destroy', race_heat_group_heat_path(@heat_group, heat), confirm: 'Are you sure?', method: :delete, class: "btn btn-danger"

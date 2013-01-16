@@ -1,6 +1,6 @@
-.flash.notice.bigger
+.alert.text-xxlarge.centered.alert-info.alert-block
   - if @event
-    Current Event: 
+    Current Event:
     %strong= @event.name
   - if @heat_group && !@heat_group.new_record?
     %br Heat Group:

@@ -1,9 +1,10 @@
 class HeatGroupsController < ApplicationController
   # before_filter :current_event
-  
+  layout 'layouts/application_bootstrap'
+
   def index
     @heat_group = HeatGroup.new
-    @heat_groups = @event.heat_groups.all
+    @heat_groups = @event.heat_groups
   end
 
   # def show

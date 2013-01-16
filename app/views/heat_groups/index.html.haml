@@ -1,41 +1,48 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to 'Track Management', track_manager_path, class: "btn"
 
-#heat-groups-index.box.box-100
-  .boxin
-    .header
-      %h3 Step 1: Select or Create Heat Group
-      
-    #dashboard.content
-      .inner-content
-        %p.bigger You are adding heat groups to the <em>#{@event.name}</em> event.
-        %p.bigger Heat Groups combine the results of multiple heats so that the winners will be determined by the group. You will probably want to use 'Tigers', 'Wolves', 'Bears', 'Webelos1', 'Webelos2'.
+      %h2 Step 1: Select or Create Heat Group
 
-        = render 'layouts/event_heat_group'          
-        
-        = form_for race_heat_groups_path, :html => {:class => "fields"} do |f|
-          .inner-form
-            = f.label :name, "New Heat Group Name"
-            = f.text_field :name
-            = f.submit "Add Heat Group",:class => "button"
 
-            .description Tigers, Wolves, Bears, Webelos1, Webelos2
-        
-        %h4= "Heat groups in #{@event.name}"
-        %table.heat-groups
-          %thead
+.row-fluid
+  .span10.offset1
+
+    %p.xxlarge You are adding heat groups to the <em>#{@event.name}</em> event.
+    %p.xxlarge Heat Groups combine the results of multiple heats so that the winners will be determined for the group. Heat Groups typically run by rank. You will probably want to use 'Tigers', 'Wolves', 'Bears', 'Webelos1', 'Webelos2'.
+
+    %br
+    = render 'layouts/event_heat_group'
+    %br
+
+    = form_for race_heat_groups_path, html: { class: 'form-horizontal' } do |f|
+      = f.label :name, "New Heat Group Name"
+      = f.text_field :name
+      = f.submit "Add Heat Group", class: 'btn btn-success'
+      .help-block Tigers, Wolves, Bears, Webelos1, Webelos2
+    %br
+
+    .alert.alert-block.text-xlarge After you add a heat group, add heats for each group.
+
+    %h3 Heat groups in #{@event.name}
+    .text-xxlarge
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th Name
+            %th Scouts
+            %th Actions
+        %tbody
+          - for heat_group in @heat_groups
             %tr
-              %th Name
-              %th Scouts
-              %th Actions
-          %tbody
-            - for heat_group in @heat_groups
-              %tr
-                %td= heat_group.name
-                %td= "#{heat_group.heats.count} heats"
-                %td
-                  = link_to "Add Heats to #{heat_group.name}", race_heat_group_heats_path(heat_group.id), :class => "button"
-                  - if heat_group.heats.count > 0
-                    %span.smaller * can't delete heat groups that have heats
-                  - else
-                    = link_to 'Destroy', race_heat_group_path(heat_group), :confirm => 'Are you sure?', :method => :delete, :class => "button red"
-                  
+              %td= heat_group.name
+              %td #{heat_group.heats.count} heats
+              %td
+                = link_to "Add Heats to #{heat_group.name}", race_heat_group_heats_path(heat_group.id), class: 'btn btn-primary'
+                - if heat_group.heats.count > 0
+                  .text-large.help-inline * can't delete heat groups that have heats
+                - else
+                  = link_to 'Destroy', race_heat_group_path(heat_group), confirm: 'Are you sure?', method: :delete, class: "btn btn-danger"
+

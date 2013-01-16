@@ -1,4 +1,4 @@
-%table.scouts.hoverable
+%table.table.table-hoverable
   %thead
     %tr
       %th Name
@@ -9,6 +9,7 @@
       %tr
         %td= scout.full_name
         %td= scout.den.den_leader_pack
-        %td= link_to "Remove from Heat", heat_remove_scout_path(heat, scout), :class => "button red"
+        %td= link_to "Remove from Heat", heat_remove_scout_path(heat, scout), class: "btn btn-danger"
     %tr
-      %td{:colspan => 3} <em>Scouts: #{heat.scouts.count}</em>
+      %td{colspan: 3}
+        %em Scouts: #{heat.scouts.count}
