@@ -23,6 +23,7 @@ class HeatsController < ApplicationController
   def edit
     @heat_group = HeatGroup.find(params[:heat_group_id])
     @heat = Heat.find(params[:id])
+    # @scouts_in_other_heat_groups = @heat_group.scouts.all #keep all to avoid n+1 queries
     @scouts_not_in_heat = @event.scouts.sort_fl_name - @heat.scouts
     if @heat.scouts.count > @event.track.active_lanes_count
       flash[:error] = "ATTENTION: there are more scouts in this heat than available lanes on the track. You need to remove some scouts before you can generate the races."

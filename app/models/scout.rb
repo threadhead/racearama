@@ -49,6 +49,10 @@ class Scout < ActiveRecord::Base
     return false
   end
 
+  def heats_in_event(event)
+    self.heats.joins(heat_group: :event).where(events: {id: event.id})
+  end
+
   def has_event?(event)
     self.events.where( :id => event.id ).count > 0
   end

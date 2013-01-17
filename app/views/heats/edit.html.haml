@@ -3,8 +3,8 @@
     .page-header
       .pull-right
         = link_to 'Track Management', track_manager_path, class: "btn"
-        = link_to 'Back to Heat Groups', race_heat_groups_path, class: 'btn'
-        = link_to "Back to #{@heat_group.name} Heat", race_heat_group_heats_path(@heat_group), class: "btn btn-primary"
+        = link_to 'All Heat Groups', race_heat_groups_path, class: 'btn'
+        = link_to "Back to #{@heat_group.name} Heat Group", race_heat_group_heats_path(@heat_group), class: "btn btn-primary"
 
 
       %h2 Step 3: Add Scouts to #{@heat.name} heat
@@ -25,29 +25,33 @@
     %h4
       Scouts to race in #{@heat_group.name}-#{@heat.name} heat
       - if @heat.scouts.size > 0 && enough_lanes?
-        = link_to "Generate Lane Assignments", heat_races_path(@heat), class: "btn btn-success"
+        = link_to "Generate Lane Assignments", heat_races_path(@heat), class: "btn btn-warning pull-right"
 
-    #scout-heat-list
 
-      = render 'heats/scout_list', heat: @heat, scout: @scout
+    = render 'heats/scout_list', heat: @heat, scout: @scout
+    %br
 
-    .sep &nbsp;
-
-    %h4= "Scouts checked-in for #{@event.name}"
-    .scout-search.clearfix
-      .all
-        = link_to "Show All Scouts", scouts_path(mode: "heats", heat_id: @heat.id), remote: true, class: "btn"
-        = #link_to "Show All Scouts", edit_race_heat_group_heat_url(@heat_group, @heat), class: "button medium"
-
-      = form_tag scouts_path, method: :get, class: "basic", remote: true do
-        = hidden_field_tag 'mode', 'heats'
-        = hidden_field_tag 'heat_id', @heat.id
-        .label
-          = image_tag "search.png"
-        .search
-          = text_field_tag :scout_search, @scout_search, class: 'txt'
-          = submit_tag 'search', class: 'button medium'
-          .description
+    %h4 Scouts checked-in for #{@event.name}
+    .navbar
+      .navbar-inner
+        .pull-right
+          .help-inline
             enter any part of the first or last name, den number, or den leader's name
+
+        = form_tag scouts_path, method: :get, class: "navbar-form pull-left", remote: true do
+          = hidden_field_tag 'mode', 'heats'
+          = hidden_field_tag 'heat_id', @heat.id
+          .input-append
+            = text_field_tag :scout_search, @scout_search
+            %button{:type => 'submit', class: 'btn'}>
+              %i.icon-search
+              search
+            = link_to scouts_path(mode: "heats", heat_id: @heat.id), remote: true, class: 'btn' do
+              %i.icon-resize-full
+              all scouts
+
+          = #submit_tag 'search', class: 'btn'
+          = #link_to "Show All Scouts", scouts_path(mode: "heats", heat_id: @heat.id), remote: true, class: "btn"
+
     #scout-list
-      = render 'scouts/heats_list', scouts: @scouts_not_in_heat, heat_id: @heat.id
+      = render 'scouts/heats_list', scouts: @scouts_not_in_heat, heat: @heat

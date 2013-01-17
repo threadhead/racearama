@@ -1,7 +1,8 @@
 <% if @mode == "heats" %>
-	$('#scout-list').html("<%= escape_javascript(render 'heats_list', :scouts => @scouts, :heat_id => @heat_id)%>")
-	
+	$('#scout-list').html("<%= escape_javascript(render 'heats_list', :scouts => @scouts, :heat => @heat)%>");
+  $('input#scout_search').val('');
+
 <% else %>
-  $('#scout-list').html("<%= escape_javascript(render 'check_in_list', :scouts => @scouts, :heat_id => @heat_id)%>")
+  $('#scout-list').html("<%= escape_javascript(render 'check_in_list', :scouts => @scouts, :heat_id => @heat_id)%>");
 
 <% end %>

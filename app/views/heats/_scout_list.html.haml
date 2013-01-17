@@ -1,15 +1,20 @@
-%table.table.table-hoverable
+%table.table.table-hoverable.table-condensed
   %thead
     %tr
       %th Name
       %th Den
       %th Action
+  %tfoot
+    %tr
+      %td{colspan: 3}
+        %em
+          Scouts:
+        %span.badge #{heat.scouts.count}
+
   %tbody
     - heat.scouts.sort_fl_name.each do |scout|
       %tr
-        %td= scout.full_name
+        %td
+          %strong= scout.full_name
         %td= scout.den.den_leader_pack
-        %td= link_to "Remove from Heat", heat_remove_scout_path(heat, scout), class: "btn btn-danger"
-    %tr
-      %td{colspan: 3}
-        %em Scouts: #{heat.scouts.count}
+        %td= link_to "Remove from Heat", heat_remove_scout_path(heat, scout), class: "btn btn-danger btn-small"

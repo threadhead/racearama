@@ -3,10 +3,12 @@
     Current Event:
     %strong= @event.name
   - if @heat_group && !@heat_group.new_record?
-    %br Heat Group:
+    %br
+    Heat Group:
     %strong= @heat_group.name
     %span.smaller= #link_to " (return to all heat groups)", race_heat_groups_path
   - if @heat && !@heat.new_record?
-    %br Heat:
+    %br
+    Heat:
     %strong= @heat.name
     %span.smaller= #link_to " (return to all #{@heat_group.name} heats)", race_heat_group_heats_path(@heat_group)

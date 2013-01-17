@@ -1,25 +1,39 @@
-#scout-count
-  = "#{scouts.size} scouts"
-= form_tag heat_add_scout_path(heat_id, 0) do |f|
-  %table.hoverable
-    %thead
-      %tr
-        %th
-        %th Scout
-        %th Den
-        %th Rank
-        %th Den Leader
-        %th Action
-    %tbody
-      %tr
-        %td{:colspan => 6}= submit_tag "Add Checked to Heat", :class => "button small"
-      - scouts.each do |scout|
+- heat_group = heat.heat_group
+- scouts_in_other_heat_groups = heat_group.scouts.all #keep all to avoid n+1 queries
+.text-xlarge
+  = form_tag heat_add_scout_path(heat.id, 0), html: { class: 'form-horizontal' } do |f|
+    %table.table.table-hover
+      %thead
         %tr
-          %td= check_box_tag "scout_ids[]", scout.id
-          %td= scout.full_name
-          %td= "Den #{scout.den.try(:den_number)}"
-          %td= scout.den.try(:rank)
-          %td= scout.den.try(:leader_name)
-          %td= link_to "Add to Heat", heat_add_scout_path(heat_id, scout), :class => "button green"
-      %tr
-        %td{:colspan => 6}= submit_tag "Add Checked to Heat", :class => "button small"
+          %th
+          %th Scout
+          %th Den
+          %th Rank
+          %th Den Leader
+          %th Action
+      %tbody
+        %tr
+          %td{colspan: 6}
+            .pull-right.alert.alert-info.alert-no-margin Check off names and <em>Add Checked to Heat</em> or individual names with <em>Add to Heat</em>
+            %button{:type => 'submit', class: 'btn btn-success'}>
+              %i.icon-arrow-down
+              Add Checked to heat
+
+        - scouts.each do |scout|
+          - in_another_heat = scouts_in_other_heat_groups && scouts_in_other_heat_groups.include?(scout)
+          %tr{ class: in_another_heat ? 'warning' : '' }
+            %td= check_box_tag("scout_ids[]", scout.id) unless in_another_heat
+            %td= scout.full_name
+            %td= "Den #{scout.den.try(:den_number)}"
+            %td= scout.den.try(:rank)
+            %td= scout.den.try(:leader_name)
+            %td
+              - if in_another_heat
+                in heats: #{scout.heats_in_event(@event).map(&:name).join(', ')}
+              - else
+                = link_to "Add to Heat", heat_add_scout_path(heat.id, scout), class: "btn btn-small btn-success"
+        %tr
+          %td{colspan: 6}
+            %button{:type => 'submit', class: 'btn btn-success'}>
+              %i.icon-arrow-up
+              Add Checked to heat
