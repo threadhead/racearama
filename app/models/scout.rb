@@ -33,6 +33,7 @@ class Scout < ActiveRecord::Base
   def self.search_names(name, event=nil)
     if event
       event.scouts.name_or_den_contains(name).sort_fl_name
+      # Scout.name_or_den_contains(name).joins(:events).where(event: {id: event.id}).sort_fl_name
     else
       Scout.name_or_den_contains(name).sort_fl_name
     end

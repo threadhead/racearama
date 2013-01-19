@@ -3,6 +3,8 @@ class Race < ActiveRecord::Base
   has_many :lane_assignments, dependent: :destroy
   has_many :race_times, dependent: :destroy
 
+  attr_accessible :heat_id, :order_index, :daq_seconds
+
   before_save :only_one_current
 
   scope :by_index, order("order_index ASC")

@@ -13,7 +13,7 @@ class ScoutsController < ApplicationController
     @event = @heat.heat_group.event if @heat
 
     if params[:scout_search] || params[:mode]
-      @scouts = Scout.search_names(params[:scout_search], @event).includes(:den)
+      @scouts = Scout.search_names(params[:scout_search], @event) #.includes(:den)
     else
       @scouts = Scout.sort_fl_name
     end

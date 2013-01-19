@@ -1,11 +1,11 @@
 class Heat < ActiveRecord::Base
   belongs_to :heat_group
-  has_many :races, :dependent => :destroy
-  has_and_belongs_to_many :scouts, :uniq => true
-  attr_accessible :name
+  has_many :races, dependent: :destroy
+  has_and_belongs_to_many :scouts, uniq: true
+  attr_accessible :name, :races_to_generate, :generate_method, :generate_time
 
   validates_presence_of :name
-  validates_uniqueness_of :name, :scope => :heat_group_id
+  validates_uniqueness_of :name, scope: :heat_group_id
 
   scope :by_name, order("heats.name ASC")
   default_scope order("heats.name ASC")
@@ -37,12 +37,12 @@ class Heat < ActiveRecord::Base
     lane_shift = (selected_lanes.size - scouts.size) > 1 ? 1 : 0
 
     races_to_generate.to_i.times do |n|
-      a_race = Race.new({:order_index => (n+1)})
+      a_race = Race.new({order_index: (n+1)})
       self.races << a_race
       scouts = rotate_scouts(scouts)
       scouts.each_with_index do |scout, idx|
         a_race.lane_assignments << LaneAssignment.new(
-          {:scout_id => scout.id, :lane => selected_lanes[idx + lane_shift].to_i}
+          {scout_id: scout.id, lane: selected_lanes[idx + lane_shift].to_i}
         )
       end
       a_race.save
@@ -51,12 +51,12 @@ class Heat < ActiveRecord::Base
 
 
   def has_completed_races?
-    self.races.where(:completed => true).count > 0
+    self.races.where(completed: true).count > 0
   end
 
 
   def has_current_race?
-    self.races.where(:current => true).count > 0
+    self.races.where(current: true).count > 0
   end
 
 
@@ -67,7 +67,7 @@ class Heat < ActiveRecord::Base
 
   def self.ready_to_race(event)
     # event.heat_groups.map{|g| g.heats}.flatten.keep_if{|h| h.has_races?}
-    event_heats = Heat.includes(heat_group: :event).where('events.active' => true)
+    event_heats = Heat.includes(heat_group: :event).where(events: {active: true})
     event_heats.keep_if{|h| h.has_races?}
   end
 
