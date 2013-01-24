@@ -1,10 +1,18 @@
-%table.hoverable
-  %thead
-    %tr
-      %th Lane
-      %th Status
-  %tbody
-    -for lane_status in @lane_status['lane_status']
-      %tr
-        %td= lane_status['lane']
-        %td{:class => "status"}= lane_status_icon( lane_status['status'])
+.row-fluid
+  .span6.offset3
+    .text-xxlarge
+      %table.table
+        %thead
+          %tr
+            %th Lane
+            %th Status
+        %tbody
+          -for lane_status in @lane_status[:result]['lane_status']
+            %tr
+              %td= lane_status['lane']
+              / %td{class: 'status'}= lane_status_icon( lane_status['status'])
+              %td
+                - if lane_status['status'] == 'open'
+                  %span.xlarge.btn.btn-success.btn-block OPEN
+                - else
+                  %span.xlarge.btn.btn-danger.btn-block CLOSED

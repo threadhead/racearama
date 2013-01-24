@@ -17,7 +17,7 @@ class PacksController < ApplicationController
     @pack = Pack.new(params[:pack])
     if @pack.save
       flash[:notice] = "Successfully created pack."
-      redirect_to @pack
+      redirect_to packs_url
     else
       render :new
     end

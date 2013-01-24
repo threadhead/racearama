@@ -5,6 +5,7 @@
     = f.label :name, class: 'control-label'
     .controls
       = f.text_field :name
+      .help-inline Pack 123, Pack 134, etc.
 
   .control-group
     = f.label :cubmaster_name, class: 'control-label'
@@ -43,6 +44,7 @@
     = f.label :email, class: 'control-label'
     .controls
       = f.text_field :email
+      .help-inline the contact email for the pack, generally not used
 
   .form-actions
     = f.submit class: 'btn btn-primary'

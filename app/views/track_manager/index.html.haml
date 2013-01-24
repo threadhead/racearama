@@ -7,7 +7,7 @@
     .well
       %h3 Racing!
       = link_to "Create Heats and Races", race_heat_groups_path, class: "btn btn-xlarge btn-block btn-primary"
-      .help-block.centered gentlemen, start your engines
+      / .help-block.centered gentlemen, start your engines
 
     .well
       %h3 Management
@@ -46,4 +46,4 @@
     - @ready_to_race.each do |heat|
       %ul
         %li
-          = link_to "Race #{heat.heat_group.name}-#{heat.name}!", race_heat_path(heat)
+          %h3= link_to "Race #{heat.heat_group.name}-#{heat.name}!", race_heat_path(heat)

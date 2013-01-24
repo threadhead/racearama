@@ -6,7 +6,7 @@
       %th Lane
       %th Time
   %tbody
-    -for race_result in @race_results['results']
+    -for race_result in @race_results[:result]['results']
       %tr
         %td= race_result['lane']
         %td{:class => "time"}= milliseconds_to_s( race_result['time'] )

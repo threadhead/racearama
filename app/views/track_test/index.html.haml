@@ -1,90 +1,91 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
-- javascript "track_test"
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to(track_manager_path, class: "btn") do
+          Track Management
 
-#track-manager.box.box-50
-  .boxin
-    .header
-      %h3 Track Testing
-      
-    #dashboard.content.clearfix
-      %ul
-        %li
-          = form_tag "/track_test/test_race", :method => :get, :id => "testrace", :remote => true do
-            Maximum Race Duration:
-            %span#slider-display{:type => "text"}
-            #slider
-            = hidden_field_tag "slider-amount", @race_duration
-          
-          = link_to "Run Test Race", "#", :class => "button big", :id => "test-race-submit"
-          .description drops the gate and returns elapsed times
-            
-        %li
-          = link_to "Lane Test", track_test_test_lanes_path, :class => "button big"
-          .description continuously shows lane open/close
-          
-        %li
-          = link_to "Gate Down", track_test_gate_down_path, :class => "button big"
-          .description send a gate down command
-        %li
-          = link_to "Gate Up", track_test_gate_up_path, :class => "button big"
-          .description send a gate up command
+      %h2 Track Setup and Testing
 
-#test-race.box.box-50{:style => "display: none;"}
-  .boxin
-    .header
+.row-fluid
+  .well.span6
+    = form_tag "/track_test/test_race", method: :get, id: "testrace", remote: true do
+      %h4
+        Maximum Race Duration:
+        %span#slider-display{type: "text"}
+      #slider
+      = hidden_field_tag "slider-amount", @race_duration
+
+    %br
+    %p= link_to "Run Test Race", "#", class: "btn btn-primary btn-xxlarge btn-block", id: "test-race-submit"
+    .help-block.centered drops the gate and returns elapsed times
+    %br
+
+    %p= link_to "Lane Test", track_test_test_lanes_path, class: "btn btn-primary btn-xxlarge btn-block"
+    .help-block.centered continuously shows lane open/close
+    %br
+
+    %h3 Starting Gate
+    %p= link_to "Gate Down", track_test_gate_down_path, class: "btn btn-primary btn-xxlarge btn-block"
+    .help-block.centered manually lower gate
+    .alert.alert-warning
+      %h4 IMPORTANT
+      Do not leave gate down for long periods of time, it may damage the solenoid
+    %br
+
+    %p= link_to "Gate Up", track_test_gate_up_path, class: "btn btn-primary btn-xxlarge btn-block"
+    .help-block.centered manually raise (release) gate
+
+
+  .span6
+
+    #test-race.well.hidden{style: "display: none;"}
       %h3 Test Race
-    .content
-      .inner-content
-        #loader{:style => "display: none;"}
-          = image_tag "loader_gear_blue.gif"
-          %h3 Racing...
-        #race-results
-          = render("test_race") if @race_results
-          
-- if @lane_status
-  #test-lanes.box.box-50
-    .boxin
-      .header
-        %h3 Lane Status
-      .content
-        .inner-content
-          #lane-status
-            = render "test_lanes"
-          = link_to "Stop Lane Test", "#", :class => "button running", :id => "lane-test-control"
-          
-#track-test.box.box-50
-  .boxin
-    .header
-      %h3 Track Controller Status
-    .content
-      .inner-content
-        - if @daq_status[:result]
-          -if @daq_status[:result]["status"] == "active"
-            %h4.green Communication with controller is GOOD
-        -else
-          %h4.red Communication with controller is DOWN!
-          
-        = form_for @setting, :html => {:class => "fields"} do |f|
-          .inner-form
+      #loader.hidden{style: "display: none;"}
+        = image_tag "loader_gear_blue.gif"
+        %h3 Racing...
+      #race-results
+        = render("test_race") if @race_results
 
-          = f.label :daq_controller_host
-          = f.text_field :daq_controller_host
-          .description 192.168.0.5, localhost, no http://
-          
-          = f.label :daq_controller_port
-          = f.text_field :daq_controller_port
-          .description number or blank for none
-          
-          = f.label :api_key
-          = f.text_field :api_key
-          .description see Karl Smith for help
-          
-          = f.hidden_field :return_to, :value => "track_test#index"
-          .sep
-            = f.submit :class => "button"
-        .grey-box
-          Response (raw): #{@daq_status[:response]} <br />
-          Result (raw): #{@daq_status[:result]} <br />
-          Errors (raw): #{@daq_status[:error]} <br />
-          Response time: #{@daq_status[:elapsed]}
-            
+    - if @lane_status
+      #test-lanes.well
+        %h3 Lane Status
+        #lane-status
+          = render "test_lanes"
+        = link_to "Stop Lane Test", "#", class: "btn btn-primary running", id: "lane-test-control"
+
+
+    .well
+      %h3 Track Controller Status
+      - if @daq_status[:result]
+        -if @daq_status[:result]["status"] == "active"
+          .alert.alert-success
+            %h4 Communication with controller is GOOD
+      -else
+        .alert.alert-danger
+          %h4 Communication with controller is DOWN!
+
+      = form_for @setting do |f|
+
+        = f.label :daq_controller_host
+        = f.text_field :daq_controller_host
+        .help-inline 192.168.0.5, localhost, no http://
+
+        = f.label :daq_controller_port
+        = f.text_field :daq_controller_port
+        .help-inline number or blank for none
+
+        = f.label :api_key
+        = f.text_field :api_key
+        .help-inline see Karl Smith for help
+
+        = f.hidden_field :return_to, value: "track_test#index"
+        .sep
+          = f.submit class: "btn btn-primary"
+
+      .well.well-darker
+        Response (raw): #{@daq_status[:response]} <br />
+        Result (raw): #{@daq_status[:result]} <br />
+        Errors (raw): #{@daq_status[:error]} <br />
+        Response time: #{@daq_status[:elapsed]}
+

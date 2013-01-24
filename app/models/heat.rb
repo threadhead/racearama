@@ -67,7 +67,7 @@ class Heat < ActiveRecord::Base
 
   def self.ready_to_race(event)
     # event.heat_groups.map{|g| g.heats}.flatten.keep_if{|h| h.has_races?}
-    event_heats = Heat.includes(heat_group: :event).where(events: {active: true})
+    event_heats = Heat.joins(heat_group: :event).where(events: {active: true})
     event_heats.keep_if{|h| h.has_races?}
   end
 

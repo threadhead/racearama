@@ -1,16 +1,18 @@
 class DensController < ApplicationController
+  layout 'layouts/application_bootstrap'
+
   def index
-    @dens = Den.all
+    @dens = Den.joins(:pack).order('packs.name ASC, dens.den_number ASC')
   end
-  
+
   def show
     @den = Den.find(params[:id])
   end
-  
+
   def new
     @den = Den.new
   end
-  
+
   def create
     @den = Den.new(params[:den])
     if @den.save
@@ -20,11 +22,11 @@ class DensController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @den = Den.find(params[:id])
   end
-  
+
   def update
     @den = Den.find(params[:id])
     if @den.update_attributes(params[:den])
@@ -34,7 +36,7 @@ class DensController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @den = Den.find(params[:id])
     @den.destroy
