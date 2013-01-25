@@ -9,6 +9,7 @@
 
 .row-fluid
   .well.span6
+    %h3 Test Race
     = form_tag "/track_test/test_race", method: :get, id: "testrace", remote: true do
       %h4
         Maximum Race Duration:
@@ -17,31 +18,36 @@
       = hidden_field_tag "slider-amount", @race_duration
 
     %br
-    %p= link_to "Run Test Race", "#", class: "btn btn-primary btn-xxlarge btn-block", id: "test-race-submit"
-    .help-block.centered drops the gate and returns elapsed times
-    %br
+    .row-fluid
+      .span6
+        = link_to "Run Test Race", "#", class: "btn btn-primary btn-xlarge btn-block", id: "test-race-submit"
+        / .help-block.centered drops the gate and returns elapsed times
+        %br
 
-    %p= link_to "Lane Test", track_test_test_lanes_path, class: "btn btn-primary btn-xxlarge btn-block"
-    .help-block.centered continuously shows lane open/close
-    %br
+      .span6
+        = link_to "Lane Test", track_test_test_lanes_path, class: "btn btn-primary btn-xlarge btn-block"
+        .help-block.centered continuously shows lane open/closed
+        %br
 
     %h3 Starting Gate
-    %p= link_to "Gate Down", track_test_gate_down_path, class: "btn btn-primary btn-xxlarge btn-block"
-    .help-block.centered manually lower gate
     .alert.alert-warning
-      %h4 IMPORTANT
+      %strong IMPORTANT
       Do not leave gate down for long periods of time, it may damage the solenoid
-    %br
-
-    %p= link_to "Gate Up", track_test_gate_up_path, class: "btn btn-primary btn-xxlarge btn-block"
-    .help-block.centered manually raise (release) gate
+    .row-fluid
+      .span6
+        = link_to "Gate Down", track_test_gate_down_path, class: "btn btn-primary btn-xlarge btn-block"
+        .help-block.centered manually lower gate
+        / %br
+      .span6
+        = link_to "Gate Up", track_test_gate_up_path, class: "btn btn-primary btn-xlarge btn-block"
+        .help-block.centered manually raise (release) gate
 
 
   .span6
 
-    #test-race.well.hidden{style: "display: none;"}
+    #test-race.well{style: "display: none;"}
       %h3 Test Race
-      #loader.hidden{style: "display: none;"}
+      #loader.centered{style: "display: none;"}
         = image_tag "loader_gear_blue.gif"
         %h3 Racing...
       #race-results
@@ -49,10 +55,10 @@
 
     - if @lane_status
       #test-lanes.well
+        .pull-right= link_to "Stop Lane Test", "#", class: "btn btn-primary running btn-large", id: "lane-test-control"
         %h3 Lane Status
         #lane-status
           = render "test_lanes"
-        = link_to "Stop Lane Test", "#", class: "btn btn-primary running", id: "lane-test-control"
 
 
     .well
@@ -83,9 +89,12 @@
         .sep
           = f.submit class: "btn btn-primary"
 
-      .well.well-darker
-        Response (raw): #{@daq_status[:response]} <br />
-        Result (raw): #{@daq_status[:result]} <br />
-        Errors (raw): #{@daq_status[:error]} <br />
+      #controller-debug.well.well-darker.well-thin
+        Response (raw): #{@daq_status[:response]}
+        %br
+        Result (raw): #{@daq_status[:result]}
+        %br
+        Errors (raw): #{@daq_status[:error]}
+        %br
         Response time: #{@daq_status[:elapsed]}
 

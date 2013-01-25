@@ -16,13 +16,11 @@ class TrackTestController < ApplicationController
 
   def test_race
     @race_results = RaceCom.do_race(@race_duration.to_i)
-    logger.info "race_results: #{@race_results}"
     sleep(4)
   end
 
   def test_lanes
     @lane_status = RaceCom.lane_status
-    logger.info "lane status: #{@lane_status}"
   end
 
 
