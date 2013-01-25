@@ -32,7 +32,7 @@
     %h3 Starting Gate
     .alert.alert-warning
       %strong IMPORTANT
-      Do not leave gate down for long periods of time, it may damage the solenoid
+      Do not leave gate down for more than 30 seconds, it may damage the solenoid
     .row-fluid
       .span6
         = link_to "Gate Down", track_test_gate_down_path, class: "btn btn-primary btn-xlarge btn-block"
@@ -71,14 +71,18 @@
         .alert.alert-danger
           %h4 Communication with controller is DOWN!
 
-      = form_for @setting do |f|
+      = form_tag track_test_set_current_track_path, method: :put do
+        %strong.xlarge Use Track:
+        = select_tag :current_track, options_from_collection_for_select(Track.all, :id, :name_pack_lanes, @track.id)
 
-        = f.label :daq_controller_host
-        = f.text_field :daq_controller_host
+      = form_for @track do |f|
+
+        = f.label :controller_host
+        = f.text_field :controller_host
         .help-inline 192.168.0.5, localhost, no http://
 
-        = f.label :daq_controller_port
-        = f.text_field :daq_controller_port
+        = f.label :controller_port
+        = f.text_field :controller_port
         .help-inline number or blank for none
 
         = f.label :api_key

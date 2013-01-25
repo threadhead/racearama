@@ -15,6 +15,10 @@ FactoryGirl.define do
     name               { FactoryGirl.generate(:track_name) }
     total_lanes        { FactoryGirl.generate(:total_lanes) }
     active_lanes       { FactoryGirl.generate(:available_lanes) }
+    controller_host    "localhost"
+    controller_port    "8011"
+    api_key            "development"
+
     association :pack, :factory => :pack
   end
 end

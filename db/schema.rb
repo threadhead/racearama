@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101216234656) do
+ActiveRecord::Schema.define(:version => 20130125020805) do
 
   create_table "dens", :force => true do |t|
     t.integer  "pack_id"
@@ -160,21 +160,16 @@ ActiveRecord::Schema.define(:version => 20101216234656) do
   add_index "scouts", ["checked_in"], :name => "index_scouts_on_checked_in"
   add_index "scouts", ["den_id"], :name => "index_scouts_on_den_id"
 
-  create_table "settings", :force => true do |t|
-    t.string   "daq_controller_host"
-    t.string   "daq_controller_port"
-    t.string   "api_key"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
   create_table "tracks", :force => true do |t|
     t.string   "name"
     t.integer  "pack_id"
     t.integer  "total_lanes"
     t.string   "active_lanes"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "controller_host"
+    t.string   "controller_port"
+    t.string   "api_key"
   end
 
   create_table "users", :force => true do |t|

@@ -42,3 +42,5 @@ jQuery ->
       $(this).html "Stop Lane Test"
     $(this).toggleClass "running"
 
+  $("select#current_track").change ->
+    $(@).parent('form').submit()

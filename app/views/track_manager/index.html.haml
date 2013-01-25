@@ -5,9 +5,14 @@
 .row-fluid
   .span5.offset1
     .well
-      %h3 Racing!
+      %h3 Prepare a Race
       = link_to "Create Heats and Races", race_heat_groups_path, class: "btn btn-xlarge btn-block btn-primary"
       / .help-block.centered gentlemen, start your engines
+
+    .well
+      %h3 Testing
+      = link_to "Track Test", track_test_path, class: "btn btn-xlarge btn-block btn-primary"
+      .help-block.centered perform gate and timer tests
 
     .well
       %h3 Management
@@ -26,10 +31,6 @@
       = link_to "Events", events_path, class: "btn btn-xlarge btn-block btn-primary"
       .help-block.centered set events and the current race
 
-    .well
-      %h3 Testing
-      = link_to "Track Test", track_test_path, class: "btn btn-xlarge btn-block btn-primary"
-      .help-block.centered perform gate and timer tests
 
 
   .span5.offset1

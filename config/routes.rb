@@ -76,11 +76,12 @@ Racearama::Application.routes.draw do
   # devise_for :users, controllers: {registrations: "registrations"}
 
 
-  match 'track_test' => "track_test#index"
-  match 'track_test/gate_up' => "track_test#gate_up"
-  match 'track_test/gate_down' => "track_test#gate_down"
-  match 'track_test/test_race' => "track_test#test_race"
-  match 'track_test/test_lanes' => "track_test#test_lanes"
+  get 'track_test' => "track_test#index"
+  get 'track_test/gate_up' => "track_test#gate_up"
+  get 'track_test/gate_down' => "track_test#gate_down"
+  get 'track_test/test_race' => "track_test#test_race"
+  get 'track_test/test_lanes' => "track_test#test_lanes"
+  put 'track_test/set_current_track' => "track_test#set_current_track"
   get "page/copyright"
   get "page/about"
 
