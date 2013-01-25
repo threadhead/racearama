@@ -1,0 +1,42 @@
+= form_for @den, html: { class: 'form-horizontal' } do |f|
+  = render partial: 'layouts/flash_bootstrap', locals: {flash: flash, ar_object: @den}
+
+  .control-group
+    = f.label :pack_id, class: 'control-label'
+    .controls
+      = f.collection_select :pack_id, Pack.all, :id, :name
+
+  .control-group
+    = f.label :den_number, class: 'control-label'
+    .controls
+      = f.text_field :den_number, class: 'span1'
+      .help-inline just number, don't include "Den"
+
+  .control-group
+    = f.label :rank, class: 'control-label'
+    .controls
+      = f.select :rank, ['Tiger', 'Wolf', 'Bear', 'Webelos 1', 'Webelos 2', 'Webelos']
+
+  .control-group
+    = f.label :leader_name, class: 'control-label'
+    .controls
+      = f.text_field :leader_name
+
+  .control-group
+    = f.label :leader_email, class: 'control-label'
+    .controls
+      = f.text_field :leader_email
+
+  .control-group
+    = f.label :assistant_leader_name, class: 'control-label'
+    .controls
+      = f.text_field :assistant_leader_name
+
+  .control-group
+    = f.label :assistant_leader_email, class: 'control-label'
+    .controls
+      = f.text_field :assistant_leader_email
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Cancel', dens_path, class: 'btn'

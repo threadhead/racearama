@@ -1,0 +1,41 @@
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to(track_manager_path, class: "btn") do
+          Track Management
+
+        = link_to(new_den_path, class: "btn btn-success") do
+          %i.icon-plus
+          add new den
+
+      %h2 All Dens
+
+.row-fluid
+  .span12
+    %table.table
+      %thead
+        %tr
+          %th Pack
+          %th Den #
+          %th Rank
+          %th Leader
+          %th Asst Leader
+      // %tfoot
+      // %tr
+      // %td{colspan: "5"}
+      // .help-block * - events with associated scouts or races can not be deleted
+      %tbody
+        - for den in @dens
+          %tr
+            %td= den.pack.try(:name)
+            %td= link_to den.name, edit_den_path(den)
+            %td= den.rank
+            %td= den.leader_name
+            %td= den.assistant_leader_name
+
+            %td
+              = link_to 'edit', edit_den_path(den), class: "btn"
+
+              - unless den.has_associated?
+                = link_to 'delete', den, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger"

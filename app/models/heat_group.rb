@@ -1,6 +1,8 @@
 class HeatGroup < ActiveRecord::Base
   belongs_to :event
   has_many :heats
+  attr_accessible :name
+  has_many :scouts, through: :heats
 
   scope :by_name, order("name ASC")
   default_scope order("name ASC")

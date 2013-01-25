@@ -1,49 +1,51 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to 'Track Management', track_manager_path, class: "btn"
+        = link_to "Back to Heat Groups", race_heat_groups_path, class: 'btn'
+        = link_to "Back to #{@heat_group.name}-#{@heat.name} Heat", edit_race_heat_group_heat_path(@heat_group, @heat), class: 'btn btn-primary'
 
-#heats-edit.box.box-100
-  .boxin
-    .header
-      %h3= "Step 4: Create races for #{@heat_group.name}-#{@heat.name} heat"
-      
-    #dashboard.content
-      .inner-content
-        %p.bigger Specify the number of races you want to run for this heat. The lane assignment and rotation will automatically be calculated.
-        %p.bigger IMPORTANT: you can not modify or delete any races that have been partially run. Create a new heat, add scouts to that heat, then generate a new race schedule.
-        = render 'layouts/event_heat_group'          
-        
-        #race-container          
-          - if !enough_lanes?
-            %p.bigger There are more scouts than active lanes on the #{@event.track.name} track. You will need to #{link_to "remove some scouts", edit_race_heat_group_heat_path(@heat_group, @heat)} before you can generate races.
-            
-          - elsif @heat.races.size > 0
-            %p.bigger All the races have been generated for this heat.
-          
-            - if @heat.has_completed_races? || @heat.has_current_race?
-              %p.bigger.red One or more of the races has already completed, or one races is now the current races (probably in staging right now), you may not delete or change any race.
+      %h2= "Step 4: Create races for #{@heat_group.name}-#{@heat.name} heat"
 
-            - else
-              %p.bigger Because none of these races is the current race, and none have been run, you may delete all the races so they can be re-generated.
-              %p= link_to "Delete all races", destroy_races_heat_races_path(@heat), :method => :delete, :class => "button red"
-              
-              
-          - if @heat.races.size == 0
-            #scout-list-small
-              %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
-              %table.scouts-race
-                %tbody
-                  %tr
-                  - @heat.scouts.each do |scout|
-                    %tr
-                      %td= scout.full_name
-              %p= link_to "Add or edit scouts in #{@heat.name} heat", edit_race_heat_group_heat_path(@heat_group, @heat)
-          
-            = render 'race_generate'
-            
-            
-          - if @heat.races.size > 0
-            #race-list
-              %h4= "Races generated for the #{@heat.name} heat"
-              = render 'heat_race_list', :heat => @heat
+.row-fluid
+  .span10.offset1
+    %p.xxlarge Specify the number of races you want to run for this heat. The lane assignment and rotation will automatically be calculated.
+    .alert.alert-error
+      %h4 IMPORTANT:
+      You can not modify or delete any races that have been partially run. Create a new heat, add scouts to that heat, then generate a new race schedule.
 
-          .sep &nbsp;
-        
+    = render 'layouts/event_heat_group'
+    %br
+
+    .row-fluid
+      .span5
+        - if !enough_lanes?
+          %p.xlarge There are more scouts than active lanes on the #{@event.track.name} track. You will need to #{link_to "remove some scouts", edit_race_heat_group_heat_path(@heat_group, @heat)} before you can generate races.
+
+        - elsif @heat.races.size > 0
+          %strong.xlarge All the races have been generated for this heat.
+
+          - if @heat.has_completed_races? || @heat.has_current_race?
+            .alert.alert-block One or more of the races has already completed, or one races is now the current races (probably in staging right now), you may not delete or change any race.
+
+          - else
+            .alert.alert-info.alert-block Because none of these races is the current race, and none have been run, you may delete all the races so they can be re-generated.
+            %p= link_to "Delete all races", destroy_races_heat_races_path(@heat), method: :delete, class: "btn btn-danger"
+
+        - if @heat.races.size == 0
+          .well
+            %h4= "Scouts to race in #{@heat_group.name}-#{@heat.name} heat"
+            - @heat.scouts.each do |scout|
+              %p= scout.full_name
+            %p= link_to "Add or edit scouts in #{@heat.name} heat", edit_race_heat_group_heat_path(@heat_group, @heat)
+
+      .span6.offset1
+        - if @heat.races.size == 0
+          = render 'race_generate'
+
+
+    - if @heat.races.size > 0
+      #race-list
+        %h4= "Races generated for the #{@heat.name} heat"
+        = render 'heat_race_list', heat: @heat

@@ -22,32 +22,32 @@ end
 
 get '/verify' do
   log "GET /verify"
-  {:api_key_valid => true}.to_json
+  {api_key_valid: true}.to_json
 end
 
 get '/status' do
   log "GET /status"
-  {:status => "active"}.to_json
+  {status: "active"}.to_json
 end
 
 
 post '/start_race' do
   log "POST /start_race, duration: #{params['duration']}"
-  
-  { :status => "ok",
-    :units => "miliseconds",
-    :results => (1..12).map { |n| {:lane => n, :time => rand(10000)} }
+
+  { status: "ok",
+    units: "miliseconds",
+    results: (1..12).map { |n| {lane: n, time: rand(10000)} }
   }.to_json
 end
 
 
 post '/lane_status' do
   log "POST /lane_stauts"
-  
-  { :status => "ok",
-    :lane_status =>
-      (1..12).map {|n| {:lane => n, :status => "#{rand > 0.5 ? 'open' : 'closed'}"} }
-    
+
+  { status: "ok",
+    lane_status:
+      (1..12).map {|n| {lane: n, status: "#{rand > 0.5 ? 'open' : 'closed'}"} }
+
   }.to_json
 end
 
@@ -55,23 +55,23 @@ end
 post '/starting_gate_down' do
   log "POST /starting_gate_down"
   @@gate_status = "down"
-	{:status => "ok", :gate => "down"}.to_json
+	{status: "ok", gate: "down"}.to_json
 end
 
 
 post '/starting_gate_up' do
   log "POST /starting_gate_up"
   @@gate_status = "up"
-	{:status => "ok",:gate => "up"}.to_json
+	{status: "ok",gate: "up"}.to_json
 end
 
 
 post '/starting_gate_status' do
   log "POST /starting_gate_status"
   if @@gate_status == "down"
-    {:gate => "down"}.to_json
+    {gate: "down"}.to_json
   else
-    {:gate => "up"}.to_json
+    {gate: "up"}.to_json
   end
 end
 

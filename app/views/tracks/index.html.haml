@@ -1,25 +1,33 @@
-%h1 Listing tracks
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to(track_manager_path, class: "btn") do
+          Track Management
 
-%table
-  %tr
-    %th Name
-    %th Pack
-    %th Total lanes
-    %th Active lanes
-    %th
-    %th
-    %th
+        = link_to(new_track_path, class: "btn btn-success") do
+          %i.icon-plus
+          add new track
 
-  - @tracks.each do |track|
-    %tr
-      %td= track.name
-      %td= track.pack_id
-      %td= track.total_lanes
-      %td= track.active_lanes
-      %td= link_to 'Show', track
-      %td= link_to 'Edit', edit_track_path(track)
-      %td= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete
+      %h2 All Tracks
 
-%br
+.text-xlarge
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Pack
+        %th Total lanes
+        %th Active lanes
+        %th Actions
 
-= link_to 'New Track', new_track_path
+    %tbody
+      - @tracks.each do |track|
+        %tr
+          %td= link_to track.name, edit_track_path(track)
+          %td= track.pack.name
+          %td= track.total_lanes
+          %td= track.active_lanes
+          %td
+            = link_to 'edit', edit_track_path(track), class: 'btn'
+            = link_to 'Destroy', track, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'

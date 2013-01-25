@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title
+      = yield(:title) || "Untitled"
+    = render partial: 'layouts/head_bootstrap'
+
+  %body
+    #header
+      = render partial: 'layouts/header_bootstrap'
+
+    .container-fluid
+      .row-fluid
+        .span12
+          = render partial: 'layouts/flash_bootstrap', locals: {flash: flash}
+
+          = yield
+
+    = render partial: 'layouts/footer_bootstrap'
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

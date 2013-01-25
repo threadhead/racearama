@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
   skip_before_filter :check_for_current_event
+  layout 'layouts/application_bootstrap'
 
   authorize_resource
-  
+
   def index
     @events = Event.all
   end
@@ -24,9 +25,9 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
 
     if @event.save
-      redirect_to @event, :notice => 'Event was successfully created.'
+      redirect_to @event, notice: 'Event was successfully created.'
     else
-      render :action => "new"
+      render :new
     end
   end
 
@@ -34,9 +35,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update_attributes(params[:event])
-      redirect_to events_path, :notice => 'Event was successfully updated.'
+      redirect_to events_path, notice: 'Event was successfully updated.'
     else
-      render :action => "edit"
+      render :edit
     end
   end
 
@@ -45,15 +46,15 @@ class EventsController < ApplicationController
     @event.destroy
 
     redirect_to(events_url)
-    
+
   rescue ActiveRecord::ActiveRecordError
     redirect_to @event, :alert => "Events with races or scouts can not be deleted!"
   end
-  
+
   def set_active
     @event = Event.find(params[:id])
-    Event.all.each{ |event| event.update_attributes({:active => false}) }
-    @event.update_attributes({:active => true})
-    redirect_to events_url, :notice => "#{@event.name} event was set as the active event (race)"
+    Event.all.each{ |event| event.update_attributes({active: false}) }
+    @event.update_attributes({active: true})
+    redirect_to events_url, notice: "#{@event.name} event was set as the active event (race)"
   end
 end

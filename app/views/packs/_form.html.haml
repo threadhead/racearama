@@ -1,0 +1,51 @@
+= form_for @pack, html: { class: 'form-horizontal' } do |f|
+  = render partial: 'layouts/flash_bootstrap', locals: {flash: flash, ar_object: @pack}
+
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name
+      .help-inline Pack 123, Pack 134, etc.
+
+  .control-group
+    = f.label :cubmaster_name, class: 'control-label'
+    .controls
+      = f.text_field :cubmaster_name
+
+  .control-group
+    = f.label :pinewood_derby_chair, class: 'control-label'
+    .controls
+      = f.text_field :pinewood_derby_chair
+
+  .control-group
+    = f.label :address1, "Address 1", class: 'control-label'
+    .controls
+      = f.text_field :address1
+
+  .control-group
+    = f.label :address2, "Address 2", class: 'control-label'
+    .controls
+      = f.text_field :address2
+
+  .control-group
+    = f.label :city, "City, State, Zip", class: 'control-label'
+    .controls
+      = f.text_field :city, class: 'span4'
+      = f.text_field :state, class: 'span2'
+      = f.text_field :zipcode, class: 'span3'
+
+
+  .control-group
+    = f.label :website_url, class: 'control-label'
+    .controls
+      = f.text_field :website_url
+
+  .control-group
+    = f.label :email, class: 'control-label'
+    .controls
+      = f.text_field :email
+      .help-inline the contact email for the pack, generally not used
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Cancel', packs_path, class: 'btn'

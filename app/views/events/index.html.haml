@@ -1,46 +1,45 @@
-- nav_buttons render(:partial => 'index_nav_buttons')
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to(track_manager_path, class: "btn") do
+          Track Management
 
-#event-index.box.box-100.blue
-  .boxin
-    .header
-      %h3 All Events (Races)
-  	  
-    .content.clearfix
-      %table
-        %thead
-          %tr
-            %th Name
-            %td Start/End
-            %td Derby Chair
-            %td Race Manager
-            %td Action
-        %tfoot
-          %tr
-            %td{:colspan => "5"}
-              .description * - events with associated scouts or races can not be deleted
-        %tbody
-          - for event in @events        
-            %tr{:class => "#{cycle 'even', 'odd'}"}
-              %td= link_to event.name, edit_event_path(event)
-              %td #{event.start_time.to_formatted_s(:short)} - #{event.end_time.to_formatted_s(:short)}
-              %td= event.derby_chair
-              %td= event.race_manager
+        = link_to(new_event_path, class: "btn btn-success") do
+          %i.icon-plus
+          add new event
 
-              %td
-                %ul.actions
-                  %li
-                    = link_to edit_event_path(event), :class => "ico" do
-                      = image_tag 'edit.png', :alt => 'edit'
-                  %li
-                    - if event.has_associated?
-                      <strong>*</strong>
-                    - else
-                    
-                      = link_to event, :confirm => 'Are you sure?', :method => :delete, :class => "ico" do
-                        = image_tag 'delete.png', :alt => 'delete'
-                  %li
-                    - if event.active
-                      <strong>&laquo; Active Event</strong>
-                    - else
-                      = link_to "Set Active", set_active_event_path(event), :class => "button", :confirm => "Changing the current Event affects all users. Are you sure?"
-              
+      %h2 All Events (Races)
+
+.row-fluid
+  .span12
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Start/End
+          %th Derby Chair
+          %th Race Manager
+          %th Actions
+      %tfoot
+        %tr
+          %td{colspan: "5"}
+            .help-block * - events with associated scouts or races can not be deleted
+      %tbody
+        - for event in @events
+          %tr
+            %td= link_to event.name, edit_event_path(event)
+            %td #{event.start_time.to_formatted_s(:short)} - #{event.end_time.to_formatted_s(:short)}
+            %td= event.derby_chair
+            %td= event.race_manager
+
+            %td
+              = link_to 'edit', edit_event_path(event), class: "btn"
+
+              - unless event.has_associated?
+                = link_to 'delete', event, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger"
+
+              - if event.active
+                %strong &laquo; Active Event
+              - else
+                = link_to "Set Active", set_active_event_path(event), class: "btn btn-warning", confirm: "Changing the current Event affects all users. Are you sure?"

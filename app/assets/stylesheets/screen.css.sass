@@ -1,0 +1,141 @@
+@import "compass/css3"
+@import "compass/typography/lists"
+
+footer
+  background: #333
+  color: #bbb
+  padding: 16px 0px 16px
+  margin-top: 20px
+
+div.text-large, p.large, p large, i.large, span.large, strong.large, em.large
+  font-size: 14px
+  line-height: 1
+
+div.text-xlarge, p.xlarge, p xlarge, i.xlarge, span.xlarge, strong.xlarge, em.xlarge
+  font-size: 18px
+  line-height: 1.2
+
+div.text-xxlarge, p.xxlarge, p xxlarge, i.xxlarge, span.xxlarge, strong.xxlarge, em.xxlarge
+  font-size: 24px
+  line-height: 1.4
+
+div.text-xxxlarge, p.xxxlarge, p xxxlarge, i.xxxlarge, span.xxxlarge, strong.xxxlarge, em.xxxlarge
+  font-size: 42px
+  line-height: 1.4
+
+.centered
+  text-align: center
+
+.right-justified
+  text-align: right
+
+.red
+  color: red
+.green
+  color: green
+.blue
+  color: blue
+
+.no-pad
+  padding: 0px
+  margin: 0px
+
+.btn-xlarge
+  padding: 11px 22px
+  font-size: 25px
+  line-height: normal
+  +border-radius(8px)
+
+.btn-xxlarge
+  padding: 18px 28px
+  font-size: 38px
+  line-height: normal
+  +border-radius(9px)
+
+.help-inline, .help-block
+  color: #999
+
+.well-thin
+  margin-top: 6px
+  margin-bottom: 12px
+  padding: 6px
+.well-darker
+  background-color: #cccccc
+
+table.table-scout-info
+  tr
+    td
+      padding-bottom: 12px
+      vertical-align: top
+
+#picture
+  display: inline
+  img
+    // width: 280px
+    // height: 200px
+    padding: 3px
+    border: 1px solid #999
+
+.modal-style
+  margin-top: 60px
+  background-color: white
+  border: 1px solid #999
+  border: 1px solid rgba(0, 0, 0, 0.3)
+  @include border-radius(6px)
+  @include single-box-shadow(rgba(0, 0, 0, 0.3), 2px, 5px)
+
+.modal-body-tall
+  overflow-y: visible
+  max-height: none
+
+.alert-no-margin
+  margin: 0px
+
+.table-race-lanes
+  thead
+    th
+      text-align: center
+  tbody
+    td
+      text-align: center
+
+#race-list
+  .race-table
+    &.mid
+      .span4
+    &.last
+      .span4
+
+#lane-status
+  table
+    tr
+      // height: 36px
+      th, td
+        vertical-align: middle
+
+#controller-debug.well
+  color: #666666
+  font-size: 11px
+  line-height: 1.3em
+
+body.body-modal
+  background-color: grey
+
+// .blink-fast
+//   animation:         blink 300ms linear infinite
+//   -moz-animation:    blink 300ms linear infinite
+//   -webkit-animation: blink 300ms linear infinite
+
+// .bink-regular
+//   animation:         blink 750ms linear infinite
+//   -moz-animation:    blink 750ms linear infinite
+//   -webkit-animation: blink 750ms linear infinite
+
+// .blink-slow
+//   animation:         blink 1500ms linear infinite
+//   -moz-animation:    blink 1500ms linear infinite
+//   -webkit-animation: blink 1500ms linear infinite
+
+// @-moz-keyframes    blink { 0% {opacity:0} 50% {opacity:1} 100% {opacity:0} }
+// @-webkit-keyframes blink { 0% {opacity:0} 50% {opacity:1} 100% {opacity:0} }
+// @keyframes         blink { 0% {opacity:0} 50% {opacity:1} 100% {opacity:0} }

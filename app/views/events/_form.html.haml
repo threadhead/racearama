@@ -1,52 +1,73 @@
-= form_for @event, :html => {:class => "fields"} do |f|
-  .inner-form
-  = f.error_messages
+= form_for @event, html: { class: 'form-horizontal' } do |f|
+  = render partial: 'layouts/flash_bootstrap', locals: {flash: flash, ar_object: @event}
 
-  = f.label :track_id, "Track"
-  = f.collection_select :track_id, Track.all, :id, :name_pack
+  .control-group
+    = f.label :track_id, "Track", class: 'control-label'
+    .controls
+      = f.collection_select :track_id, Track.all, :id, :name_pack
 
-  = f.label :name
-  = f.text_field :name, :size => 50
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'span7'
 
-  = f.label :start_time
-  = f.datetime_select :start_time
+  .control-group
+    = f.label :start_time, class: 'control-label'
+    .controls
+      = f.datetime_select :start_time, {}, {class: 'span2'}
 
-  = f.label :end_time
-  = f.datetime_select :end_time
+  .control-group
+    = f.label :end_time, class: 'control-label'
+    .controls
+      = f.datetime_select :end_time, {}, {class: 'span2'}
 
-  = f.label :location_name
-  = f.text_field :location_name, :size => 50
+  .control-group
+    = f.label :location_name, class: 'control-label'
+    .controls
+      = f.text_field :location_name, class: 'span7'
 
-  = f.label :location_address1, "Address 1"
-  = f.text_field :location_address1
+  .control-group
+    = f.label :location_address1, "Address 1", class: 'control-label'
+    .controls
+      = f.text_field :location_address1
 
-  = f.label :location_address2, "Address 2"
-  = f.text_field :location_address2
+  .control-group
+    = f.label :location_address2, "Address 2", class: 'control-label'
+    .controls
+      = f.text_field :location_address2
 
-  = f.label :location_city, "City"
-  = f.text_field :location_city
+  .control-group
+    = f.label :location_city, "City, State, Zip", class: 'control-label'
+    .controls
+      = f.text_field :location_city, class: 'span4'
+      = f.text_field :location_state, class: 'span2'
+      = f.text_field :location_zipcode, class: 'span3'
 
-  = f.label :location_state, "State"
-  = f.text_field :location_state
+  .control-group
+    = f.label :derby_chair, class: 'control-label'
+    .controls
+      = f.text_field :derby_chair
 
-  = f.label :location_zipcode, "ZipCode"
-  = f.text_field :location_zipcode
+  .control-group
+    = f.label :race_manager, class: 'control-label'
+    .controls
+      = f.text_field :race_manager
 
-  = f.label :derby_chair
-  = f.text_field :derby_chair
+  .control-group
+    = f.label :race_day_notes, class: 'control-label'
+    .controls
+      = f.text_area :race_day_notes, :rows => "5", class: 'span8'
 
-  = f.label :race_manager
-  = f.text_field :race_manager
+  .control-group
+    = f.label :track_notes, class: 'control-label'
+    .controls
+      = f.text_area :track_notes, :rows => "5", class: 'span8'
 
-  = f.label :notes, "Race Notes"
-  = f.text_area :notes, :rows => "5"
 
-  = f.label :track, "Track Notes"
-  = f.text_area :track, :rows => "5"
-
-  = #f.label :active, "&nbsp;".html_safe
+  = #f.label :active, "&nbsp;".html_safe, class: 'control-label'
   = #f.check_box :active
   = #Active?
-  
-  .sep
-    = f.submit :class => "button"
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Cancel', events_path, class: 'btn'

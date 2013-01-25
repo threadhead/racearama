@@ -1,0 +1,19 @@
+!!! 5
+%html(lang="en")
+  %head
+    = render partial: 'layouts/head_bootstrap'
+
+  %body.body-modal
+    #header
+      = render partial: 'layouts/header_bootstrap'
+
+    .container-fluid
+      .row
+        .span6.offset3
+          = yield
+
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

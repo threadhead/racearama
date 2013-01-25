@@ -1,7 +1,14 @@
-.box.box-100
-  #dashboard.clearfix
-    %ul
-      %li= link_to "Parents", parent_url, :class => "button big"
-      %li= link_to "Check In", check_in_url, :class => "button big"
-      %li= link_to "Staging", staging_url, :class => "button big"
-      %li= link_to "Track Manager", track_manager_url, :class => "button big"
+.row-fluid
+  %h1 &nbsp;
+
+  .span4.offset1
+    = link_to "Parents", parent_url, class: "btn btn-xxlarge btn-primary btn-block"
+    %h1 &nbsp;
+    = link_to "Check In", check_in_url, class: "btn btn-xxlarge btn-primary btn-block"
+
+  .span4.offset2
+    = link_to "Staging", staging_url, class: "btn btn-xxlarge btn-primary btn-block"
+    %h1 &nbsp;
+    = link_to "Track Manager", track_manager_url, class: "btn btn-xxlarge btn-primary btn-block"
+
+%h1 &nbsp;

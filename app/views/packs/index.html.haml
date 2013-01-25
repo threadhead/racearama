@@ -1,0 +1,40 @@
+.row-fluid
+  .span12
+    .page-header
+      .pull-right
+        = link_to(track_manager_path, class: "btn") do
+          Track Management
+
+        = link_to(new_pack_path, class: "btn btn-success") do
+          %i.icon-plus
+          add new pack
+
+      %h2 All Packs
+
+.row-fluid
+  .span12
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Location
+          %th Cubmaster
+          %th Derby Chair
+          %th Actions
+      %tfoot
+        %tr
+          %td{colspan: "5"}
+            .help-block * - packs with associated scouts or races can not be deleted
+      %tbody
+        - for pack in @packs
+          %tr
+            %td= link_to pack.name, edit_pack_path(pack)
+            %td #{pack.city}, #{pack.state}
+            %td= pack.cubmaster_name
+            %td= pack.pinewood_derby_chair
+
+            %td
+              = link_to 'edit', edit_pack_path(pack), class: "btn"
+
+              - unless pack.has_associated?
+                = link_to 'delete', pack, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger"

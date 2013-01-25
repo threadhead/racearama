@@ -1,0 +1,42 @@
+!!!
+%html
+  %head
+    %title
+      = yield(:title) || "Untitled"
+    = render :partial => 'layouts/head'
+
+  %body.bp
+    #header
+      .inner-container
+        = render :partial => 'layouts/header'
+
+    #nav
+      .inner-container
+        = yield :nav_buttons
+
+    #container.clearfix
+      .inner-container
+        #content
+          = render :partial => 'layouts/flash', :locals => {:flash => flash}
+
+          = yield
+
+    #footer.clearfix
+      .inner-container
+        .box
+          <strong>Quick Links</strong>
+          %ul
+            %li
+              %a{:href => "/"} Dashboard
+            %li
+              %a{:href => "/"} Scouts
+        .copyright
+          &copy; 2010, Karl Smith
+          %br
+          %small All rights reserved.
+
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"
